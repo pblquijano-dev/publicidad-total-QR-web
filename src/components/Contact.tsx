@@ -45,7 +45,7 @@ export const Contact: React.FC = () => {
 
     try {
       const payload = {
-        access_key: 'YOUR_ACCESS_KEY_HERE', // Reemplazar con clave Web3Forms o envío por formulario
+        access_key: 'YOUR_ACCESS_KEY_HERE',
         to: 'ventaspublicidad1@hotmail.com',
         subject: `Nuevo Lead Landing Q&R: ${formData.nombre} - ${formData.servicio}`,
         from_name: formData.nombre,
@@ -97,23 +97,23 @@ export const Contact: React.FC = () => {
   return (
     <section
       id="contacto"
-      className="py-24 bg-[#140F0E] relative overflow-hidden"
+      className="py-24 bg-[#f8ebe9] dark:bg-[#140F0E] transition-colors duration-300 relative overflow-hidden"
     >
       {/* Glow */}
-      <div className="absolute top-1/3 left-0 w-96 h-96 bg-[#AB2020]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-0 w-96 h-96 bg-[#AB2020]/10 dark:bg-[#AB2020]/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-[#009EE2] uppercase tracking-wider mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs font-semibold text-[#009EE2] uppercase tracking-wider mb-4">
             <Mail className="w-3.5 h-3.5 text-[#009EE2]" />
             <span>Contacto Inmediato</span>
           </div>
-          <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight">
             Inicia tu Campaña con{' '}
             <span className="text-[#AB2020]">Publicidad Total Q&R</span>
           </h2>
-          <p className="font-manrope text-base sm:text-lg text-gray-300 mt-4">
+          <p className="font-manrope text-base sm:text-lg text-gray-600 dark:text-gray-300 mt-4">
             Cotizamos tu proyecto en menos de 24 horas con propuesta técnica,
             rutas y cuadrillas a la medida de tu presupuesto.
           </p>
@@ -122,8 +122,8 @@ export const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Direct Contact Cards (Left column 5 cols) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#1A1413] border border-white/10 shadow-xl">
-              <h3 className="font-sora font-bold text-xl text-white mb-6">
+            <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#1A1413] border border-gray-200 dark:border-white/10 shadow-md dark:shadow-xl">
+              <h3 className="font-sora font-bold text-xl text-gray-900 dark:text-white mb-6">
                 Canales Directos de Atención
               </h3>
 
@@ -133,19 +133,19 @@ export const Contact: React.FC = () => {
                   href="https://wa.me/529981071359"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-4 p-4 rounded-xl bg-white/5 hover:bg-[#25D366]/10 border border-white/5 hover:border-[#25D366]/30 transition-all group"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-[#25D366]/10 border border-gray-200/80 dark:border-white/5 hover:border-[#25D366]/30 transition-all group"
                 >
                   <div className="p-3 rounded-xl bg-[#25D366]/20 text-[#25D366] group-hover:scale-105 transition-transform">
                     <MessageSquare className="w-6 h-6 fill-current" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-gray-400">
+                    <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">
                       WhatsApp y Cotizaciones Rápidas
                     </div>
-                    <div className="font-sora font-bold text-base text-white group-hover:text-[#25D366] transition-colors">
+                    <div className="font-sora font-bold text-base text-gray-900 dark:text-white group-hover:text-[#25D366] transition-colors">
                       998 107 1359
                     </div>
-                    <div className="text-xs text-gray-400 mt-0.5">
+                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                       Atención inmediata en Cancún y Península
                     </div>
                   </div>
@@ -154,19 +154,19 @@ export const Contact: React.FC = () => {
                 {/* Llamadas telefónicas */}
                 <a
                   href="tel:9999318581"
-                  className="flex items-start gap-4 p-4 rounded-xl bg-white/5 hover:bg-[#009EE2]/10 border border-white/5 hover:border-[#009EE2]/30 transition-all group"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-[#009EE2]/10 border border-gray-200/80 dark:border-white/5 hover:border-[#009EE2]/30 transition-all group"
                 >
                   <div className="p-3 rounded-xl bg-[#009EE2]/20 text-[#009EE2] group-hover:scale-105 transition-transform">
                     <Phone className="w-6 h-6" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-gray-400">
+                    <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">
                       Llamadas y Oficina Central
                     </div>
-                    <div className="font-sora font-bold text-base text-white group-hover:text-[#009EE2] transition-colors">
+                    <div className="font-sora font-bold text-base text-gray-900 dark:text-white group-hover:text-[#009EE2] transition-colors">
                       999 931 8581
                     </div>
-                    <div className="text-xs text-gray-400 mt-0.5">
+                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                       Atención telefónica regional Peninsular
                     </div>
                   </div>
@@ -175,19 +175,19 @@ export const Contact: React.FC = () => {
                 {/* Email */}
                 <a
                   href="mailto:ventaspublicidad1@hotmail.com"
-                  className="flex items-start gap-4 p-4 rounded-xl bg-white/5 hover:bg-[#AB2020]/10 border border-white/5 hover:border-[#AB2020]/30 transition-all group"
+                  className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-[#AB2020]/10 border border-gray-200/80 dark:border-white/5 hover:border-[#AB2020]/30 transition-all group"
                 >
                   <div className="p-3 rounded-xl bg-[#AB2020]/20 text-[#AB2020] group-hover:scale-105 transition-transform">
                     <Mail className="w-6 h-6" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-gray-400">
+                    <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">
                       Correo Electrónico
                     </div>
-                    <div className="font-sora font-bold text-sm text-white group-hover:text-[#AB2020] transition-colors break-all">
+                    <div className="font-sora font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#AB2020] transition-colors break-all">
                       ventaspublicidad1@hotmail.com
                     </div>
-                    <div className="text-xs text-gray-400 mt-0.5">
+                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                       Recepción directa de licitaciones y RFP
                     </div>
                   </div>
@@ -195,12 +195,12 @@ export const Contact: React.FC = () => {
               </div>
 
               {/* Extra info */}
-              <div className="pt-6 mt-6 border-t border-white/10 space-y-3">
-                <div className="flex items-center gap-2.5 text-xs text-gray-400">
+              <div className="pt-6 mt-6 border-t border-gray-100 dark:border-white/10 space-y-3">
+                <div className="flex items-center gap-2.5 text-xs text-gray-500 dark:text-gray-400">
                   <Clock className="w-4 h-4 text-[#93C01F]" />
                   <span>Horario: Lunes a Sábado de 8:00 AM a 7:00 PM</span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs text-gray-400">
+                <div className="flex items-center gap-2.5 text-xs text-gray-500 dark:text-gray-400">
                   <MapPin className="w-4 h-4 text-[#009EE2]" />
                   <span>Despliegue activo en Q. Roo, Yucatán y Campeche</span>
                 </div>
@@ -210,11 +210,11 @@ export const Contact: React.FC = () => {
 
           {/* Interactive Form (Right column 7 cols) */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#1A1413] border border-white/10 shadow-2xl relative">
-              <h3 className="font-sora font-bold text-xl text-white mb-2">
+            <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#1A1413] border border-gray-200 dark:border-white/10 shadow-lg dark:shadow-2xl relative">
+              <h3 className="font-sora font-bold text-xl text-gray-900 dark:text-white mb-2">
                 Solicita una Cotización Personalizada
               </h3>
-              <p className="font-manrope text-xs sm:text-sm text-gray-400 mb-6">
+              <p className="font-manrope text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-6">
                 Completa los datos y un asesor se pondrá en contacto contigo a
                 la brevedad.
               </p>
@@ -224,13 +224,13 @@ export const Contact: React.FC = () => {
                   <div className="w-16 h-16 rounded-full bg-[#93C01F]/20 text-[#93C01F] flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
-                  <h4 className="font-sora font-bold text-2xl text-white">
+                  <h4 className="font-sora font-bold text-2xl text-gray-900 dark:text-white">
                     ¡Mensaje Recibido con Éxito!
                   </h4>
-                  <p className="font-manrope text-sm text-gray-300 max-w-md mx-auto">
+                  <p className="font-manrope text-sm text-gray-600 dark:text-gray-300 max-w-md mx-auto">
                     Hemos canalizado tu información a nuestro equipo comercial
                     en{' '}
-                    <span className="text-white font-medium">
+                    <span className="text-gray-900 dark:text-white font-medium">
                       ventaspublicidad1@hotmail.com
                     </span>
                     . Nos comunicaremos contigo en breve.
@@ -246,8 +246,8 @@ export const Contact: React.FC = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {status === 'error' && (
-                    <div className="p-4 rounded-xl bg-red-950/40 border border-red-800 text-red-200 text-xs flex items-center gap-3">
-                      <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
+                    <div className="p-4 rounded-xl bg-red-100 dark:bg-red-950/40 border border-red-300 dark:border-red-800 text-red-800 dark:text-red-200 text-xs flex items-center gap-3">
+                      <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400 shrink-0" />
                       <span>{errorMessage}</span>
                     </div>
                   )}
@@ -256,7 +256,7 @@ export const Contact: React.FC = () => {
                     <div>
                       <label
                         htmlFor="nombre"
-                        className="block font-manrope text-xs font-semibold text-gray-300 mb-1.5"
+                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
                       >
                         Nombre Completo *
                       </label>
@@ -268,14 +268,14 @@ export const Contact: React.FC = () => {
                         value={formData.nombre}
                         onChange={handleChange}
                         placeholder="Ej. Juan Pérez"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-white placeholder-gray-500 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
                       />
                     </div>
 
                     <div>
                       <label
                         htmlFor="empresa"
-                        className="block font-manrope text-xs font-semibold text-gray-300 mb-1.5"
+                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
                       >
                         Empresa / Negocio *
                       </label>
@@ -287,7 +287,7 @@ export const Contact: React.FC = () => {
                         value={formData.empresa}
                         onChange={handleChange}
                         placeholder="Ej. Grupo Peninsular"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-white placeholder-gray-500 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
                       />
                     </div>
                   </div>
@@ -296,7 +296,7 @@ export const Contact: React.FC = () => {
                     <div>
                       <label
                         htmlFor="telefono"
-                        className="block font-manrope text-xs font-semibold text-gray-300 mb-1.5"
+                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
                       >
                         Teléfono / WhatsApp *
                       </label>
@@ -308,14 +308,14 @@ export const Contact: React.FC = () => {
                         value={formData.telefono}
                         onChange={handleChange}
                         placeholder="Ej. 998 123 4567"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-white placeholder-gray-500 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
                       />
                     </div>
 
                     <div>
                       <label
                         htmlFor="email"
-                        className="block font-manrope text-xs font-semibold text-gray-300 mb-1.5"
+                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
                       >
                         Correo Electrónico *
                       </label>
@@ -327,7 +327,7 @@ export const Contact: React.FC = () => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="nombre@empresa.com"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-white placeholder-gray-500 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
                       />
                     </div>
                   </div>
@@ -336,7 +336,7 @@ export const Contact: React.FC = () => {
                     <div>
                       <label
                         htmlFor="servicio"
-                        className="block font-manrope text-xs font-semibold text-gray-300 mb-1.5"
+                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
                       >
                         Servicio Principal de Interés
                       </label>
@@ -345,7 +345,7 @@ export const Contact: React.FC = () => {
                         name="servicio"
                         value={formData.servicio}
                         onChange={handleChange}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#1A1413] border border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-white transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-[#1A1413] border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white transition-colors"
                       >
                         <option value="Activaciones de Marca BTL">
                           Activaciones de Marca BTL
@@ -378,7 +378,7 @@ export const Contact: React.FC = () => {
                     <div>
                       <label
                         htmlFor="estado"
-                        className="block font-manrope text-xs font-semibold text-gray-300 mb-1.5"
+                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
                       >
                         Estado de Cobertura
                       </label>
@@ -387,7 +387,7 @@ export const Contact: React.FC = () => {
                         name="estado"
                         value={formData.estado}
                         onChange={handleChange}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#1A1413] border border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-white transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-[#1A1413] border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white transition-colors"
                       >
                         <option value="Quintana Roo">
                           Quintana Roo (Cancún, Playa, Tulum, etc.)
@@ -408,7 +408,7 @@ export const Contact: React.FC = () => {
                   <div>
                     <label
                       htmlFor="mensaje"
-                      className="block font-manrope text-xs font-semibold text-gray-300 mb-1.5"
+                      className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
                     >
                       Detalles del Proyecto / Fechas Estimadas
                     </label>
@@ -419,7 +419,7 @@ export const Contact: React.FC = () => {
                       value={formData.mensaje}
                       onChange={handleChange}
                       placeholder="Cuéntanos sobre tu evento, volumen de volantes, días de perifoneo o personal requerido..."
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-white placeholder-gray-500 transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
                     />
                   </div>
 

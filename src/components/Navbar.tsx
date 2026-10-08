@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Megaphone } from 'lucide-react';
+import { Menu, X, Megaphone, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 export const Navbar: React.FC = () => {
+  const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [logoError, setLogoError] = useState(false);
@@ -28,8 +30,8 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#1A1413]/95 backdrop-blur-md shadow-lg shadow-black/30 border-b border-white/10 py-3'
-          : 'bg-[#1A1413]/80 backdrop-blur-sm border-b border-white/5 py-4'
+          ? 'bg-white/90 dark:bg-[#1A1413]/95 backdrop-blur-md shadow-lg shadow-black/5 dark:shadow-black/30 border-b border-gray-200/80 dark:border-white/10 py-3'
+          : 'bg-white/70 dark:bg-[#1A1413]/80 backdrop-blur-sm border-b border-gray-200/50 dark:border-white/5 py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,7 +46,7 @@ export const Navbar: React.FC = () => {
                 src={headerLogoUrl}
                 alt="Publicidad Total Q&R"
                 onError={() => setLogoError(true)}
-                className="h-9 sm:h-11 w-auto object-contain brightness-110 group-hover:scale-105 transition-transform duration-300"
+                className="h-9 sm:h-11 w-auto object-contain brightness-100 dark:brightness-110 group-hover:scale-105 transition-transform duration-300"
               />
             ) : (
               <div className="flex items-center gap-3">
@@ -52,7 +54,7 @@ export const Navbar: React.FC = () => {
                   <Megaphone className="w-5 h-5 text-white" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-sora font-extrabold text-lg sm:text-xl tracking-tight text-white leading-none">
+                  <span className="font-sora font-extrabold text-lg sm:text-xl tracking-tight text-gray-900 dark:text-white leading-none">
                     PUBLICIDAD TOTAL
                   </span>
                   <span className="font-sora font-bold text-xs tracking-widest text-[#009EE2] flex items-center gap-1.5 mt-0.5">
@@ -64,32 +66,70 @@ export const Navbar: React.FC = () => {
             )}
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-manrope font-semibold text-gray-200 hover:text-[#009EE2] transition-colors duration-200 relative group py-1 tracking-wide"
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#009EE2] to-[#93C01F] transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
-          </nav>
+          {/* Desktop Navigation Links & Right-aligned Theme Toggle */}
+          <div className="hidden md:flex items-center gap-8">
+            <nav className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm font-manrope font-semibold text-gray-700 dark:text-gray-200 hover:text-[#009EE2] dark:hover:text-[#009EE2] transition-colors duration-200 relative group py-1 tracking-wide"
+                >
+                  {link.name}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#009EE2] to-[#93C01F] transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
+            </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+            {/* Dark / Light Mode Toggle Button (Far Right) */}
+            <button
+              onClick={toggleTheme}
+              type="button"
+              className="p-2.5 rounded-xl bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/15 text-gray-700 dark:text-gray-200 border border-gray-300/80 dark:border-white/10 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#009EE2]"
+              aria-label={
+                theme === 'dark'
+                  ? 'Cambiar a modo claro'
+                  : 'Cambiar a modo oscuro'
+              }
+              title={
+                theme === 'dark'
+                  ? 'Cambiar a modo claro'
+                  : 'Cambiar a modo oscuro'
+              }
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-[#93C01F] hover:rotate-45 transition-transform duration-300" />
+              ) : (
+                <Moon className="w-4 h-4 text-[#312782] hover:-rotate-12 transition-transform duration-300" />
+              )}
+            </button>
+          </div>
+
+          {/* Mobile Right Actions (Theme Toggle + Menu Button) */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              type="button"
+              className="p-2 rounded-lg bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-[#009EE2]"
+              aria-label="Cambiar tema"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-5 h-5 text-[#93C01F]" />
+              ) : (
+                <Moon className="w-5 h-5 text-[#312782]" />
+              )}
+            </button>
+
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               type="button"
-              className="p-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#009EE2]"
+              className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#009EE2]"
               aria-label="Abrir menú de navegación"
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-white" />
+                <X className="w-6 h-6 text-gray-900 dark:text-white" />
               ) : (
-                <Menu className="w-6 h-6 text-white" />
+                <Menu className="w-6 h-6 text-gray-900 dark:text-white" />
               )}
             </button>
           </div>
@@ -97,14 +137,14 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-3 pt-3 pb-4 border-t border-white/10 bg-[#1A1413]/95 backdrop-blur-xl rounded-b-2xl px-2">
+          <div className="md:hidden mt-3 pt-3 pb-4 border-t border-gray-200 dark:border-white/10 bg-white/95 dark:bg-[#1A1413]/95 backdrop-blur-xl rounded-b-2xl px-2 shadow-xl">
             <div className="flex flex-col space-y-2">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-4 py-2.5 rounded-xl text-sm font-manrope font-semibold text-gray-200 hover:text-white hover:bg-white/10 transition-colors"
+                  className="px-4 py-2.5 rounded-xl text-sm font-manrope font-semibold text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
                 >
                   {link.name}
                 </a>
