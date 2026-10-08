@@ -441,7 +441,7 @@ export const Contact: React.FC = () => {
                     )}
                   </button>
 
-                  <p className="text-[11px] text-gray-500 text-center mt-3">
+                  <p className="text-[11px] text-gray-500 dark:text-gray-500 text-center mt-3">
                     Tus datos se manejan con estricta confidencialidad para
                     fines de cotización comercial.
                   </p>

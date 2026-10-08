@@ -260,7 +260,7 @@ export const Services: React.FC = () => {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <div className="p-2.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 text-[#009EE2]">
+                      <div className="p-2.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[#009EE2]">
                         <IconComp className="w-5 h-5" />
                       </div>
                       <span className="text-[10px] font-semibold text-[#93C01F] bg-[#93C01F]/10 px-2 py-0.5 rounded-full border border-[#93C01F]/20">

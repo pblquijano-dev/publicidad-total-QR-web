@@ -1,6 +1,12 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from 'react';
 
-type Theme = 'dark' | 'light';
+type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
@@ -9,16 +15,17 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
+export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    const savedTheme = localStorage.getItem('qr_theme') as Theme | null;
+    const savedTheme = localStorage.getItem('theme') as Theme | null;
     if (savedTheme) {
       return savedTheme;
     }
-    // Default to dark mode as per original styling
-    return 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'dark'; // Defaulting to dark as standard for the brand
   });
 
   useEffect(() => {
@@ -28,11 +35,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     } else {
       root.classList.remove('dark');
     }
-    localStorage.setItem('qr_theme', theme);
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
   };
 
   return (
