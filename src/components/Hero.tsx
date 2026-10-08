@@ -36,12 +36,15 @@ export const Hero: React.FC = () => {
     },
   ];
 
+  const heroBgUrl =
+    'https://lh3.googleusercontent.com/aida/AEtjO1UAzO7NtqFecGgTOEeBkgb5frOMq6gwU6ei1i34OSiznLr7kG4XBBkXW3U4uzeJmCV8Lsxnzd55DwaaGyAtplSAo7pTxQ2l2USfk2zZJ03GZ9KDq7RM6Low6yW0Tqi_mCBJi7MEOhsTzgu5NVyLx1JNtjJ8eAFl8OiN9DZ2TRlB6XkWuhwC3iRnByUOMNza38XzKxuSic0UQAZ6T-kUGj91rtDByD-Y4uqcVaAw25xuyQgzBZSVkihS9A';
+
   return (
     <section className="relative min-h-[90vh] flex flex-col justify-between pt-28 pb-12 overflow-hidden">
       {/* Background Image & Cinematic Overlay */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=2000&q=80"
+          src={heroBgUrl}
           alt="Activación BTL y eventos en vivo"
           className="w-full h-full object-cover object-center scale-105 filter brightness-75"
         />

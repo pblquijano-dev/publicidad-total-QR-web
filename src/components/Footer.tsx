@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Megaphone,
   MapPin,
@@ -10,9 +10,14 @@ import {
 } from 'lucide-react';
 
 export const Footer: React.FC = () => {
+  const [logoError, setLogoError] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const medallionLogoUrl =
+    'https://lh3.googleusercontent.com/aida/AEtjO1Ww3mxC_4QX7n5RYDK5a-SPE2XEUPVxg32mP-31D7Yrk4kxsqp4kvhZdBAg4Gftuas76-Jt4s031bsv8oguxL-hRNPH9T7ZB2vGnAAzbzroE2f1bHwEjqFkim5ac2aOZEsDwUMBmJK_Av-oMfORvxhkv8OsYOGK2rZNHT7r_5c9lxsDCwMD2fp1JF58A5WHZhkFaaOxtUOt4rg0FKHLFgBTU92XmC8z60_0ZByBsQAcxvQA90SnExpGSxw';
 
   return (
     <footer className="bg-[#1A1413] text-white border-t border-white/10 relative overflow-hidden pt-16 pb-12">
@@ -25,16 +30,25 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-5 flex flex-col items-start">
             <div className="flex items-center gap-4 mb-4">
               {/* 200px Medallion Emblem */}
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-[#312782] via-[#009EE2] to-[#AB2020] p-0.5 shadow-xl shadow-[#312782]/30 flex items-center justify-center shrink-0">
-                <div className="w-full h-full bg-[#1A1413] rounded-[14px] flex flex-col items-center justify-center p-2 text-center">
-                  <Megaphone className="w-7 h-7 text-[#009EE2] mb-0.5" />
-                  <span className="font-sora font-extrabold text-[11px] leading-tight text-white">
-                    TOTAL Q&R
-                  </span>
-                  <span className="font-sora font-bold text-[8px] text-[#93C01F] tracking-widest">
-                    PENÍNSULA
-                  </span>
-                </div>
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#1A1413] p-1 shadow-xl shadow-[#312782]/30 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                {!logoError ? (
+                  <img
+                    src={medallionLogoUrl}
+                    alt="Medallón Oficial Publicidad Total Q&R"
+                    onError={() => setLogoError(true)}
+                    className="w-full h-full object-contain filter brightness-105"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-[#1A1413] rounded-[14px] flex flex-col items-center justify-center p-2 text-center">
+                    <Megaphone className="w-7 h-7 text-[#009EE2] mb-0.5" />
+                    <span className="font-sora font-extrabold text-[11px] leading-tight text-white">
+                      TOTAL Q&R
+                    </span>
+                    <span className="font-sora font-bold text-[8px] text-[#93C01F] tracking-widest">
+                      PENÍNSULA
+                    </span>
+                  </div>
+                )}
               </div>
 
               <div>

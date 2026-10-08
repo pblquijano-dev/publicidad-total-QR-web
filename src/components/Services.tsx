@@ -21,7 +21,7 @@ export const Services: React.FC = () => {
       description:
         'Impactos memorables en puntos de venta, plazas comerciales y eventos masivos con dinámicas interactivas y muestreo de producto.',
       image:
-        'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
+        'https://lh3.googleusercontent.com/aida/AEtjO1X5UgOjwG78IQhOyOX3Cb_YKIDY4rXwKUY-ljGbzJJRJBWK2S_2bsdMi32qN7ARWb0dXI_vmlgYGMAh6INYhvoobYK3qZfXt1yYKB3GbENJgJg_wLozUSnUU4JuEQBqL0xkFhYyVbCRbTuqirrvSvzqDOVEpg8BQR41X-ydb-AWPJVvyGx8kg0WM71s1DTOdN2sEom5L_lYBH8IhwROwvk3d1evEVVGoVOou1TpiVr4H0SoZemfDFe47OQ',
       icon: Sparkles,
       kpi: 'Alto Engagement',
       badge: 'Servicio Estrella',
@@ -39,7 +39,7 @@ export const Services: React.FC = () => {
       description:
         'Personal con excelente presencia, carisma y protocolo para congresos, exposiciones, inauguraciones y lanzamientos exclusivos.',
       image:
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
+        'https://lh3.googleusercontent.com/aida/AEtjO1VO__62WMqlrtmmRyU4tpspmU2kK-_EGHXGIUkAdA6bctSHszwbVvzysxgFjJ5qdNt1OHUkF-Wp2bFuzjC-IWVxS-TGX4XK_dp88j_LOP6u1Rt5_k9WCc7xPqM7rMkG-l7AbM5nqGUxTEFACXIiyX7KxUJ3VN_ltkrJdq98EwSclAPgF5nr6tYy36Aq4zAGX6DCJ75FYp4UjBoGrIcg-lX9f7Mosq5AbaIb0dFn-HyU6y_8G6oCDUdls3E',
       icon: Users,
       kpi: 'Imagen de Élite',
       badge: 'Protocolo VIP',
@@ -57,7 +57,7 @@ export const Services: React.FC = () => {
       description:
         'Locutores dinámicos y presentadores con gran carisma para generar tráfico inmediato y transformar mirones en compradores activos.',
       image:
-        'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=800&q=80',
+        'https://lh3.googleusercontent.com/aida/AEtjO1U-JLKKRs5hwJmEterDe6f63LXEX0XCtg30hoNMbn__9TxlqWJqUhobizfbvjvC-P2p6poeLm5SROKJCDBsPhlEO_zCwR_NTsXYCP_d2HWCRUxN4XGg72RZRW9WDKVe3RRY6lkPaCWyUtSPgGlB48Uxqao1ImhlaBtixaoPJU5yC36S0HZ60mup6IG9vT9iewC1AJDk2-IVmRW48cvDxFDuUAw6_mjYBr1zMeXxD4CqFB0suU46U3Qpsw',
       icon: Mic,
       kpi: 'Atracción Inmediata',
       badge: 'Conversión en Vivo',
@@ -75,7 +75,7 @@ export const Services: React.FC = () => {
       description:
         'Fuerza de ventas en punto de venta (PDV) enfocada en rotación de inventario, degustación, abordaje y registro de métricas.',
       image:
-        'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=800&q=80',
+        'https://lh3.googleusercontent.com/aida/AEtjO1VOJ3Ymua11LgujaZlhXcZpm4SO54oko8Le9K5RaUPTc5vXWJfREMBFoEoGIRPBJ9NjqnW5t1t5yZ-BVpyc1N-85eL3xjPIw-6gYhoC0UL86blhnbk1IgBWqDKxPI7eNsAORTwAOKRdCEe20XxIFXaYBwOnq4Ni3v7BHEYe5-Xtv-zRPIwHXNKSIkXvBEBKnVU1PVVG5gQOabXeUIyykwANPU7O2ew-xivAjfE-4aM1ZdKe2twgYT65Vr8',
       icon: TrendingUp,
       kpi: 'Incremento en Ventas',
       badge: 'Punto de Venta',
@@ -165,7 +165,7 @@ export const Services: React.FC = () => {
               >
                 <div>
                   {/* 16:9 Image container */}
-                  <div className="relative aspect-video w-full overflow-hidden">
+                  <div className="relative aspect-video w-full overflow-hidden bg-black/40">
                     <img
                       src={service.image}
                       alt={service.title}
