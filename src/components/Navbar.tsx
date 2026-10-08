@@ -67,7 +67,7 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Navigation Links & Right-aligned Theme Toggle */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center">
             <nav className="flex items-center gap-8">
               {navLinks.map((link) => (
                 <a
@@ -85,7 +85,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={toggleTheme}
               type="button"
-              className="p-2.5 rounded-xl bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/15 text-gray-700 dark:text-gray-200 border border-gray-300/80 dark:border-white/10 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#009EE2]"
+              className="p-2.5 ml-3 rounded-xl hover:bg-gray-200 dark:hover:bg-white/15 text-gray-700 dark:text-gray-200 transition-all duration-200"
               aria-label={
                 theme === 'dark'
                   ? 'Cambiar a modo claro'
@@ -110,7 +110,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={toggleTheme}
               type="button"
-              className="p-2 rounded-lg bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-[#009EE2]"
+              className="p-2 rounded-lg text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-[#009EE2]"
               aria-label="Cambiar tema"
             >
               {theme === 'dark' ? (
