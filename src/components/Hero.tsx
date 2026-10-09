@@ -40,56 +40,8 @@ export const Hero: React.FC = () => {
     },
   ];
 
-  const brandLogos = [
-    {
-      name: 'Telcel',
-      render: () => (
-        <span className="inline-flex items-center gap-1.5 font-sora font-extrabold tracking-tight text-lg text-gray-500 dark:text-gray-400 group-hover:text-[#009EE2] transition-colors">
-          <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#009EE2]" />
-          telcel
-        </span>
-      ),
-    },
-    {
-      name: 'OXXO',
-      render: () => (
-        <span className="px-2.5 py-0.5 rounded border border-gray-400/60 dark:border-gray-600 font-sora font-black tracking-widest text-base text-gray-600 dark:text-gray-300 group-hover:border-[#AB2020] group-hover:text-[#AB2020] transition-colors">
-          OXXO
-        </span>
-      ),
-    },
-    {
-      name: 'Chedraui',
-      render: () => (
-        <span className="inline-flex items-center gap-1.5 font-sora font-bold text-lg text-gray-500 dark:text-gray-400 group-hover:text-amber-500 transition-colors">
-          <span className="text-sm font-black">🛍</span>
-          Chedraui
-        </span>
-      ),
-    },
-    {
-      name: 'Farmacias YZA',
-      render: () => (
-        <span className="inline-flex items-center gap-1.5 font-sora font-bold text-base text-gray-500 dark:text-gray-400 group-hover:text-blue-500 transition-colors">
-          <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-400/40 dark:bg-gray-700 text-xs font-bold text-gray-700 dark:text-gray-200">
-            +
-          </span>
-          Farmacias YZA
-        </span>
-      ),
-    },
-    {
-      name: 'DUNOSUSA',
-      render: () => (
-        <span className="font-sora font-extrabold tracking-wider text-base text-gray-500 dark:text-gray-400 group-hover:text-[#312782] dark:group-hover:text-[#9c94f4] transition-colors">
-          DUNOSUSA
-        </span>
-      ),
-    },
-  ];
-
   return (
-    <section id="inicio" className="relative flex flex-col w-full">
+    <section id="hero" className="relative flex flex-col w-full">
       {/* Upper Dark Hero Section */}
       <div className="relative min-h-[100vh] flex flex-col justify-center items-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
         {/* Background Image Carousel with Smooth Cross-Fade */}
@@ -129,9 +81,9 @@ export const Hero: React.FC = () => {
 
           {/* Subtitle with enhanced text shadow */}
           <p className="font-manrope text-base sm:text-lg lg:text-xl text-gray-100 leading-relaxed font-medium max-w-2xl [text-shadow:_0_2px_10px_rgba(0,0,0,0.9)]">
-            Llevamos tu mensaje a las manos, ojos y oídos de tu público meta.
-            Activaciones en punto de venta, edecanes de imagen, perifoneo y
-            volanteo con supervisión y personal capacitado.
+            Hacemos que tu negocio destaque en punto de venta y en la calle.
+            Desplegamos personal capacitado, equipo propio y supervisión en
+            tiempo real para generar afluencia y ventas en toda la Península.
           </p>
 
           {/* CTA Action Buttons */}
