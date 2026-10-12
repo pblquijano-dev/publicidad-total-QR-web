@@ -45,9 +45,8 @@ export const Footer: React.FC = () => {
 
             {/* Description Paragraph */}
             <p className="font-manrope text-xs sm:text-sm text-gray-400 leading-relaxed max-w-sm mb-4">
-              Especialistas en marketing BTL, perifoneo móvil auditado y
-              activaciones de alto impacto en el sureste de México con cobertura
-              garantizada.
+              Especialistas en marketing BTL, perifoneo móvil y activaciones de
+              alto impacto en el sureste de México con cobertura garantizada.
             </p>
 
             {/* Operational Pills */}
@@ -58,7 +57,7 @@ export const Footer: React.FC = () => {
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/30 text-[10px] font-sora font-bold text-brand-cyan tracking-wider uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan" />
-                GPS AUDITADO
+                REPORTE FOTOGRÁFICO DIARIO
               </span>
             </div>
           </div>
@@ -193,7 +192,7 @@ export const Footer: React.FC = () => {
                   <span className="text-brand-lime/60 group-hover:text-brand-lime transition-colors">
                     •
                   </span>
-                  <span>Reportes Fotográficos con Geolocalización</span>
+                  <span>Reportes Fotográficos Diarios</span>
                 </a>
               </li>
             </ul>

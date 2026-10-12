@@ -19,72 +19,72 @@ export const Services: React.FC = () => {
   const primaryServices = [
     {
       id: 'activaciones',
-      title: 'Activaciones de Marca BTL',
+      title: 'Activaciones de Marca',
       description:
-        'Experiencias memorables de alto impacto en puntos de venta, centros comerciales y plazas públicas con dinámicas interactivas, ruletas de premios y muestreo masivo.',
+        'Montaje de carpa publicitaria, equipo de audio profesional, dinámicas comerciales en punto de venta, perifoneo en vivo y entrega de material promocional para atraer clientes a tu tienda.',
       image:
         'https://lh3.googleusercontent.com/aida/AEtjO1X5UgOjwG78IQhOyOX3Cb_YKIDY4rXwKUY-ljGbzJJRJBWK2S_2bsdMi32qN7ARWb0dXI_vmlgYGMAh6INYhvoobYK3qZfXt1yYKB3GbENJgJg_wLozUSnUU4JuEQBqL0xkFhYyVbCRbTuqirrvSvzqDOVEpg8BQR41X-ydb-AWPJVvyGx8kg0WM71s1DTOdN2sEom5L_lYBH8IhwROwvk3d1evEVVGoVOou1TpiVr4H0SoZemfDFe47OQ',
       icon: Sparkles,
       kpi: 'Alto Engagement',
       badge: 'Servicio Estrella',
       highlights: [
-        'Estrategias dinámicas personalizadas por giro comercial',
-        'Montaje completo de carpas, banners y audio profesional',
-        'Supervisión en campo y reporte fotográfico diario',
+        'Montaje de carpa publicitaria y equipo de audio profesional',
+        'Dinámicas comerciales y perifoneo en punto de venta',
+        'Supervisión presencial y entrega de material promocional',
       ],
       whatsappMsg:
-        'Hola, me interesa cotizar el servicio de *Activaciones de Marca BTL* para mi empresa en la Península.',
+        'Hola, me interesa cotizar el servicio de *Activaciones de Marca* para mi empresa en la Península.',
     },
     {
       id: 'edecanes',
-      title: 'Edecanes y Hostess Profesionales',
+      title: 'Edecanes y Hostess',
       description:
-        'Personal con excelente presencia, carisma y protocolo de atención para congresos empresariales, inauguraciones, ferias y lanzamientos de marca en el Sureste.',
+        'Personal de imagen con excelente presentación y vestuario coordinado para inauguraciones, eventos corporativos, congresos y expos. Briefing previo sobre tu producto y puntualidad rigurosa.',
       image:
         'https://lh3.googleusercontent.com/aida/AEtjO1VO__62WMqlrtmmRyU4tpspmU2kK-_EGHXGIUkAdA6bctSHszwbVvzysxgFjJ5qdNt1OHUkF-Wp2bFuzjC-IWVxS-TGX4XK_dp88j_LOP6u1Rt5_k9WCc7xPqM7rMkG-l7AbM5nqGUxTEFACXIiyX7KxUJ3VN_ltkrJdq98EwSclAPgF5nr6tYy36Aq4zAGX6DCJ75FYp4UjBoGrIcg-lX9f7Mosq5AbaIb0dFn-HyU6y_8G6oCDUdls3E',
       icon: Users,
-      kpi: 'Imagen de Élite',
-      badge: 'Protocolo VIP',
+      kpi: 'Imagen y Protocolo',
+      badge: 'Personal Capacitado',
       highlights: [
-        'Perfiles de Edecanes AAA, AA y Promotoras capacitadas',
-        'Uniformes institucionales o caracterización de marca',
-        'Puntualidad rigurosa y trato cordial con clientes',
+        'Excelente presentación y vestuario coordinado para eventos',
+        'Briefing previo sobre tu marca, producto y dinámicas',
+        'Puntualidad rigurosa y trato cordial en todo momento',
       ],
       whatsappMsg:
-        'Hola, me gustaría cotizar *Edecanes y Hostess Profesionales* para un evento en la Península.',
+        'Hola, me gustaría cotizar *Edecanes y Hostess* para un evento en la Península.',
     },
     {
       id: 'animadores',
       title: 'Animadores y Locución en Vivo',
       description:
-        'Locutores dinámicos y presentadores con alto carisma para generar tráfico inmediato, dinamizar ruletas y transformar transeúntes en compradores activos.',
+        'Locutores y animadores con micrófono y equipo de audio de alta potencia para conducir dinámicas, interactuar con el público e invitar a los transeúntes a conocer tus promociones.',
       image:
         'https://lh3.googleusercontent.com/aida/AEtjO1U-JLKKRs5hwJmEterDe6f63LXEX0XCtg30hoNMbn__9TxlqWJqUhobizfbvjvC-P2p6poeLm5SROKJCDBsPhlEO_zCwR_NTsXYCP_d2HWCRUxN4XGg72RZRW9WDKVe3RRY6lkPaCWyUtSPgGlB48Uxqao1ImhlaBtixaoPJU5yC36S0HZ60mup6IG9vT9iewC1AJDk2-IVmRW48cvDxFDuUAw6_mjYBr1zMeXxD4CqFB0suU46U3Qpsw',
       icon: Mic,
       kpi: 'Atracción Inmediata',
       badge: 'Conversión en Vivo',
       highlights: [
-        'Locución comercial persuasiva y perifoneo dinámico',
+        'Locución comercial persuasiva y perifoneo en vivo',
         'Conducción de dinámicas de regalos y concursos',
-        'Sistemas inalámbricos de audio portátiles y autónomos',
+        'Equipo de audio de alta potencia para eventos comerciales',
       ],
       whatsappMsg:
         'Hola, solicito informes y cotización de *Animadores y Locución en Vivo* para mi negocio.',
     },
     {
       id: 'promotoria',
-      title: 'Promotoría e Impulsadoras de Venta',
+      title: 'Promotoría e Impulsadoras',
       description:
-        'Fuerza de impulso en piso de venta (PDV), autoservicios y departamentales enfocada en rotación de inventario, abordaje persuasivo y reporte de interacción.',
+        'Personal capacitado en piso de venta para demostración de producto, degustación, entrega de muestras y desplazamiento de producto en tienda de autoservicio.',
       image:
         'https://lh3.googleusercontent.com/aida/AEtjO1VOJ3Ymua11LgujaZlhXcZpm4SO54oko8Le9K5RaUPTc5vXWJfREMBFoEoGIRPBJ9NjqnW5t1t5yZ-BVpyc1N-85eL3xjPIw-6gYhoC0UL86blhnbk1IgBWqDKxPI7eNsAORTwAOKRdCEe20XxIFXaYBwOnq4Ni3v7BHEYe5-Xtv-zRPIwHXNKSIkXvBEBKnVU1PVVG5gQOabXeUIyykwANPU7O2ew-xivAjfE-4aM1ZdKe2twgYT65Vr8',
       icon: TrendingUp,
-      kpi: 'Incremento en Ventas',
-      badge: 'Punto de Venta',
+      kpi: 'Impulso de Venta',
+      badge: 'Piso de Venta',
       highlights: [
-        'Capacitación técnica previa sobre producto y beneficios',
-        'Cuidado de exhibición, frenteo y degustación de producto',
-        'Reportes diarios de ventas, muestreo y comentarios de cliente',
+        'Demostración de producto y degustación en piso de venta',
+        'Entrega de muestras y desplazamiento en tiendas de autoservicio',
+        'Supervisión presencial y reporte de actividades diario',
       ],
       whatsappMsg:
         'Hola, deseo cotizar una cuadrilla de *Promotoría e Impulsadoras* para punto de venta.',
@@ -93,40 +93,40 @@ export const Services: React.FC = () => {
 
   const secondaryServices = [
     {
-      title: 'Perifoneo Móvil de Alta Definición',
+      title: 'Perifoneo Móvil',
       description:
-        'Unidades móviles equipadas con audio de largo alcance recorriendo supermanzanas y corredores comerciales estratégicos.',
+        'Vehículos adaptados con bocinas de alto alcance (mínimo 5 horas diarias por unidad).',
       icon: Radio,
-      tag: 'Cobertura Masiva',
+      tag: 'Sonido en Calle',
       whatsappMsg:
         'Hola, me interesa una cotización de rutas de *Perifoneo Móvil* en la Península.',
     },
     {
-      title: 'Volanteo Estratégico Auditado',
+      title: 'Volanteo Estratégico',
       description:
-        'Distribución mano a mano en cruceros, zonas de afluencia o casa por casa con filtros de público meta y evidencia fotográfica.',
+        'Distribución mano a mano y en buzones por supermanzanas y colonias clave con reporte de entrega.',
       icon: FileText,
       tag: 'Mano a Mano',
       whatsappMsg:
-        'Hola, quiero cotizar una campaña de *Volanteo Estratégico Auditado*.',
+        'Hola, quiero cotizar una campaña de *Volanteo Estratégico*.',
     },
     {
-      title: 'Batucadas y Performance BTL',
+      title: 'Batucada',
       description:
-        'Músicos en vivo, zanqueros y comparsas llenas de ritmo que capturan al instante la atención en inauguraciones y aniversarios.',
+        'Animación rítmica y música en vivo para aperturas y aniversarios.',
       icon: Music,
-      tag: 'Impacto Visual y Sonoro',
+      tag: 'Música en Vivo',
       whatsappMsg:
-        'Hola, me interesa contratar *Batucadas y Performance BTL* para una inauguración.',
+        'Hola, me interesa contratar *Batucada* para una inauguración.',
     },
     {
-      title: 'Producción de Spots y Audio Comercial',
+      title: 'Grabación de Spots',
       description:
-        'Creación de guiones comerciales persuasivos, locución profesional y masterización sonora para perifoneo y campañas digitales.',
+        'Producción de audio publicitario con locución profesional para perifoneo y radio.',
       icon: Disc3,
       tag: 'Locución y Audio',
       whatsappMsg:
-        'Hola, quiero solicitar la *Producción de un Spot Comercial* profesional.',
+        'Hola, quiero solicitar la *Grabación de Spots* profesional.',
     },
   ];
 

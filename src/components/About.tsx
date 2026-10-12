@@ -14,7 +14,7 @@ export const About: React.FC = () => {
     {
       title: 'Responsabilidad',
       description:
-        'La empresa se compromete en cada una de las solicitudes, comprometiéndose con el cliente y entregando el servicio en tiempo y forma de acuerdo con las características especificadas en el contrato.',
+        'Compromiso en cada solicitud, entregando el servicio en tiempo y forma según las características pactadas.',
       icon: ShieldCheck,
       iconBg:
         'bg-indigo-50 dark:bg-brand-primary/20 text-[#312782] dark:text-brand-primary-soft',
@@ -24,7 +24,7 @@ export const About: React.FC = () => {
     {
       title: 'Puntualidad',
       description:
-        'Estar informados de la fecha y hora de entrega del servicio, tomando en cuenta las características con las que el cliente ha solicitado el servicio.',
+        'Conocimiento exacto de fecha y hora de entrega del servicio conforme a lo solicitado.',
       icon: Clock,
       iconBg: 'bg-red-50 dark:bg-red-950/40 text-[#AB2020] dark:text-red-400',
       hoverBorder: 'hover:border-[#AB2020] dark:hover:border-red-400',
@@ -32,7 +32,7 @@ export const About: React.FC = () => {
     {
       title: 'Comunicación',
       description:
-        'El equipo de trabajo deberá estar en constante comunicación para tomar en cuenta las solicitudes del cliente, así como dar soluciones, resolver dudas, cuestiones que se presenten con el cliente, se mantendrá comunicación constante conforme a los pedidos que ha solicitado, con el fin de ofrecer un servicio de calidad.',
+        'Contacto constante entre el equipo de trabajo y el cliente para resolver dudas y dar seguimiento a los pedidos.',
       icon: MessageCircle,
       iconBg:
         'bg-cyan-50 dark:bg-cyan-950/40 text-[#009EE2] dark:text-brand-cyan',
@@ -41,7 +41,7 @@ export const About: React.FC = () => {
     {
       title: 'Integridad',
       description:
-        'Se ofrece con honestidad y transparencia todo servicio, cumpliendo con las promesas y compromisos hacia los clientes, manteniendo equidad y respeto hacia la plantilla laboral.',
+        'Honestidad y transparencia en cada servicio, cumpliendo promesas y manteniendo equidad y respeto.',
       icon: ThumbsUp,
       iconBg:
         'bg-lime-50 dark:bg-lime-950/40 text-[#93C01F] dark:text-brand-lime',
@@ -150,11 +150,11 @@ export const About: React.FC = () => {
               ¿Planeando tu próxima activación?
             </span>
             <h4 className="text-2xl sm:text-3xl font-sora font-bold mt-1 text-white">
-              Coordina tu campaña de campo con personal auditado
+              Coordina tu campaña de campo con personal capacitado
             </h4>
             <p className="text-gray-300 font-manrope text-sm mt-2">
-              Despliegue ágil en Cancún, Playa del Carmen, Mérida y Campeche.
-              Asesoría de rutas y aforo sin costo.
+              Despliegue ágil en Cancún, Playa del Carmen, Mérida y Campeche con
+              supervisión presencial y reportes fotográficos.
             </p>
           </div>
 

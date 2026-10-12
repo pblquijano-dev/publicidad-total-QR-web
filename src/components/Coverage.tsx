@@ -23,8 +23,7 @@ const PINS: LocationPin[] = [
     state: 'Yucatán',
     role: 'Sede Central (Matriz)',
     badge: 'Base Operativa',
-    description:
-      'Taller de perifoneo vehicular, bodega de equipo BTL y despacho logístico central para toda la Península.',
+    description: 'Sede con perifoneo, volanteo masivo y activaciones.',
     color: '#16A34A', // Color Verde para Mérida
     lat: 20.96737,
     lng: -89.59259,
@@ -75,8 +74,7 @@ const PINS: LocationPin[] = [
     state: 'Campeche',
     role: 'Sede Estatal',
     badge: 'Operativos Programados',
-    description:
-      'Campañas foráneas programadas, traslados de unidades de perifoneo y eventos institucionales.',
+    description: 'Operativos comerciales y campañas foráneas programadas.',
     color: '#AB2020',
     lat: 19.83013,
     lng: -90.53491,
@@ -566,7 +564,7 @@ export const Coverage: React.FC = () => {
                 </span>
               </button>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-3 leading-relaxed font-manrope">
-                Perifoneo móvil, volanteo estratégico y activaciones BTL.
+                Sede con perifoneo, volanteo masivo y activaciones.
               </p>
             </div>
             <a
@@ -609,7 +607,7 @@ export const Coverage: React.FC = () => {
                 </span>
               </button>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-3 leading-relaxed font-manrope">
-                Operativos programados y campañas foráneas coordinadas.
+                Operativos comerciales y campañas foráneas programadas.
               </p>
             </div>
             <a
@@ -629,11 +627,11 @@ export const Coverage: React.FC = () => {
           <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan/15 rounded-full blur-3xl pointer-events-none" />
           <div className="flex flex-col relative z-10 text-center sm:text-left">
             <h3 className="font-sora font-bold text-lg sm:text-xl text-white">
-              ¿Tu evento o campaña es fuera de estas ciudades?
+              ¿Requieres activación en otro municipio de la Península?
             </h3>
             <p className="text-gray-300 text-xs sm:text-sm mt-1 font-manrope max-w-2xl">
-              Coordinamos operativos especiales y traslado de unidades a otros
-              puntos de la Península con viáticos transparentes.
+              Coordinamos el traslado de unidades de perifoneo y personal con
+              viáticos transparentes.
             </p>
           </div>
           <a

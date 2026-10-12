@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
     {
       metric: '+10,000',
       title: 'Volantes Diarios',
-      description: 'Distribución estratégica en mano y buzón',
+      description: 'Volantes diarios distribuidos con control',
       metricColor: 'text-brand-primary dark:text-brand-primary-light',
     },
     {
@@ -28,14 +28,14 @@ export const Hero: React.FC = () => {
     },
     {
       metric: '100%',
-      title: 'Flota y Audio Propio',
-      description: 'Unidades móviles equipadas para perifoneo',
+      title: 'Equipo Propio',
+      description: 'Flotilla y equipo de sonido propio para perifoneo',
       metricColor: 'text-brand-primary dark:text-brand-primary-light',
     },
     {
-      metric: 'Supervisión',
-      title: 'Control en Sitio',
-      description: 'Reporte fotográfico con geolocalización GPS',
+      metric: 'Evidencia',
+      title: 'Supervisión en Campo',
+      description: 'Reporte fotográfico diario entregado al cliente',
       metricColor: 'text-brand-crimson dark:text-brand-crimson-light',
     },
   ];
@@ -81,9 +81,9 @@ export const Hero: React.FC = () => {
 
           {/* Subtitle with enhanced text shadow */}
           <p className="font-manrope text-base sm:text-lg lg:text-xl text-gray-100 leading-relaxed font-medium max-w-2xl [text-shadow:_0_2px_10px_rgba(0,0,0,0.9)]">
-            Hacemos que tu negocio destaque en punto de venta y en la calle.
-            Desplegamos personal capacitado, equipo propio y supervisión en
-            tiempo real para generar afluencia y ventas en toda la Península.
+            Impulsamos tu negocio en punto de venta y en la calle con personal
+            capacitado, equipo propio y supervisión presencial en toda la
+            Península de Yucatán.
           </p>
 
           {/* CTA Action Buttons */}
@@ -139,8 +139,8 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* KPI / Metric Cards Section */}
-      <div className="bg-surface dark:bg-brand-dark py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <div className="bg-surface dark:bg-brand-dark py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-200/60 dark:border-white/5">
+        <div className="max-w-7xl mx-auto space-y-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {kpiList.map((kpi, index) => (
               <div
@@ -162,6 +162,14 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Institutional Presence Strip */}
+          <div className="text-center py-4 px-6 rounded-2xl bg-white/60 dark:bg-brand-dark-card/60 border border-gray-200/60 dark:border-white/5 backdrop-blur-sm">
+            <p className="font-manrope text-xs sm:text-sm font-semibold text-gray-600 dark:text-gray-300 tracking-wide">
+              Presencia y activaciones en las principales plazas comerciales,
+              avenidas y supermercados del Sureste
+            </p>
           </div>
         </div>
       </div>
