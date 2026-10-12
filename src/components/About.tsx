@@ -1,330 +1,169 @@
 import React from 'react';
 import {
-  X,
-  Check,
-  AlertTriangle,
+  Target,
   Compass,
-  Sparkles,
-  Megaphone,
-  Camera,
+  ShieldCheck,
+  Clock,
+  MessageCircle,
+  ThumbsUp,
   ArrowRight,
-  CheckCircle2,
 } from 'lucide-react';
 
 export const About: React.FC = () => {
-  const badPractices = [
+  const values = [
     {
-      title: 'Volanteo a ciegas :',
+      title: 'Responsabilidad',
       description:
-        'Nunca sabes si tus volantes se entregaron o terminaron en la basura.',
-    },
-    {
-      title: 'Personal improvisado :',
-      description:
-        'Edecanes y animadores sin capacitación sobre tu producto o marca.',
-    },
-    {
-      title: 'Equipos desgastados :',
-      description:
-        'Sonido saturado y carros descuidados que dañan la imagen de tu negocio.',
-    },
-  ];
-
-  const goodPractices = [
-    {
-      title: 'Reparto auditado :',
-      description:
-        'Estudio previo por supermanzanas y reporte fotográfico diario.',
-    },
-    {
-      title: 'Personal seleccionado :',
-      description: 'Briefing obligatorio de marca y uniforme impecable.',
-    },
-    {
-      title: 'Flotilla propia y bocinas de alta fidelidad :',
-      description: 'Unidades adaptadas con locución profesional grabada.',
-    },
-  ];
-
-  const pillars = [
-    {
-      icon: Compass,
-      title: 'Supervisión en Sitio',
-      isMetric: false,
-      description:
-        'Coordinador exclusivo asignado en cada jornada para auditoría de rutas, ritmo de entrega y control de personal.',
-      linkText: 'Control activo en vivo',
-      linkIcon: 'arrow',
-      linkColor: 'text-[#009EE2]',
-      iconBg: 'bg-[#009EE2]/10 text-[#009EE2]',
-    },
-    {
-      icon: Sparkles,
-      stat: '+10,000',
-      title: 'Impactos Diarios',
-      isMetric: true,
-      description:
-        'Alcance medible con volanteo mano a mano, activación en semáforos clave y zonas comerciales de alto tráfico.',
-      linkText: 'Densidad urbana estratégica',
-      linkIcon: 'none',
-      linkColor: 'text-[#AB2020] dark:text-red-400',
+        'La empresa se compromete en cada una de las solicitudes, comprometiéndose con el cliente y entregando el servicio en tiempo y forma de acuerdo con las características especificadas en el contrato.',
+      icon: ShieldCheck,
       iconBg:
-        'bg-[#312782]/10 dark:bg-[#312782]/30 text-[#312782] dark:text-[#c5c0ff]',
+        'bg-indigo-50 dark:bg-brand-primary/20 text-[#312782] dark:text-brand-primary-soft',
+      hoverBorder:
+        'hover:border-[#312782] dark:hover:border-brand-primary-light',
     },
     {
-      icon: Megaphone,
-      title: 'Flota Propia Sin Intermediarios',
-      isMetric: false,
+      title: 'Puntualidad',
       description:
-        'Unidades móviles adaptadas para perifoneo, audio de alta potencia, carpas, módulos y mobiliario listos para operar.',
-      linkText: 'Logística 100% interna',
-      linkIcon: 'arrow',
-      linkColor: 'text-[#009EE2]',
-      iconBg: 'bg-[#009EE2]/10 text-[#009EE2]',
+        'Estar informados de la fecha y hora de entrega del servicio, tomando en cuenta las características con las que el cliente ha solicitado el servicio.',
+      icon: Clock,
+      iconBg: 'bg-red-50 dark:bg-red-950/40 text-[#AB2020] dark:text-red-400',
+      hoverBorder: 'hover:border-[#AB2020] dark:hover:border-red-400',
     },
     {
-      icon: Camera,
-      title: 'Reporte de Cierre con Fotos',
-      isMetric: false,
+      title: 'Comunicación',
       description:
-        'Transparencia total entregada al cliente con bitácora fotográfica geolocalizada y testimonios de público alcanzado.',
-      linkText: 'Auditoría verificable',
-      linkIcon: 'check',
-      linkColor: 'text-[#5C7C0B] dark:text-[#93C01F]',
-      iconBg: 'bg-[#93C01F]/15 text-[#5C7C0B] dark:text-[#93C01F]',
+        'El equipo de trabajo deberá estar en constante comunicación para tomar en cuenta las solicitudes del cliente, así como dar soluciones, resolver dudas, cuestiones que se presenten con el cliente, se mantendrá comunicación constante conforme a los pedidos que ha solicitado, con el fin de ofrecer un servicio de calidad.',
+      icon: MessageCircle,
+      iconBg:
+        'bg-cyan-50 dark:bg-cyan-950/40 text-[#009EE2] dark:text-brand-cyan',
+      hoverBorder: 'hover:border-[#009EE2] dark:hover:border-cyan-400',
+    },
+    {
+      title: 'Integridad',
+      description:
+        'Se ofrece con honestidad y transparencia todo servicio, cumpliendo con las promesas y compromisos hacia los clientes, manteniendo equidad y respeto hacia la plantilla laboral.',
+      icon: ThumbsUp,
+      iconBg:
+        'bg-lime-50 dark:bg-lime-950/40 text-[#93C01F] dark:text-brand-lime',
+      hoverBorder: 'hover:border-[#93C01F] dark:hover:border-lime-400',
     },
   ];
 
   return (
     <section
       id="nosotros"
-      className="py-20 sm:py-24 bg-[#fff8f6] dark:bg-[#1A1413] transition-colors duration-300 relative overflow-hidden"
+      className="w-full bg-white dark:bg-brand-dark transition-colors duration-300 relative overflow-hidden"
     >
       {/* Background Ambient Glows */}
-      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-[#312782]/10 dark:bg-[#312782]/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 -right-40 w-96 h-96 bg-[#009EE2]/10 dark:bg-[#009EE2]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-brand-primary/5 dark:bg-brand-primary/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -right-40 w-96 h-96 bg-brand-cyan/5 dark:bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="max-w-4xl mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e4dfff]/60 dark:bg-[#312782]/30 border border-[#312782]/20 dark:border-[#312782]/50 text-[11px] font-sora font-bold text-[#1a086d] dark:text-[#c5c0ff] uppercase tracking-widest mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#009EE2] inline-block animate-pulse" />
-            <span>Nuestra postura operativa</span>
-          </div>
-
-          <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1a086d] dark:text-white tracking-tight leading-[1.15]">
-            En la calle no valen las promesas:
-            <br />{' '}
-            <span className="text-[#009EE2]">
-              Vale lo que tu cliente ve y escucha
-            </span>
+      <div className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        {/* Header Institucional */}
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <span className="bg-indigo-50 dark:bg-brand-primary/20 text-[#312782] dark:text-brand-primary-soft font-semibold text-xs px-3.5 py-1.5 rounded-full inline-block mb-3 border border-indigo-100 dark:border-brand-primary/40 uppercase tracking-wide font-sora">
+            • NUESTRA IDENTIDAD INSTITUCIONAL
+          </span>
+          <h2 className="font-sora font-bold text-3xl sm:text-4xl lg:text-5xl text-[#312782] dark:text-white tracking-tight">
+            Sobre Nosotros
           </h2>
-
-          <p className="font-manrope text-base sm:text-lg text-gray-600 dark:text-gray-300 mt-5 leading-relaxed max-w-3xl">
-            Nacimos en la Península para erradicar la informalidad de la
-            publicidad de campo. Un solo proveedor responsable de tu marca,
-            personal capacitado antes de salir a punto de venta y evidencia real
-            de lo ejecutado.
+          <p className="font-manrope text-gray-600 dark:text-gray-300 text-base sm:text-lg mt-3 leading-relaxed">
+            Compromiso, experiencia y profesionalismo al servicio del desarrollo
+            y crecimiento comercial de tu marca en el sureste.
           </p>
         </div>
 
-        {/* Two-Column Comparison Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-          {/* Card: La Informalidad Tradicional */}
-          <div className="p-7 sm:p-9 lg:p-10 rounded-3xl bg-[#fef5f4] dark:bg-[#251617]/50 border border-red-200/80 dark:border-red-900/40 shadow-sm flex flex-col justify-between relative">
-            <div>
-              {/* Top Category Badge */}
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-100/90 dark:bg-red-950/60 text-[#b42725] dark:text-red-300 border border-red-200 dark:border-red-900/50 text-[11px] font-sora font-bold tracking-wider uppercase mb-6">
-                Riesgo habitual del mercado
+        {/* Tarjetas Misión y Visión */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-5xl mx-auto">
+          {/* Misión */}
+          <div className="bg-[#F8F9FA] dark:bg-brand-dark-surface rounded-2xl p-8 border-t-4 border-[#312782] border-x border-b border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-brand-primary/20 text-[#312782] dark:text-brand-primary-soft flex items-center justify-center flex-shrink-0">
+                <Target className="w-5 h-5 stroke-[2]" />
               </div>
-
-              {/* Card Title */}
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/40 flex items-center justify-center text-[#b42725] dark:text-red-400 font-bold shrink-0">
-                  <X className="w-5 h-5 stroke-[2.5]" />
-                </div>
-                <h3 className="font-sora font-bold text-xl sm:text-2xl text-[#1a1413] dark:text-white">
-                  La informalidad Tradicional
-                </h3>
-              </div>
-
-              {/* Items */}
-              <div className="space-y-6">
-                {badPractices.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3.5">
-                    <div className="w-5 h-5 rounded-full bg-red-100 dark:bg-red-900/40 text-[#b42725] dark:text-red-400 flex items-center justify-center shrink-0 mt-0.5">
-                      <X className="w-3.5 h-3.5 stroke-[2.5]" />
-                    </div>
-                    <p className="font-manrope text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                      <strong className="font-semibold text-gray-900 dark:text-white">
-                        {item.title}{' '}
-                      </strong>
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <h3 className="text-2xl font-sora font-bold text-[#312782] dark:text-white">
+                MISIÓN
+              </h3>
             </div>
-
-            {/* Bottom Alert Result */}
-            <div className="mt-8 pt-6 border-t border-red-200/60 dark:border-red-900/40 flex items-center gap-2.5 text-xs sm:text-sm font-manrope font-semibold text-[#b42725] dark:text-red-400">
-              <AlertTriangle className="w-4 h-4 shrink-0" />
-              <span>
-                Resultado: Pérdidas directas de presupuesto y nulo retorno
-                publicitario.
-              </span>
-            </div>
+            <p className="font-manrope text-gray-700 dark:text-gray-300 text-base leading-relaxed">
+              Somos una agencia publicitaria que da a conocer con éxito cada
+              trabajo que se desarrolla con el profesionalismo y seriedad
+              precisa en el uso de servicios publicitarios, contribuyendo con el
+              desarrollo y crecimiento comercial de los clientes.
+            </p>
           </div>
 
-          {/* Card: El Estándar Profesional Q&R */}
-          <div className="p-7 sm:p-9 lg:p-10 rounded-3xl bg-gradient-to-br from-[#1a086d] via-[#231577] to-[#312782] text-white shadow-xl shadow-[#1a086d]/20 border border-[#423993] flex flex-col justify-between relative overflow-hidden">
-            {/* Ambient Corner Accent */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-[#009EE2]/20 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10">
-              {/* Top Category Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-[#93C01F] border border-[#93C01F]/40 text-[11px] font-sora font-bold tracking-wider uppercase mb-6 backdrop-blur-sm">
-                <span>★</span>
-                <span>Garantía operativa comprobable</span>
+          {/* Visión */}
+          <div className="bg-[#F8F9FA] dark:bg-brand-dark-surface rounded-2xl p-8 border-t-4 border-[#009EE2] border-x border-b border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-cyan-50 dark:bg-brand-cyan/20 text-[#009EE2] dark:text-brand-cyan flex items-center justify-center flex-shrink-0">
+                <Compass className="w-5 h-5 stroke-[2]" />
               </div>
-
-              {/* Card Title */}
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-8 h-8 rounded-lg bg-[#93C01F] text-[#1a086d] flex items-center justify-center font-bold shrink-0">
-                  <Check className="w-5 h-5 stroke-[3]" />
-                </div>
-                <h3 className="font-sora font-bold text-xl sm:text-2xl text-white">
-                  El Estándar Profesional Q&R
-                </h3>
-              </div>
-
-              {/* Items */}
-              <div className="space-y-6">
-                {goodPractices.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3.5">
-                    <div className="w-5 h-5 rounded-full bg-[#93C01F]/20 text-[#93C01F] flex items-center justify-center shrink-0 mt-0.5 border border-[#93C01F]/40">
-                      <Check className="w-3.5 h-3.5 stroke-[2.5]" />
-                    </div>
-                    <p className="font-manrope text-sm sm:text-base text-gray-200 leading-relaxed">
-                      <strong className="font-semibold text-white">
-                        {item.title}{' '}
-                      </strong>
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <h3 className="text-2xl font-sora font-bold text-[#312782] dark:text-white">
+                VISIÓN
+              </h3>
             </div>
-
-            {/* Bottom Success Result */}
-            <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-2.5 text-xs sm:text-sm font-manrope font-semibold text-[#93C01F] relative z-10">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#93C01F] inline-block animate-pulse shrink-0" />
-              <span>
-                Resultado: Certeza del 100% en cobertura y retorno de inversión
-                visible.
-              </span>
-            </div>
+            <p className="font-manrope text-gray-700 dark:text-gray-300 text-base leading-relaxed">
+              Llegar a ser la agencia de servicios de publicidad número uno a
+              nivel península, brindando servicios de calidad, con la
+              experiencia y profesionalismo que nos caracteriza.
+            </p>
           </div>
         </div>
 
-        {/* Pilares de Certidumbre Operativa */}
+        {/* Sección Nuestros Valores */}
         <div className="mb-16">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-            <div>
-              <span className="text-[11px] font-sora font-bold uppercase tracking-widest text-[#312782] dark:text-[#009EE2] block mb-1">
-                Infraestructura y rigor en campo
-              </span>
-              <h3 className="font-sora text-2xl sm:text-3xl font-bold text-[#1a086d] dark:text-white">
-                Pilares de Certidumbre Operativa
-              </h3>
-            </div>
-            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-xs font-manrope font-semibold text-gray-600 dark:text-gray-300 shadow-sm self-start sm:self-auto">
-              Yucatán | Quintana Roo | Campeche
-            </div>
-          </div>
-
-          {/* 4 Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {pillars.map((pillar, index) => {
-              const IconComp = pillar.icon;
+          <h3 className="text-2xl sm:text-3xl font-sora font-bold text-gray-900 dark:text-white text-center mb-8">
+            Nuestros Valores
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((val, idx) => {
+              const IconComp = val.icon;
               return (
                 <div
-                  key={index}
-                  className="p-6 rounded-2xl bg-white dark:bg-[#1f1716] border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+                  key={idx}
+                  className={`bg-white dark:bg-brand-dark-surface rounded-2xl p-6 border border-gray-200 dark:border-white/10 shadow-sm ${val.hoverBorder} transition-all duration-300 flex flex-col hover:-translate-y-1 hover:shadow-md`}
                 >
-                  <div>
-                    {/* Icon */}
-                    <div className="flex items-center justify-between mb-5">
-                      <div
-                        className={`w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${pillar.iconBg}`}
-                      >
-                        <IconComp className="w-5 h-5 stroke-[2]" />
-                      </div>
-                    </div>
-
-                    {/* Metric / Title */}
-                    {pillar.isMetric ? (
-                      <div className="mb-3">
-                        <span className="font-sora font-extrabold text-2xl sm:text-3xl text-[#1a086d] dark:text-[#c5c0ff] block">
-                          {pillar.stat}
-                        </span>
-                        <h4 className="font-sora font-bold text-base text-gray-900 dark:text-white">
-                          {pillar.title}
-                        </h4>
-                      </div>
-                    ) : (
-                      <h4 className="font-sora font-bold text-base text-gray-900 dark:text-white mb-3 leading-snug">
-                        {pillar.title}
-                      </h4>
-                    )}
-
-                    {/* Description */}
-                    <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                      {pillar.description}
-                    </p>
-                  </div>
-
-                  {/* Bottom Link / Tag */}
                   <div
-                    className={`text-xs font-sora font-semibold flex items-center gap-1.5 pt-4 border-t border-gray-100 dark:border-white/5 ${pillar.linkColor}`}
+                    className={`w-10 h-10 rounded-xl mb-4 flex items-center justify-center flex-shrink-0 ${val.iconBg}`}
                   >
-                    <span>{pillar.linkText}</span>
-                    {pillar.linkIcon === 'arrow' && (
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                    )}
-                    {pillar.linkIcon === 'check' && (
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                    )}
+                    <IconComp className="w-6 h-6 stroke-[2]" />
                   </div>
+                  <h4 className="font-sora font-bold text-lg text-gray-900 dark:text-white mb-2">
+                    {val.title}
+                  </h4>
+                  <p className="font-manrope text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-grow">
+                    {val.description}
+                  </p>
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Bottom CTA Banner */}
-        <div className="relative rounded-3xl bg-gradient-to-r from-[#1a086d] via-[#241378] to-[#120547] text-white p-8 sm:p-10 lg:p-12 shadow-2xl border border-[#312782] overflow-hidden">
-          {/* Subtle lighting accents */}
-          <div className="absolute top-0 left-0 w-80 h-80 bg-[#009EE2]/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#AB2020]/20 rounded-full blur-3xl pointer-events-none" />
+        {/* Banner CTA */}
+        <div className="bg-gradient-to-r from-[#1A1413] via-[#312782] to-[#1A1413] rounded-2xl p-8 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg border border-brand-primary/40 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan/15 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-            <div className="max-w-2xl">
-              <span className="text-[11px] font-sora font-bold tracking-widest text-[#93C01F] uppercase block mb-2">
-                ¿Planeando tu próxima activación?
-              </span>
-              <h3 className="font-sora text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-3">
-                Coordina tu campaña de campo con personal auditado
-              </h3>
-              <p className="font-manrope text-sm sm:text-base text-gray-300 leading-relaxed">
-                Despliegue ágil en Cancún, Playa del Carmen, Mérida y Campeche.
-                Asesoría de rutas y aforo sin costo.
-              </p>
-            </div>
+          <div className="max-w-xl text-center md:text-left relative z-10">
+            <span className="text-xs uppercase font-bold tracking-widest text-[#93C01F] font-sora">
+              ¿Planeando tu próxima activación?
+            </span>
+            <h4 className="text-2xl sm:text-3xl font-sora font-bold mt-1 text-white">
+              Coordina tu campaña de campo con personal auditado
+            </h4>
+            <p className="text-gray-300 font-manrope text-sm mt-2">
+              Despliegue ágil en Cancún, Playa del Carmen, Mérida y Campeche.
+              Asesoría de rutas y aforo sin costo.
+            </p>
+          </div>
 
+          <div className="flex-shrink-0 flex flex-col sm:flex-row gap-3 w-full md:w-auto relative z-10">
             <a
-              href="#contacto"
-              className="inline-flex items-center gap-3 bg-[#AB2020] hover:bg-[#8F1B1B] text-white font-sora font-semibold text-sm sm:text-base px-7 py-4 rounded-xl shadow-lg hover:shadow-red-900/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shrink-0"
+              className="inline-flex items-center justify-center gap-2 bg-[#AB2020] hover:bg-[#8F1B1B] text-white px-6 py-3.5 rounded-xl font-sora font-bold text-sm shadow-md hover:scale-105 active:scale-95 transition-all text-center"
+              href="https://wa.me/529981071359?text=Hola,%20solicito%20cotizaci%C3%B3n%20para%20activaci%C3%B3n%20BTL"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               <span>Cotizar Activación Ahora</span>
               <ArrowRight className="w-4 h-4" />

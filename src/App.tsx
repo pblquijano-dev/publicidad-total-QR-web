@@ -12,7 +12,7 @@ import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 export const App: React.FC = () => {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-[#fff8f6] dark:bg-[#1A1413] text-[#201a19] dark:text-white transition-colors duration-300 flex flex-col selection:bg-[#AB2020] selection:text-white">
+      <div className="min-h-screen bg-surface dark:bg-brand-dark text-on-surface dark:text-white transition-colors duration-300 flex flex-col selection:bg-brand-crimson selection:text-white">
         <Navbar />
         <main className="flex-grow">
           <Hero />

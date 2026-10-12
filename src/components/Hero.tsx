@@ -18,25 +18,25 @@ export const Hero: React.FC = () => {
       metric: '+10,000',
       title: 'Volantes Diarios',
       description: 'Distribución estratégica en mano y buzón',
-      metricColor: 'text-[#312782] dark:text-[#9c94f4]',
+      metricColor: 'text-brand-primary dark:text-brand-primary-light',
     },
     {
       metric: '3 Estados',
       title: 'Cobertura Peninsular',
       description: 'Yucatán, Quintana Roo y Campeche',
-      metricColor: 'text-[#312782] dark:text-[#9c94f4]',
+      metricColor: 'text-brand-primary dark:text-brand-primary-light',
     },
     {
       metric: '100%',
       title: 'Flota y Audio Propio',
       description: 'Unidades móviles equipadas para perifoneo',
-      metricColor: 'text-[#312782] dark:text-[#9c94f4]',
+      metricColor: 'text-brand-primary dark:text-brand-primary-light',
     },
     {
       metric: 'Supervisión',
       title: 'Control en Sitio',
       description: 'Reporte fotográfico con geolocalización GPS',
-      metricColor: 'text-[#AB2020] dark:text-[#ffb4ac]',
+      metricColor: 'text-brand-crimson dark:text-brand-crimson-light',
     },
   ];
 
@@ -45,7 +45,7 @@ export const Hero: React.FC = () => {
       {/* Upper Dark Hero Section */}
       <div className="relative min-h-[100vh] flex flex-col justify-center items-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
         {/* Background Image Carousel with Smooth Cross-Fade */}
-        <div className="absolute inset-0 z-0 overflow-hidden bg-[#1A1413]">
+        <div className="absolute inset-0 z-0 overflow-hidden bg-brand-dark">
           {heroImages.map((src, index) => (
             <img
               key={src}
@@ -61,22 +61,22 @@ export const Hero: React.FC = () => {
 
           {/* Cinematic Vignette & Balanced Radial Shadows for Readability */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(26,20,19,0.85)_0%,_rgba(26,20,19,0.55)_50%,_rgba(26,20,19,0.92)_100%)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1A1413]/90 via-transparent to-[#1A1413]" />
-          <div className="absolute -top-24 opacity-25 right-0 w-[500px] h-[500px] bg-[#312782]/25 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute top-1/2 opacity-25 left-0 w-[450px] h-[450px] bg-[#009EE2]/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/90 via-transparent to-brand-dark" />
+          <div className="absolute -top-24 opacity-25 right-0 w-[500px] h-[500px] bg-brand-primary/25 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-1/2 opacity-25 left-0 w-[450px] h-[450px] bg-brand-cyan/20 rounded-full blur-3xl pointer-events-none" />
         </div>
 
         {/* Content Container */}
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center space-y-6">
           {/* Pill Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-sora font-semibold text-white uppercase tracking-wider shadow-lg">
-            <span className="w-2 h-2 rounded-full bg-[#93C01F] animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-brand-lime animate-pulse" />
             <span>Activaciones BTL, Edecanes y Publicidad en el Sureste</span>
           </div>
 
           {/* Main Display H1 with enhanced text shadow */}
           <h1 className="font-sora text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.15] tracking-tight max-w-4xl [text-shadow:_0_2px_12px_rgba(0,0,0,0.9),_0_6px_30px_rgba(0,0,0,0.8)]">
-            Llevamos tu marca a las manos y oidos de todos
+            Llevamos tu marca a las manos y oídos de todos
           </h1>
 
           {/* Subtitle with enhanced text shadow */}
@@ -90,7 +90,7 @@ export const Hero: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full sm:w-auto">
             <a
               href="#contacto"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#AB2020] hover:bg-[#8F1B1B] text-white font-sora font-semibold text-base transition-all duration-200 shadow-xl shadow-[#AB2020]/40 hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-crimson hover:bg-brand-crimson-hover text-white font-sora font-semibold text-base transition-all duration-200 shadow-xl shadow-brand-crimson/40 hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0"
             >
               <span>Cotizar mi Evento</span>
               <ArrowRight className="w-5 h-5" />
@@ -107,15 +107,15 @@ export const Hero: React.FC = () => {
           {/* Trust Checkmarks with pill backdrop */}
           <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 pt-3 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-xs sm:text-sm font-manrope font-medium text-gray-200 shadow-md">
             <div className="inline-flex items-center gap-1.5">
-              <Check className="w-4 h-4 text-[#93C01F] shrink-0 stroke-[2.5]" />
+              <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
               <span>Respuesta inmediata por WhatsApp</span>
             </div>
             <div className="inline-flex items-center gap-1.5">
-              <Check className="w-4 h-4 text-[#93C01F] shrink-0 stroke-[2.5]" />
+              <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
               <span>Cobertura en Yucatán, Q. Roo y Campeche</span>
             </div>
             <div className="inline-flex items-center gap-1.5">
-              <Check className="w-4 h-4 text-[#93C01F] shrink-0 stroke-[2.5]" />
+              <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
               <span>Reportes diarios en campo</span>
             </div>
           </div>
@@ -129,7 +129,7 @@ export const Hero: React.FC = () => {
                 aria-label={`Ver diapositiva ${idx + 1}`}
                 className={`h-1.5 rounded-full transition-all duration-500 focus:outline-none ${
                   idx === currentImageIndex
-                    ? 'w-8 bg-[#009EE2]'
+                    ? 'w-8 bg-brand-cyan'
                     : 'w-2 bg-white/40 hover:bg-white/60'
                 }`}
               />
@@ -138,34 +138,14 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Brand Logos Ribbon */}
-      {/* <div className="bg-[#fff8f6] dark:bg-[#1A1413] border-b border-gray-200/70 dark:border-white/5 py-10 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-center font-sora font-bold text-[11px] sm:text-xs uppercase tracking-[0.15em] text-gray-500 dark:text-gray-400 mb-6">
-            Marcas y comercios que confían en nuestros operativos en la península
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 lg:gap-16 opacity-80 hover:opacity-100 transition-opacity">
-            {brandLogos.map((brand, idx) => (
-              <div
-                key={idx}
-                className="group flex items-center justify-center cursor-default transition-transform duration-200 hover:scale-105"
-              >
-                {brand.render()}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div> */}
-
       {/* KPI / Metric Cards Section */}
-      <div className="bg-[#fff8f6] dark:bg-[#1A1413] py-12 px-4 sm:px-6 lg:px-8">
+      <div className="bg-surface dark:bg-brand-dark py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {kpiList.map((kpi, index) => (
               <div
                 key={index}
-                className="p-6 rounded-2xl bg-white dark:bg-[#201a19] border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                className="p-6 rounded-2xl bg-white dark:bg-brand-dark-card border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div
@@ -173,7 +153,7 @@ export const Hero: React.FC = () => {
                   >
                     {kpi.metric}
                   </div>
-                  <h3 className="font-sora font-bold text-base text-[#201a19] dark:text-white mb-1">
+                  <h3 className="font-sora font-bold text-base text-on-surface dark:text-white mb-1">
                     {kpi.title}
                   </h3>
                   <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-snug">

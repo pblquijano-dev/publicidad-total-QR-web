@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
 import {
-  Mail,
-  Phone,
   MessageSquare,
-  Send,
+  Phone,
+  Mail,
+  Clock,
   Loader2,
   CheckCircle2,
   AlertCircle,
-  Clock,
-  MapPin,
+  ArrowRight,
+  Lock,
+  Sparkles,
+  Check,
 } from 'lucide-react';
 
 export const Contact: React.FC = () => {
+  const [selectedPlaza, setSelectedPlaza] = useState<string>('Quintana Roo');
+  const [selectedServices, setSelectedServices] = useState<string[]>([
+    'Activación BTL',
+  ]);
   const [formData, setFormData] = useState({
-    nombre: '',
-    empresa: '',
-    telefono: '',
-    email: '',
-    servicio: 'Activaciones de Marca BTL',
-    estado: 'Quintana Roo',
-    mensaje: '',
+    nombreEmpresa: '',
+    telefonoWhatsApp: '',
+    mensajeRequerimientos: '',
   });
 
   const [status, setStatus] = useState<
@@ -27,19 +29,49 @@ export const Contact: React.FC = () => {
   >('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+  const plazas = [
+    { id: 'Quintana Roo', label: 'Quintana Roo' },
+    { id: 'Mérida / Yucatán', label: 'Mérida / Yucatán' },
+    { id: 'Campeche', label: 'Campeche' },
+    { id: 'Otro punto', label: 'Otro punto' },
+  ];
+
+  const serviciosList = [
+    'Activación BTL',
+    'Edecanes',
+    'Animación y Audio',
+    'Promotoría',
+    'Perifoneo / Volanteo',
+  ];
+
+  const toggleService = (service: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(service)
+        ? prev.filter((s) => s !== service)
+        : [...prev, service]
+    );
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (selectedServices.length === 0) {
+      setStatus('error');
+      setErrorMessage(
+        'Por favor selecciona al menos un servicio para tu cotización.'
+      );
+      return;
+    }
+
     setStatus('loading');
     setErrorMessage('');
 
@@ -47,14 +79,12 @@ export const Contact: React.FC = () => {
       const payload = {
         access_key: 'YOUR_ACCESS_KEY_HERE',
         to: 'ventaspublicidad1@hotmail.com',
-        subject: `Nuevo Lead Landing Q&R: ${formData.nombre} - ${formData.servicio}`,
-        from_name: formData.nombre,
-        company: formData.empresa,
-        phone: formData.telefono,
-        email: formData.email,
-        service: formData.servicio,
-        region: formData.estado,
-        message: formData.mensaje,
+        subject: `Nueva Cotización Web Q&R: ${formData.nombreEmpresa} (${selectedPlaza})`,
+        from_name: formData.nombreEmpresa,
+        plaza: selectedPlaza,
+        servicios: selectedServices.join(', '),
+        telefono_whatsapp: formData.telefonoWhatsApp,
+        mensaje_requerimientos: formData.mensajeRequerimientos,
       };
 
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -71,19 +101,16 @@ export const Contact: React.FC = () => {
       if (result.success || response.ok) {
         setStatus('success');
         setFormData({
-          nombre: '',
-          empresa: '',
-          telefono: '',
-          email: '',
-          servicio: 'Activaciones de Marca BTL',
-          estado: 'Quintana Roo',
-          mensaje: '',
+          nombreEmpresa: '',
+          telefonoWhatsApp: '',
+          mensajeRequerimientos: '',
         });
+        setSelectedServices(['Activación BTL']);
       } else {
         setStatus('error');
         setErrorMessage(
           result.message ||
-            'Ocurrió un error al enviar el formulario. Por favor contáctanos por WhatsApp.'
+            'Ocurrió un error al enviar el formulario. Por favor contáctanos vía WhatsApp.'
         );
       }
     } catch {
@@ -97,154 +124,176 @@ export const Contact: React.FC = () => {
   return (
     <section
       id="contacto"
-      className="py-24 bg-[#f8ebe9] dark:bg-[#140F0E] transition-colors duration-300 relative overflow-hidden"
+      className="py-20 sm:py-24 bg-surface dark:bg-brand-dark-surface transition-colors duration-300 relative overflow-hidden"
     >
-      {/* Glow */}
-      <div className="absolute top-1/3 left-0 w-96 h-96 bg-[#AB2020]/10 dark:bg-[#AB2020]/15 rounded-full blur-3xl pointer-events-none" />
+      {/* Ambient background glows */}
+      <div className="absolute top-1/4 -right-40 w-96 h-96 bg-brand-primary/10 dark:bg-brand-primary/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -left-40 w-96 h-96 bg-brand-cyan/10 dark:bg-brand-cyan/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs font-semibold text-[#009EE2] uppercase tracking-wider mb-4">
-            <Mail className="w-3.5 h-3.5 text-[#009EE2]" />
-            <span>Contacto Inmediato</span>
+        {/* Section Header */}
+        <div className="text-left max-w-3xl mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-brand-cyan" />
+            <span>Canales de Atención Directa</span>
           </div>
-          <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight">
-            Inicia tu Campaña con{' '}
-            <span className="text-[#AB2020]">Publicidad Total Q&R</span>
+
+          <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary-dark dark:text-white tracking-tight leading-[1.15]">
+            Cotiza tu Próximo Operativo BTL{' '}
+            <span className="text-brand-crimson">en Minutos</span>
           </h2>
-          <p className="font-manrope text-base sm:text-lg text-gray-600 dark:text-gray-300 mt-4">
-            Cotizamos tu proyecto en menos de 24 horas con propuesta técnica,
-            rutas y cuadrillas a la medida de tu presupuesto.
+
+          <p className="font-manrope text-base sm:text-lg text-gray-600 dark:text-gray-300 mt-4 leading-relaxed max-w-2xl">
+            Respuesta clara y cotización formal el mismo día. Sin intermediarios
+            ni demoras burocráticas en toda la Península.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Direct Contact Cards (Left column 5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#1A1413] border border-gray-200 dark:border-white/10 shadow-md dark:shadow-xl">
-              <h3 className="font-sora font-bold text-xl text-gray-900 dark:text-white mb-6">
-                Canales Directos de Atención
-              </h3>
-
-              <div className="space-y-6">
-                {/* WhatsApp */}
-                <a
-                  href="https://wa.me/529981071359"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-[#25D366]/10 border border-gray-200/80 dark:border-white/5 hover:border-[#25D366]/30 transition-all group"
-                >
-                  <div className="p-3 rounded-xl bg-[#25D366]/20 text-[#25D366] group-hover:scale-105 transition-transform">
-                    <MessageSquare className="w-6 h-6 fill-current" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">
-                      WhatsApp y Cotizaciones Rápidas
-                    </div>
-                    <div className="font-sora font-bold text-base text-gray-900 dark:text-white group-hover:text-[#25D366] transition-colors">
-                      998 107 1359
-                    </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                      Atención inmediata en Cancún y Península
-                    </div>
-                  </div>
-                </a>
-
-                {/* Llamadas telefónicas */}
-                <a
-                  href="tel:9999318581"
-                  className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-[#009EE2]/10 border border-gray-200/80 dark:border-white/5 hover:border-[#009EE2]/30 transition-all group"
-                >
-                  <div className="p-3 rounded-xl bg-[#009EE2]/20 text-[#009EE2] group-hover:scale-105 transition-transform">
-                    <Phone className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">
-                      Llamadas y Oficina Central
-                    </div>
-                    <div className="font-sora font-bold text-base text-gray-900 dark:text-white group-hover:text-[#009EE2] transition-colors">
-                      999 931 8581
-                    </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                      Atención telefónica regional Peninsular
-                    </div>
-                  </div>
-                </a>
-
-                {/* Email */}
-                <a
-                  href="mailto:ventaspublicidad1@hotmail.com"
-                  className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-[#AB2020]/10 border border-gray-200/80 dark:border-white/5 hover:border-[#AB2020]/30 transition-all group"
-                >
-                  <div className="p-3 rounded-xl bg-[#AB2020]/20 text-[#AB2020] group-hover:scale-105 transition-transform">
-                    <Mail className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-gray-500 dark:text-gray-400">
-                      Correo Electrónico
-                    </div>
-                    <div className="font-sora font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#AB2020] transition-colors break-all">
-                      ventaspublicidad1@hotmail.com
-                    </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                      Recepción directa de licitaciones y RFP
-                    </div>
-                  </div>
-                </a>
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          {/* Left Column: Canales de Atención Directa (5 cols) */}
+          <div className="lg:col-span-5 space-y-5">
+            {/* Card 1: Canal Más Rápido (WhatsApp) */}
+            <div className="rounded-2xl bg-white dark:bg-brand-dark border-2 border-brand-whatsapp/40 dark:border-brand-whatsapp/30 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden">
+              <div className="flex items-center justify-between gap-2 mb-3">
+                <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  # Canal más rápido (Ventas Directas)
+                </span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand-whatsapp/10 border border-brand-whatsapp/30 text-[10px] font-sora font-bold text-brand-whatsapp uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-whatsapp animate-pulse" />
+                  Activo
+                </span>
               </div>
 
-              {/* Extra info */}
-              <div className="pt-6 mt-6 border-t border-gray-100 dark:border-white/10 space-y-3">
-                <div className="flex items-center gap-2.5 text-xs text-gray-500 dark:text-gray-400">
-                  <Clock className="w-4 h-4 text-[#93C01F]" />
-                  <span>Horario: Lunes a Sábado de 8:00 AM a 7:00 PM</span>
+              <a
+                href="https://wa.me/529981071359"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block font-sora text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white hover:text-brand-whatsapp transition-colors mb-2"
+              >
+                998 107 1359
+              </a>
+
+              <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
+                Atención comercial inmediata para Cancún, Playa del Carmen,
+                Mérida y Campeche. Asignación directa de supervisor de cuenta.
+              </p>
+
+              <a
+                href="https://wa.me/529981071359"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 px-4 rounded-xl bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-white font-sora font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-md shadow-brand-whatsapp/20 hover:shadow-lg hover:shadow-brand-whatsapp/30 active:scale-[0.99]"
+              >
+                <MessageSquare className="w-4 h-4 fill-current" />
+                <span>Iniciar Chat en WhatsApp Ahora</span>
+              </a>
+            </div>
+
+            {/* Card 2: Llamadas de Voz (Mérida) */}
+            <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  Llamadas de voz directas (Oficina Mérida)
+                </span>
+                <Phone className="w-4 h-4 text-brand-cyan shrink-0" />
+              </div>
+
+              <a
+                href="tel:9999318581"
+                className="block font-sora text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white hover:text-brand-cyan transition-colors"
+              >
+                999 931 8581
+              </a>
+
+              <div className="text-[11px] font-manrope text-gray-400 dark:text-gray-400 italic mb-2">
+                (Exclusivo llamadas telefónicas)
+              </div>
+
+              <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                Conmutador central para coordinación administrativa,
+                cotizaciones institucionales y compras públicas.
+              </p>
+            </div>
+
+            {/* Card 3: Correo Electrónico */}
+            <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="flex items-start justify-between gap-3 mb-2">
+                <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  Correo electrónico autorizado
+                </span>
+                <Mail className="w-4 h-4 text-brand-crimson shrink-0" />
+              </div>
+
+              <a
+                href="mailto:ventaspublicidad1@hotmail.com"
+                className="block font-sora text-lg sm:text-xl font-bold text-gray-900 dark:text-white hover:text-brand-crimson transition-colors break-all mb-2"
+              >
+                ventaspublicidad1@hotmail.com
+              </a>
+
+              <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                Canal formal para envío de briefings, fichas técnicas y órdenes
+                de servicio. (Único correo autorizado para cotizaciones).
+              </p>
+            </div>
+
+            {/* Guarantee / SLA Banner */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-surface-low dark:bg-brand-dark-alt border border-gray-200/80 dark:border-white/10 flex items-start gap-3.5">
+              <div className="p-2 rounded-xl bg-brand-primary/10 dark:bg-white/10 text-brand-primary dark:text-brand-primary-soft shrink-0 mt-0.5">
+                <Clock className="w-5 h-5 text-brand-lime" />
+              </div>
+              <div>
+                <div className="font-sora font-bold text-xs sm:text-sm text-gray-900 dark:text-white">
+                  Garantía de Despliegue 24/48 Horas
                 </div>
-                <div className="flex items-center gap-2.5 text-xs text-gray-500 dark:text-gray-400">
-                  <MapPin className="w-4 h-4 text-[#009EE2]" />
-                  <span>Despliegue activo en Q. Roo, Yucatán y Campeche</span>
+                <div className="font-manrope text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed">
+                  Equipo listo con supervisión física en Cancún, Mérida y
+                  Campeche.
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Interactive Form (Right column 7 cols) */}
+          {/* Right Column: Interactive Form "Arma tu solicitud rápida" (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#1A1413] border border-gray-200 dark:border-white/10 shadow-lg dark:shadow-2xl relative">
-              <h3 className="font-sora font-bold text-xl text-gray-900 dark:text-white mb-2">
-                Solicita una Cotización Personalizada
-              </h3>
-              <p className="font-manrope text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-6">
-                Completa los datos y un asesor se pondrá en contacto contigo a
-                la brevedad.
-              </p>
+            <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-8 lg:p-10 shadow-md dark:shadow-xl relative">
+              <div className="mb-6">
+                <h3 className="font-sora font-bold text-2xl text-gray-900 dark:text-white tracking-tight">
+                  Arma tu solicitud rápida
+                </h3>
+                <p className="font-manrope text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  Selecciona los parámetros de tu campaña y te entregamos
+                  propuesta económica hoy mismo.
+                </p>
+              </div>
 
               {status === 'success' ? (
-                <div className="p-8 rounded-xl bg-[#93C01F]/10 border border-[#93C01F]/30 text-center space-y-4 animate-fadeIn">
-                  <div className="w-16 h-16 rounded-full bg-[#93C01F]/20 text-[#93C01F] flex items-center justify-center mx-auto">
+                <div className="py-10 text-center space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
                   <h4 className="font-sora font-bold text-2xl text-gray-900 dark:text-white">
-                    ¡Mensaje Recibido con Éxito!
+                    ¡Solicitud Enviada con Éxito!
                   </h4>
-                  <p className="font-manrope text-sm text-gray-600 dark:text-gray-300 max-w-md mx-auto">
-                    Hemos canalizado tu información a nuestro equipo comercial
-                    en{' '}
-                    <span className="text-gray-900 dark:text-white font-medium">
-                      ventaspublicidad1@hotmail.com
+                  <p className="font-manrope text-sm text-gray-600 dark:text-gray-300 max-w-md mx-auto leading-relaxed">
+                    Hemos recibido los datos de tu campaña para{' '}
+                    <span className="font-bold text-gray-900 dark:text-white">
+                      {selectedPlaza}
                     </span>
-                    . Nos comunicaremos contigo en breve.
+                    . Un asesor comercial te enviará la propuesta económica al
+                    instante.
                   </p>
                   <button
                     type="button"
                     onClick={() => setStatus('idle')}
-                    className="mt-4 px-6 py-2.5 rounded-xl bg-[#312782] hover:bg-[#3d32a0] text-white font-sora font-semibold text-xs transition-colors"
+                    className="mt-4 px-6 py-2.5 rounded-xl bg-brand-primary text-white font-sora font-semibold text-xs hover:bg-brand-primary-dark transition-colors"
                   >
-                    Enviar otra consulta
+                    Cotizar otro proyecto
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {status === 'error' && (
                     <div className="p-4 rounded-xl bg-red-100 dark:bg-red-950/40 border border-red-300 dark:border-red-800 text-red-800 dark:text-red-200 text-xs flex items-center gap-3">
                       <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400 shrink-0" />
@@ -252,199 +301,164 @@ export const Contact: React.FC = () => {
                     </div>
                   )}
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label
-                        htmlFor="nombre"
-                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
-                      >
-                        Nombre Completo *
-                      </label>
-                      <input
-                        id="nombre"
-                        name="nombre"
-                        type="text"
-                        required
-                        value={formData.nombre}
-                        onChange={handleChange}
-                        placeholder="Ej. Juan Pérez"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="empresa"
-                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
-                      >
-                        Empresa / Negocio *
-                      </label>
-                      <input
-                        id="empresa"
-                        name="empresa"
-                        type="text"
-                        required
-                        value={formData.empresa}
-                        onChange={handleChange}
-                        placeholder="Ej. Grupo Peninsular"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label
-                        htmlFor="telefono"
-                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
-                      >
-                        Teléfono / WhatsApp *
-                      </label>
-                      <input
-                        id="telefono"
-                        name="telefono"
-                        type="tel"
-                        required
-                        value={formData.telefono}
-                        onChange={handleChange}
-                        placeholder="Ej. 998 123 4567"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
-                      >
-                        Correo Electrónico *
-                      </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="nombre@empresa.com"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label
-                        htmlFor="servicio"
-                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
-                      >
-                        Servicio Principal de Interés
-                      </label>
-                      <select
-                        id="servicio"
-                        name="servicio"
-                        value={formData.servicio}
-                        onChange={handleChange}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-[#1A1413] border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white transition-colors"
-                      >
-                        <option value="Activaciones de Marca BTL">
-                          Activaciones de Marca BTL
-                        </option>
-                        <option value="Edecanes y Hostess">
-                          Edecanes y Hostess
-                        </option>
-                        <option value="Animadores y Locución en Vivo">
-                          Animadores y Locución en Vivo
-                        </option>
-                        <option value="Promotoría e Impulsadoras">
-                          Promotoría e Impulsadoras
-                        </option>
-                        <option value="Perifoneo Móvil">Perifoneo Móvil</option>
-                        <option value="Volanteo Estratégico Auditado">
-                          Volanteo Estratégico Auditado
-                        </option>
-                        <option value="Batucadas y Performance">
-                          Batucadas y Performance
-                        </option>
-                        <option value="Producción de Spots de Audio">
-                          Producción de Spots de Audio
-                        </option>
-                        <option value="Campaña Integral Peninsular">
-                          Campaña Integral Peninsular
-                        </option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="estado"
-                        className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
-                      >
-                        Estado de Cobertura
-                      </label>
-                      <select
-                        id="estado"
-                        name="estado"
-                        value={formData.estado}
-                        onChange={handleChange}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-[#1A1413] border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white transition-colors"
-                      >
-                        <option value="Quintana Roo">
-                          Quintana Roo (Cancún, Playa, Tulum, etc.)
-                        </option>
-                        <option value="Yucatán">
-                          Yucatán (Mérida, Progreso, Valladolid, etc.)
-                        </option>
-                        <option value="Campeche">
-                          Campeche (Cd. del Carmen, Campeche, etc.)
-                        </option>
-                        <option value="Toda la Península">
-                          Toda la Península (Simultáneo)
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-
+                  {/* 1. Plaza de Despliegue */}
                   <div>
-                    <label
-                      htmlFor="mensaje"
-                      className="block font-manrope text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5"
-                    >
-                      Detalles del Proyecto / Fechas Estimadas
+                    <label className="block font-sora text-xs font-bold text-gray-800 dark:text-gray-200 mb-2.5 uppercase tracking-wider">
+                      1. Plaza de Despliegue
                     </label>
-                    <textarea
-                      id="mensaje"
-                      name="mensaje"
-                      rows={3}
-                      value={formData.mensaje}
-                      onChange={handleChange}
-                      placeholder="Cuéntanos sobre tu evento, volumen de volantes, días de perifoneo o personal requerido..."
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-300 dark:border-white/10 focus:border-[#009EE2] focus:ring-1 focus:ring-[#009EE2] text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
-                    />
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                      {plazas.map((plaza) => {
+                        const isSelected = selectedPlaza === plaza.id;
+                        return (
+                          <button
+                            key={plaza.id}
+                            type="button"
+                            onClick={() => setSelectedPlaza(plaza.id)}
+                            className={`py-2.5 px-3 rounded-xl text-xs font-sora font-semibold border transition-all duration-200 text-center ${
+                              isSelected
+                                ? 'bg-surface-low dark:bg-brand-dark-alt border-brand-primary dark:border-brand-primary text-brand-primary dark:text-brand-primary-soft shadow-sm ring-1 ring-brand-primary/30'
+                                : 'bg-gray-50/70 dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10'
+                            }`}
+                          >
+                            {plaza.label}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
 
+                  {/* 2. Servicio o Combinación BTL */}
+                  <div>
+                    <label className="block font-sora text-xs font-bold text-gray-800 dark:text-gray-200 mb-2.5 uppercase tracking-wider">
+                      2. Servicio o Combinación BTL (Selecciona uno o más):
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {serviciosList.map((service) => {
+                        const isChecked = selectedServices.includes(service);
+                        return (
+                          <button
+                            key={service}
+                            type="button"
+                            onClick={() => toggleService(service)}
+                            className={`inline-flex items-center gap-2 py-2 px-3.5 rounded-xl text-xs font-sora font-semibold border transition-all duration-200 ${
+                              isChecked
+                                ? 'bg-brand-primary/10 dark:bg-brand-primary/30 border-brand-primary/50 text-brand-primary dark:text-white'
+                                : 'bg-gray-50/70 dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10'
+                            }`}
+                          >
+                            <span
+                              className={`w-3.5 h-3.5 rounded border flex items-center justify-center text-[9px] transition-colors ${
+                                isChecked
+                                  ? 'bg-brand-primary border-brand-primary text-white'
+                                  : 'border-gray-400 dark:border-gray-500'
+                              }`}
+                            >
+                              {isChecked && (
+                                <Check className="w-2.5 h-2.5 stroke-[3]" />
+                              )}
+                            </span>
+                            <span>{service}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* 3. Datos para el envío de la cotización */}
+                  <div className="space-y-4">
+                    <label className="block font-sora text-xs font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider">
+                      3. Datos para el envío de la cotización:
+                    </label>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label
+                          htmlFor="nombreEmpresa"
+                          className="block font-sora text-[11px] font-bold text-gray-600 dark:text-gray-300 mb-1.5 uppercase"
+                        >
+                          NOMBRE O EMPRESA *
+                        </label>
+                        <input
+                          id="nombreEmpresa"
+                          name="nombreEmpresa"
+                          type="text"
+                          required
+                          value={formData.nombreEmpresa}
+                          onChange={handleInputChange}
+                          placeholder="Ej. Corporativo Maya / Carlos Ruiz"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor="telefonoWhatsApp"
+                          className="block font-sora text-[11px] font-bold text-gray-600 dark:text-gray-300 mb-1.5 uppercase"
+                        >
+                          TELÉFONO / WHATSAPP *
+                        </label>
+                        <input
+                          id="telefonoWhatsApp"
+                          name="telefonoWhatsApp"
+                          type="tel"
+                          required
+                          value={formData.telefonoWhatsApp}
+                          onChange={handleInputChange}
+                          placeholder="Ej. +52 998 123 4567"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="mensajeRequerimientos"
+                        className="block font-sora text-[11px] font-bold text-gray-600 dark:text-gray-300 mb-1.5 uppercase"
+                      >
+                        FECHA ESTIMADA O REQUERIMIENTOS ESPECIALES
+                      </label>
+                      <textarea
+                        id="mensajeRequerimientos"
+                        name="mensajeRequerimientos"
+                        rows={3}
+                        value={formData.mensajeRequerimientos}
+                        onChange={handleInputChange}
+                        placeholder="Indícanos días del evento, puntos de venta requeridos, número de horas o metas de prospección..."
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors resize-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="w-full py-3.5 px-6 rounded-xl bg-[#AB2020] hover:bg-[#c42525] text-white font-sora font-bold text-sm transition-all duration-300 shadow-lg shadow-[#AB2020]/30 hover:shadow-xl hover:shadow-[#AB2020]/50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-2"
+                    className="w-full py-3.5 px-6 rounded-xl bg-surface-low dark:bg-white/10 hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primary border border-gray-300 dark:border-white/20 text-gray-800 dark:text-white font-sora font-bold text-xs sm:text-sm transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {status === 'loading' ? (
                       <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        <span>Enviando información...</span>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Enviando cotización...</span>
                       </>
                     ) : (
                       <>
-                        <Send className="w-5 h-5" />
-                        <span>Enviar Solicitud de Cotización</span>
+                        <span>Enviar Solicitud a Cotización</span>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                       </>
                     )}
                   </button>
 
-                  <p className="text-[11px] text-gray-500 dark:text-gray-500 text-center mt-3">
-                    Tus datos se manejan con estricta confidencialidad para
-                    fines de cotización comercial.
-                  </p>
+                  {/* Privacy Disclaimer */}
+                  <div className="flex items-center justify-center gap-2 text-[11px] font-manrope text-gray-500 dark:text-gray-400 pt-1">
+                    <Lock className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                    <span>
+                      Tu solicitud se enviará exclusivamente a{' '}
+                      <span className="font-semibold text-gray-700 dark:text-gray-300">
+                        ventaspublicidad1@hotmail.com
+                      </span>{' '}
+                      para darte respuesta el mismo día.
+                    </span>
+                  </div>
                 </form>
               )}
             </div>

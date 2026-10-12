@@ -10,14 +10,14 @@ export const FloatingWhatsApp: React.FC = () => {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center group">
       {/* Tooltip on hover */}
-      <span className="hidden sm:inline-block mr-3 px-3.5 py-1.5 rounded-full bg-[#1A1413] text-white text-xs font-sora font-semibold shadow-xl border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+      <span className="hidden sm:inline-block mr-3 px-3.5 py-1.5 rounded-full bg-brand-dark text-white text-xs font-sora font-semibold shadow-xl border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
         ¡Cotiza por WhatsApp ahora! 👋
       </span>
 
       {/* Pulsing ring container with spaced interval */}
       <div className="relative flex items-center justify-center">
         {/* Slow Interval Pulsing Ring */}
-        <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-[#25D366]" />
+        <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-brand-whatsapp" />
 
         {/* WhatsApp Button */}
         <a
@@ -25,7 +25,7 @@ export const FloatingWhatsApp: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contactar por WhatsApp a Publicidad Total Q&R"
-          className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300"
+          className="relative flex items-center justify-center w-14 h-14 rounded-full bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300"
         >
           {/* Official WhatsApp SVG Icon */}
           <svg

@@ -1,189 +1,308 @@
 import React, { useState } from 'react';
-import {
-  Megaphone,
-  MapPin,
-  Phone,
-  Mail,
-  ArrowUp,
-  Shield,
-  CheckCircle,
-} from 'lucide-react';
+import { MessageSquare, Phone, Mail, MapPin, Megaphone } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const [logoError, setLogoError] = useState(false);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const medallionLogoUrl =
     'https://lh3.googleusercontent.com/aida/AEtjO1Ww3mxC_4QX7n5RYDK5a-SPE2XEUPVxg32mP-31D7Yrk4kxsqp4kvhZdBAg4Gftuas76-Jt4s031bsv8oguxL-hRNPH9T7ZB2vGnAAzbzroE2f1bHwEjqFkim5ac2aOZEsDwUMBmJK_Av-oMfORvxhkv8OsYOGK2rZNHT7r_5c9lxsDCwMD2fp1JF58A5WHZhkFaaOxtUOt4rg0FKHLFgBTU92XmC8z60_0ZByBsQAcxvQA90SnExpGSxw';
 
   return (
-    <footer className="bg-[#1A1413] text-white border-t border-white/10 relative overflow-hidden pt-16 pb-12">
-      {/* Background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-b from-[#312782]/20 to-transparent pointer-events-none" />
+    <footer className="bg-[#140F0E] text-white border-t border-white/10 relative overflow-hidden pt-16 pb-8">
+      {/* Ambient background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-b from-brand-primary/20 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-12">
-          {/* Brand medallion & slogan (5 cols) */}
-          <div className="lg:col-span-5 flex flex-col items-start">
-            <div className="flex items-center gap-4 mb-4">
-              {/* 200px Medallion Emblem */}
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#1A1413] p-1 shadow-xl shadow-[#312782]/30 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
-                {!logoError ? (
-                  <img
-                    src={medallionLogoUrl}
-                    alt="Medallón Oficial Publicidad Total Q&R"
-                    onError={() => setLogoError(true)}
-                    className="w-full h-full object-contain filter brightness-105"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-[#1A1413] rounded-[14px] flex flex-col items-center justify-center p-2 text-center">
-                    <Megaphone className="w-7 h-7 text-[#009EE2] mb-0.5" />
-                    <span className="font-sora font-extrabold text-[11px] leading-tight text-white">
-                      TOTAL Q&R
-                    </span>
-                    <span className="font-sora font-bold text-[8px] text-[#93C01F] tracking-widest">
-                      PENÍNSULA
-                    </span>
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <h3 className="font-sora font-extrabold text-xl text-white tracking-tight">
-                  PUBLICIDAD TOTAL Q&R
-                </h3>
-                <p className="font-sora font-semibold text-xs text-[#009EE2] tracking-wider mt-0.5 uppercase">
-                  Agencia Peninsular de Marketing BTL
-                </p>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 mb-12">
+          {/* Brand Column (4 cols) */}
+          <div className="lg:col-span-4 flex flex-col items-start">
+            {/* Medallion Logo */}
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#1A1413] p-1 shadow-xl shadow-brand-primary/20 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden mb-3">
+              {!logoError ? (
+                <img
+                  src={medallionLogoUrl}
+                  alt="Medallón Oficial Publicidad Total Q&R"
+                  onError={() => setLogoError(true)}
+                  className="w-full h-full object-contain filter brightness-105"
+                />
+              ) : (
+                <div className="w-full h-full bg-[#1A1413] rounded-xl flex flex-col items-center justify-center p-2 text-center">
+                  <Megaphone className="w-7 h-7 text-brand-cyan mb-0.5" />
+                  <span className="font-sora font-extrabold text-[11px] leading-tight text-white">
+                    TOTAL Q&R
+                  </span>
+                  <span className="font-sora font-bold text-[8px] text-brand-lime tracking-widest">
+                    PENÍNSULA
+                  </span>
+                </div>
+              )}
             </div>
 
-            {/* Official Slogan */}
-            <blockquote className="border-l-2 border-[#93C01F] pl-3 py-1 my-3 font-manrope italic text-sm text-gray-300">
-              «Llevamos tu marca a las manos y oídos de todos»
-            </blockquote>
+            {/* Slogan Red Ribbon Badge */}
+            <div className="inline-block bg-brand-crimson text-white font-sora font-bold text-xs px-3.5 py-1.5 rounded-lg tracking-wide mb-3 shadow-md shadow-brand-crimson/20">
+              «¡Llevamos tu marca a las manos y oídos de todos!»
+            </div>
 
-            <p className="font-manrope text-xs text-gray-400 max-w-md leading-relaxed mt-2">
-              Líderes en logística de calle, volanteo supervisado, perifoneo
-              móvil de alta potencia y activación de marca en Quintana Roo,
-              Yucatán y Campeche.
+            {/* Description Paragraph */}
+            <p className="font-manrope text-xs sm:text-sm text-gray-400 leading-relaxed max-w-sm mb-4">
+              Especialistas en marketing BTL, perifoneo móvil auditado y
+              activaciones de alto impacto en el sureste de México con cobertura
+              garantizada.
             </p>
+
+            {/* Operational Pills */}
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-lime/10 border border-brand-lime/30 text-[10px] font-sora font-bold text-brand-lime tracking-wider uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse" />
+                7 DÍAS · 100% OPERATIVO
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/30 text-[10px] font-sora font-bold text-brand-cyan tracking-wider uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan" />
+                GPS AUDITADO
+              </span>
+            </div>
           </div>
 
-          {/* Navigation Directory (2 cols) */}
-          <div className="lg:col-span-2">
-            <h4 className="font-sora font-bold text-sm text-white uppercase tracking-wider mb-4">
-              Navegación
-            </h4>
+          {/* Column 2: Servicios Principales (3 cols) */}
+          <div className="lg:col-span-3">
+            <div className="mb-4">
+              <h4 className="font-sora font-bold text-sm text-white uppercase tracking-wider">
+                SERVICIOS PRINCIPALES
+              </h4>
+              <div className="w-10 h-0.5 bg-brand-cyan mt-1.5 rounded-full" />
+            </div>
+
             <ul className="space-y-2.5 text-xs font-manrope text-gray-300">
               <li>
                 <a
-                  href="#nosotros"
-                  className="hover:text-[#009EE2] transition-colors"
+                  href="#servicios"
+                  className="hover:text-brand-cyan transition-colors flex items-center gap-2 group"
                 >
-                  Manifiesto y Certezas
+                  <span className="text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
+                    •
+                  </span>
+                  <span>Activaciones BTL en Punto de Venta</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#servicios"
-                  className="hover:text-[#009EE2] transition-colors"
+                  className="hover:text-brand-cyan transition-colors flex items-center gap-2 group"
                 >
-                  Servicios BTL
+                  <span className="text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
+                    •
+                  </span>
+                  <span>Edecanes y Personal de Imagen</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#servicios"
+                  className="hover:text-brand-cyan transition-colors flex items-center gap-2 group"
+                >
+                  <span className="text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
+                    •
+                  </span>
+                  <span>Animadores y Conducción en Vivo</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#servicios"
+                  className="hover:text-brand-cyan transition-colors flex items-center gap-2 group"
+                >
+                  <span className="text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
+                    •
+                  </span>
+                  <span>Promotoría y Demostradoras</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#servicios"
+                  className="hover:text-brand-cyan transition-colors flex items-center gap-2 group"
+                >
+                  <span className="text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
+                    •
+                  </span>
+                  <span>Eventos Corporativos y Expos</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Operaciones de Campo (2 cols) */}
+          <div className="lg:col-span-2">
+            <div className="mb-4">
+              <h4 className="font-sora font-bold text-sm text-white uppercase tracking-wider">
+                OPERACIONES DE CAMPO
+              </h4>
+              <div className="w-10 h-0.5 bg-brand-lime mt-1.5 rounded-full" />
+            </div>
+
+            <ul className="space-y-2.5 text-xs font-manrope text-gray-300">
+              <li>
+                <a
+                  href="#servicios"
+                  className="hover:text-brand-lime transition-colors flex items-center gap-2 group"
+                >
+                  <span className="text-brand-lime/60 group-hover:text-brand-lime transition-colors">
+                    •
+                  </span>
+                  <span>Perifoneo Móvil con Flota Propia</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#servicios"
+                  className="hover:text-brand-lime transition-colors flex items-center gap-2 group"
+                >
+                  <span className="text-brand-lime/60 group-hover:text-brand-lime transition-colors">
+                    •
+                  </span>
+                  <span>Volanteo Estratégico por Supermanzanas</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#servicios"
+                  className="hover:text-brand-lime transition-colors flex items-center gap-2 group"
+                >
+                  <span className="text-brand-lime/60 group-hover:text-brand-lime transition-colors">
+                    •
+                  </span>
+                  <span>Batucadas y Eventos Especiales</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#servicios"
+                  className="hover:text-brand-lime transition-colors flex items-center gap-2 group"
+                >
+                  <span className="text-brand-lime/60 group-hover:text-brand-lime transition-colors">
+                    •
+                  </span>
+                  <span>Producción de Spots de Audio</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#cobertura"
-                  className="hover:text-[#009EE2] transition-colors"
+                  className="hover:text-brand-lime transition-colors flex items-center gap-2 group"
                 >
-                  Hubs de Cobertura
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contacto"
-                  className="hover:text-[#009EE2] transition-colors"
-                >
-                  Cotización en Línea
+                  <span className="text-brand-lime/60 group-hover:text-brand-lime transition-colors">
+                    •
+                  </span>
+                  <span>Reportes Fotográficos con Geolocalización</span>
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Services Directory (2 cols) */}
-          <div className="lg:col-span-2">
-            <h4 className="font-sora font-bold text-sm text-white uppercase tracking-wider mb-4">
-              Especialidades
-            </h4>
-            <ul className="space-y-2 text-xs font-manrope text-gray-300">
-              <li className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-[#93C01F] shrink-0" />
-                <span>Activaciones BTL</span>
-              </li>
-              <li className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-[#93C01F] shrink-0" />
-                <span>Edecanes y Hostess</span>
-              </li>
-              <li className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-[#93C01F] shrink-0" />
-                <span>Animadores en Vivo</span>
-              </li>
-              <li className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-[#93C01F] shrink-0" />
-                <span>Perifoneo Móvil</span>
-              </li>
-              <li className="flex items-center gap-1.5">
-                <CheckCircle className="w-3 h-3 text-[#93C01F] shrink-0" />
-                <span>Volanteo Auditado</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact & Regional Info (3 cols) */}
+          {/* Column 4: Canales Oficiales (3 cols) */}
           <div className="lg:col-span-3">
-            <h4 className="font-sora font-bold text-sm text-white uppercase tracking-wider mb-4">
-              Atención Regional
-            </h4>
-            <ul className="space-y-3 text-xs font-manrope text-gray-300">
-              <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#009EE2] shrink-0 mt-0.5" />
-                <span>Cancún · Playa del Carmen · Mérida · Campeche</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#93C01F] shrink-0" />
-                <span>998 107 1359 / 999 931 8581</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#AB2020] shrink-0" />
-                <span className="break-all">ventaspublicidad1@hotmail.com</span>
-              </li>
-              <li className="flex items-center gap-2.5 pt-1">
-                <Shield className="w-4 h-4 text-[#009EE2] shrink-0" />
-                <span>Personal con seguro y equipo de seguridad</span>
-              </li>
-            </ul>
+            <div className="mb-4">
+              <h4 className="font-sora font-bold text-sm text-white uppercase tracking-wider">
+                CANALES OFICIALES
+              </h4>
+              <div className="w-10 h-0.5 bg-brand-crimson mt-1.5 rounded-full" />
+            </div>
+
+            <div className="space-y-3 text-xs font-manrope">
+              {/* WhatsApp */}
+              <a
+                href="https://wa.me/529981071359"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 hover:bg-brand-whatsapp/15 border border-white/5 hover:border-brand-whatsapp/30 transition-all group"
+              >
+                <div className="w-8 h-8 rounded-lg bg-brand-whatsapp/20 text-brand-whatsapp flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <MessageSquare className="w-4 h-4 fill-current" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-sora font-bold text-gray-400 uppercase tracking-wider">
+                    WHATSAPP VENTAS DIRECTAS
+                  </div>
+                  <div className="font-sora font-bold text-sm text-white group-hover:text-brand-whatsapp transition-colors">
+                    998 107 1359
+                  </div>
+                </div>
+              </a>
+
+              {/* Conmutador Mérida */}
+              <a
+                href="tel:9999318581"
+                className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 hover:bg-brand-cyan/15 border border-white/5 hover:border-brand-cyan/30 transition-all group"
+              >
+                <div className="w-8 h-8 rounded-lg bg-brand-cyan/20 text-brand-cyan flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <Phone className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-sora font-bold text-gray-400 uppercase tracking-wider">
+                    CONMUTADOR MÉRIDA (VOZ)
+                  </div>
+                  <div className="font-sora font-bold text-sm text-white group-hover:text-brand-cyan transition-colors">
+                    999 931 8581
+                  </div>
+                </div>
+              </a>
+
+              {/* Correo */}
+              <a
+                href="mailto:ventaspublicidad1@hotmail.com"
+                className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 hover:bg-brand-crimson/15 border border-white/5 hover:border-brand-crimson/30 transition-all group"
+              >
+                <div className="w-8 h-8 rounded-lg bg-brand-crimson/20 text-brand-crimson flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-sora font-bold text-gray-400 uppercase tracking-wider">
+                    CORREO ÚNICO AUTORIZADO
+                  </div>
+                  <div className="font-sora font-bold text-xs text-white group-hover:text-brand-crimson transition-colors break-all">
+                    ventaspublicidad1@hotmail.com
+                  </div>
+                </div>
+              </a>
+
+              {/* Cobertura */}
+              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 border border-white/5">
+                <div className="w-8 h-8 rounded-lg bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-sora font-bold text-gray-400 uppercase tracking-wider">
+                    COBERTURA PENINSULAR
+                  </div>
+                  <div className="font-manrope text-xs text-gray-300">
+                    Yucatán, Quintana Roo y Campeche
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Bottom bar with Copyright & Back to Top */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-manrope text-gray-400">
-          <p>
-            © {new Date().getFullYear()} Publicidad Total Q&R. Todos los
-            derechos reservados. Península de Yucatán, México.
+        {/* Bottom bar */}
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-manrope text-gray-400">
+          <p className="text-center sm:text-left">
+            © 2026 Publicidad Total Q&R Operadora BTL para el Sureste Mexicano.
+            Todos los derechos reservados.
           </p>
 
-          <button
-            onClick={scrollToTop}
-            type="button"
-            className="flex items-center gap-2 text-gray-400 hover:text-white px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-          >
-            <span>Volver arriba</span>
-            <ArrowUp className="w-3.5 h-3.5" />
-          </button>
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-400">
+            <span className="hover:text-white transition-colors cursor-pointer">
+              Términos del Servicio
+            </span>
+            <span>·</span>
+            <span className="hover:text-white transition-colors cursor-pointer">
+              Política de Privacidad de Datos
+            </span>
+            <span>·</span>
+            <span className="hover:text-white transition-colors cursor-pointer">
+              Reporte Operativo en Ruta
+            </span>
+          </div>
         </div>
       </div>
     </footer>
