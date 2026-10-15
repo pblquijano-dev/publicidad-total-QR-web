@@ -22,12 +22,22 @@ import {
   Flag,
   Footprints,
 } from 'lucide-react';
+import {
+  GalleryPhoto,
+  ACTIVACIONES_GALLERY,
+  EDECANES_GALLERY,
+  ANIMADORES_GALLERY,
+  PROMOTORIA_GALLERY,
+  PERIFONEO_GALLERY,
+  VOLANTEO_GALLERY,
+  BATUCADA_GALLERY,
+  SPOTS_GALLERY,
+  BOTARGUERO_GALLERY,
+  PANCARTERO_GALLERY,
+  ZANQUERO_GALLERY,
+} from '../data/servicesPhotos';
 
-interface GalleryPhoto {
-  url: string;
-  caption: string;
-  alt?: string;
-}
+export type { GalleryPhoto };
 
 interface PrimaryService {
   id: string;
@@ -60,355 +70,160 @@ interface LightboxState {
   currentIndex: number;
 }
 
-export const Services: React.FC = () => {
-  // Photo galleries for primary services
-  const primaryServices: PrimaryService[] = [
-    {
-      id: 'activaciones',
-      title: 'Activaciones de Marca',
-      description:
-        'Montaje de carpa publicitaria, equipo de audio profesional, dinámicas comerciales en punto de venta, perifoneo en vivo y entrega de material promocional para atraer clientes a tu tienda.',
-      icon: Sparkles,
-      kpi: 'Alto Engagement',
-      badge: 'Servicio Estrella',
-      highlights: [
-        'Montaje de carpa publicitaria y equipo de audio profesional',
-        'Dinámicas comerciales y perifoneo en punto de venta',
-        'Supervisión presencial y entrega de material promocional',
-      ],
-      whatsappMsg:
-        'Hola, me interesa cotizar el servicio de *Activaciones de Marca* para mi empresa en la Península.',
-      gallery: [
-        {
-          url: 'https://lh3.googleusercontent.com/aida/AEtjO1X5UgOjwG78IQhOyOX3Cb_YKIDY4rXwKUY-ljGbzJJRJBWK2S_2bsdMi32qN7ARWb0dXI_vmlgYGMAh6INYhvoobYK3qZfXt1yYKB3GbENJgJg_wLozUSnUU4JuEQBqL0xkFhYyVbCRbTuqirrvSvzqDOVEpg8BQR41X-ydb-AWPJVvyGx8kg0WM71s1DTOdN2sEom5L_lYBH8IhwROwvk3d1evEVVGoVOou1TpiVr4H0SoZemfDFe47OQ',
-          caption:
-            'Montaje de carpa publicitaria y toldo institucional con audio profesional en punto de venta.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Dinámica comercial interactiva en centro comercial con gran afluencia de clientes potenciales.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Atracción masiva y participación de transeúntes mediante dinámicas de marca y ruleta de premios.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Supervisión en campo y entrega personalizada de material promocional a compradores calificados.',
-        },
-      ],
-    },
-    {
-      id: 'edecanes',
-      title: 'Edecanes y Hostess',
-      description:
-        'Personal de imagen con excelente presentación y vestuario coordinado para inauguraciones, eventos corporativos, congresos y expos. Briefing previo sobre tu producto y puntualidad rigurosa.',
-      icon: Users,
-      kpi: 'Imagen y Protocolo',
-      badge: 'Personal Capacitado',
-      highlights: [
-        'Excelente presentación y vestuario coordinado para eventos',
-        'Briefing previo sobre tu marca, producto y dinámicas',
-        'Puntualidad rigurosa y trato cordial en todo momento',
-      ],
-      whatsappMsg:
-        'Hola, me gustaría cotizar *Edecanes y Hostess* para un evento en la Península.',
-      gallery: [
-        {
-          url: 'https://lh3.googleusercontent.com/aida/AEtjO1VO__62WMqlrtmmRyU4tpspmU2kK-_EGHXGIUkAdA6bctSHszwbVvzysxgFjJ5qdNt1OHUkF-Wp2bFuzjC-IWVxS-TGX4XK_dp88j_LOP6u1Rt5_k9WCc7xPqM7rMkG-l7AbM5nqGUxTEFACXIiyX7KxUJ3VN_ltkrJdq98EwSclAPgF5nr6tYy36Aq4zAGX6DCJ75FYp4UjBoGrIcg-lX9f7Mosq5AbaIb0dFn-HyU6y_8G6oCDUdls3E',
-          caption:
-            'Edecanes de imagen institucional con excelente presentación y vestuario corporativo coordinado.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Hostess en protocolo de recepción y bienvenida en inauguraciones corporativas y congresos.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Atención personalizada a invitados, registro y entrega de gafetes en eventos empresariales.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Presencia en stands comerciales proyectando distinción, empatía y confianza hacia la marca.',
-        },
-      ],
-    },
-    {
-      id: 'animadores',
-      title: 'Animadores y Locución en Vivo',
-      description:
-        'Locutores y animadores con micrófono y equipo de audio de alta potencia para conducir dinámicas, interactuar con el público e invitar a los transeúntes a conocer tus promociones.',
-      icon: Mic,
-      kpi: 'Atracción Inmediata',
-      badge: 'Conversión en Vivo',
-      highlights: [
-        'Locución comercial persuasiva y perifoneo en vivo',
-        'Conducción de dinámicas de regalos y concursos',
-        'Equipo de audio de alta potencia para eventos comerciales',
-      ],
-      whatsappMsg:
-        'Hola, solicito informes y cotización de *Animadores y Locución en Vivo* para mi negocio.',
-      gallery: [
-        {
-          url: 'https://lh3.googleusercontent.com/aida/AEtjO1U-JLKKRs5hwJmEterDe6f63LXEX0XCtg30hoNMbn__9TxlqWJqUhobizfbvjvC-P2p6poeLm5SROKJCDBsPhlEO_zCwR_NTsXYCP_d2HWCRUxN4XGg72RZRW9WDKVe3RRY6lkPaCWyUtSPgGlB48Uxqao1ImhlaBtixaoPJU5yC36S0HZ60mup6IG9vT9iewC1AJDk2-IVmRW48cvDxFDuUAw6_mjYBr1zMeXxD4CqFB0suU46U3Qpsw',
-          caption:
-            'Locución en vivo con micrófono y sistema de audio de alta fidelidad al frente del establecimiento.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Animador comercial dirigiendo dinámicas participativas y atrayendo al público en tiempo real.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Conducción de concursos y trivias comerciales para incentivar el acceso y compra en tienda.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Ambientación musical y perifoneo comercial continuo para generar expectativa en el punto de venta.',
-        },
-      ],
-    },
-    {
-      id: 'promotoria',
-      title: 'Promotoría e Impulsadoras',
-      description:
-        'Personal capacitado en piso de venta para demostración de producto, degustación, entrega de muestras y desplazamiento de producto en tienda de autoservicio.',
-      icon: TrendingUp,
-      kpi: 'Impulso de Venta',
-      badge: 'Piso de Venta',
-      highlights: [
-        'Demostración de producto y degustación en piso de venta',
-        'Entrega de muestras y desplazamiento en tiendas de autoservicio',
-        'Supervisión presencial y reporte de actividades diario',
-      ],
-      whatsappMsg:
-        'Hola, deseo cotizar una cuadrilla de *Promotoría e Impulsadoras* para punto de venta.',
-      gallery: [
-        {
-          url: 'https://lh3.googleusercontent.com/aida/AEtjO1VOJ3Ymua11LgujaZlhXcZpm4SO54oko8Le9K5RaUPTc5vXWJfREMBFoEoGIRPBJ9NjqnW5t1t5yZ-BVpyc1N-85eL3xjPIw-6gYhoC0UL86blhnbk1IgBWqDKxPI7eNsAORTwAOKRdCEe20XxIFXaYBwOnq4Ni3v7BHEYe5-Xtv-zRPIwHXNKSIkXvBEBKnVU1PVVG5gQOabXeUIyykwANPU7O2ew-xivAjfE-4aM1ZdKe2twgYT65Vr8',
-          caption:
-            'Impulsadora en piso de venta realizando degustación y asesoría directa a clientes.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Demostración de producto en tienda de autoservicio para incentivar la prueba de marca.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Abordaje profesional y persuasivo a compradores frente al anaquel de exhibición.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1580828343064-fde4fc206bc6?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Cuidado de exhibición, frenteo estratégico y reporte diario de desplazamiento en tienda.',
-        },
-      ],
-    },
-  ];
+// Configuración estática de servicios principales
+const PRIMARY_SERVICES: PrimaryService[] = [
+  {
+    id: 'activaciones',
+    title: 'Activaciones de Marca',
+    description:
+      'Montaje de carpa publicitaria, equipo de audio profesional, dinámicas comerciales en punto de venta, perifoneo en vivo y entrega de material promocional para atraer clientes a tu tienda.',
+    icon: Sparkles,
+    kpi: 'Alto Engagement',
+    badge: 'Servicio Estrella',
+    highlights: [
+      'Montaje de carpa publicitaria y equipo de audio profesional',
+      'Dinámicas comerciales y perifoneo en punto de venta',
+      'Supervisión presencial y entrega de material promocional',
+    ],
+    whatsappMsg:
+      'Hola, me interesa cotizar el servicio de *Activaciones de Marca* para mi empresa en la Península.',
+    gallery: ACTIVACIONES_GALLERY,
+  },
+  {
+    id: 'edecanes',
+    title: 'Edecanes y Hostess',
+    description:
+      'Personal de imagen con excelente presentación y vestuario coordinado para inauguraciones, eventos corporativos, congresos y expos. Briefing previo sobre tu producto y puntualidad rigurosa.',
+    icon: Users,
+    kpi: 'Imagen y Protocolo',
+    badge: 'Personal Capacitado',
+    highlights: [
+      'Excelente presentación y vestuario coordinado para eventos',
+      'Briefing previo sobre tu marca, producto y dinámicas',
+      'Puntualidad rigurosa y trato cordial en todo momento',
+    ],
+    whatsappMsg:
+      'Hola, me gustaría cotizar *Edecanes y Hostess* para un evento en la Península.',
+    gallery: EDECANES_GALLERY,
+  },
+  {
+    id: 'animadores',
+    title: 'Animadores y Locución en Vivo',
+    description:
+      'Locutores y animadores con micrófono y equipo de audio de alta potencia para conducir dinámicas, interactuar con el público e invitar a los transeúntes a conocer tus promociones.',
+    icon: Mic,
+    kpi: 'Atracción Inmediata',
+    badge: 'Conversión en Vivo',
+    highlights: [
+      'Locución comercial persuasiva y perifoneo en vivo',
+      'Conducción de dinámicas de regalos y concursos',
+      'Equipo de audio de alta potencia para eventos comerciales',
+    ],
+    whatsappMsg:
+      'Hola, solicito informes y cotización de *Animadores y Locución en Vivo* para mi negocio.',
+    gallery: ANIMADORES_GALLERY,
+  },
+  {
+    id: 'promotoria',
+    title: 'Promotoría e Impulsadoras',
+    description:
+      'Personal capacitado en piso de venta para demostración de producto, degustación, entrega de muestras y desplazamiento de producto en tienda de autoservicio.',
+    icon: TrendingUp,
+    kpi: 'Impulso de Venta',
+    badge: 'Piso de Venta',
+    highlights: [
+      'Demostración de producto y degustación en piso de venta',
+      'Entrega de muestras y desplazamiento en tiendas de autoservicio',
+      'Supervisión presencial y reporte de actividades diario',
+    ],
+    whatsappMsg:
+      'Hola, deseo cotizar una cuadrilla de *Promotoría e Impulsadoras* para punto de venta.',
+    gallery: PROMOTORIA_GALLERY,
+  },
+];
 
-  // Complementary services including Botarguero, Pancartero and Zanquero
-  const secondaryServices: SecondaryService[] = [
-    {
-      id: 'perifoneo',
-      title: 'Perifoneo Móvil',
-      description:
-        'Vehículos adaptados con bocinas de alto alcance (mínimo 5 horas diarias por unidad) recorriendo supermanzanas y avenidas.',
-      icon: Radio,
-      tag: 'Sonido en Calle',
-      whatsappMsg:
-        'Hola, me interesa una cotización de rutas de *Perifoneo Móvil* en la Península.',
-      gallery: [
-        {
-          url: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Unidades móviles equipadas con audio de alta potencia en recorridos estratégicos.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Cobertura sonora continua en supermanzanas, colonias y zonas comerciales prioritarias.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Difusión de spots promocionales con claridad auditiva a nivel peatonal y vehicular.',
-        },
-      ],
-    },
-    {
-      id: 'volanteo',
-      title: 'Volanteo Estratégico',
-      description:
-        'Distribución mano a mano y en buzones por supermanzanas y colonias clave con supervisión y reporte de entrega.',
-      icon: FileText,
-      tag: 'Mano a Mano',
-      whatsappMsg:
-        'Hola, quiero cotizar una campaña de *Volanteo Estratégico*.',
-      gallery: [
-        {
-          url: 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Reparto mano a mano en intersecciones y puntos de alto tráfico peatonal.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Entrega directa de cupones y folletos a consumidores con perfil afín a tu producto.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Distribución supervisada casa por casa con reporte fotográfico georreferenciado.',
-        },
-      ],
-    },
-    {
-      id: 'batucada',
-      title: 'Batucada',
-      description:
-        'Animación rítmica y música en vivo con percusionistas para aperturas, desfiles y aniversarios que capturan al público.',
-      icon: Music,
-      tag: 'Música en Vivo',
-      whatsappMsg:
-        'Hola, me interesa contratar *Batucada* para una inauguración.',
-      gallery: [
-        {
-          url: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Ensamble de batucada con percusiones en vivo generando energía festiva inmediata.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Músicos caracterizados tocando ritmos envolventes frente a la tienda o sucursal.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Ambiente carnavalesco de celebración que atrae multitudes y potencia la recordación.',
-        },
-      ],
-    },
-    {
-      id: 'spots',
-      title: 'Grabación de Spots',
-      description:
-        'Producción de audio publicitario con locución profesional, guion persuasivo y masterización para perifoneo y radio.',
-      icon: Disc3,
-      tag: 'Locución y Audio',
-      whatsappMsg:
-        'Hola, quiero solicitar la *Grabación de Spots* profesional.',
-      gallery: [
-        {
-          url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Cabina de grabación acústica y micrófonos de estudio para locución publicitaria.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Locutores con modulación comercial diseñados para capturar la atención en calle.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Edición, mezcla musical y masterización optimizada para altavoces y sistemas móviles.',
-        },
-      ],
-    },
-    {
-      id: 'botarguero',
-      title: 'Botarguero',
-      description:
-        'Animación con botargas de marca y botargueros enérgicos que interactúan con niños y familias, atrayendo miradas y generando fotos virales.',
-      icon: PartyPopper,
-      tag: 'Atracción Visual',
-      whatsappMsg:
-        'Hola, me interesa cotizar el servicio de *Botarguero* para mi negocio en la Península.',
-      gallery: [
-        {
-          url: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Botarguero animando e interactuando amigablemente con familias en el punto de venta.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Personaje animado de marca bailando y saludando a conductores y transeúntes.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Atracción de tráfico a la puerta del negocio y generación de fotografías de marca.',
-        },
-      ],
-    },
-    {
-      id: 'pancartero',
-      title: 'Pancartero',
-      description:
-        'Personal dinámico en camellones y esquinas de alto aforo con pancartas y flechas llamativas para desviar el tráfico de clientes a tu tienda.',
-      icon: Flag,
-      tag: 'Impacto en Cruceros',
-      whatsappMsg:
-        'Hola, me gustaría cotizar *Pancarteros y Flecheros* para una campaña de atracción en cruceros.',
-      gallery: [
-        {
-          url: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Pancarteros ubicados en camellones clave mostrando promociones y ofertas del día.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Flechero publicitario indicando la dirección exacta de acceso a tu local o sucursal.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Carteles de gran formato legibles a distancia para conductores y peatones.',
-        },
-      ],
-    },
-    {
-      id: 'zanquero',
-      title: 'Zanquero',
-      description:
-        'Artistas en zancos con vestuarios vistosos y temáticos que dominan la vista panorámica de la calle en inauguraciones, ferias y desfiles.',
-      icon: Footprints,
-      tag: 'Presencia de Altura',
-      whatsappMsg:
-        'Hola, deseo solicitar cotización para *Zanqueros y Performance* en la Península.',
-      gallery: [
-        {
-          url: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Zanqueros con trajes coloridos de alto impacto visual dominando la vista de la avenida.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Espectáculo visual de altura para inauguraciones y aniversarios comerciales.',
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80',
-          caption:
-            'Interacción aérea con el público, repartiendo volantes o globos promocionales.',
-        },
-      ],
-    },
-  ];
+// Configuración estática de servicios secundarios
+const SECONDARY_SERVICES: SecondaryService[] = [
+  {
+    id: 'perifoneo',
+    title: 'Perifoneo Móvil',
+    description:
+      'Vehículos adaptados con bocinas de alto alcance (mínimo 5 horas diarias por unidad) recorriendo supermanzanas y avenidas.',
+    icon: Radio,
+    tag: 'Sonido en Calle',
+    whatsappMsg:
+      'Hola, me interesa una cotización de rutas de *Perifoneo Móvil* en la Península.',
+    gallery: PERIFONEO_GALLERY,
+  },
+  {
+    id: 'volanteo',
+    title: 'Volanteo Estratégico',
+    description:
+      'Distribución mano a mano y en buzones por supermanzanas y colonias clave con supervisión y reporte de entrega.',
+    icon: FileText,
+    tag: 'Mano a Mano',
+    whatsappMsg: 'Hola, quiero cotizar una campaña de *Volanteo Estratégico*.',
+    gallery: VOLANTEO_GALLERY,
+  },
+  {
+    id: 'batucada',
+    title: 'Batucada',
+    description:
+      'Animación rítmica y música en vivo con percusionistas para aperturas, desfiles y aniversarios que capturan al público.',
+    icon: Music,
+    tag: 'Música en Vivo',
+    whatsappMsg:
+      'Hola, me interesa contratar *Batucada* para una inauguración.',
+    gallery: BATUCADA_GALLERY,
+  },
+  {
+    id: 'spots',
+    title: 'Grabación de Spots',
+    description:
+      'Producción de audio publicitario con locución profesional, guion persuasivo y masterización para perifoneo y radio.',
+    icon: Disc3,
+    tag: 'Locución y Audio',
+    whatsappMsg: 'Hola, quiero solicitar la *Grabación de Spots* profesional.',
+    gallery: SPOTS_GALLERY,
+  },
+  {
+    id: 'botarguero',
+    title: 'Botarguero',
+    description:
+      'Animación con botargas de marca y botargueros enérgicos que interactúan con niños y familias, atrayendo miradas y generando fotos virales.',
+    icon: PartyPopper,
+    tag: 'Atracción Visual',
+    whatsappMsg:
+      'Hola, me interesa cotizar el servicio de *Botarguero* para mi negocio en la Península.',
+    gallery: BOTARGUERO_GALLERY,
+  },
+  {
+    id: 'pancartero',
+    title: 'Pancartero',
+    description:
+      'Personal dinámico en camellones y esquinas de alto aforo con pancartas y flechas llamativas para desviar el tráfico de clientes a tu tienda.',
+    icon: Flag,
+    tag: 'Impacto en Cruceros',
+    whatsappMsg:
+      'Hola, me gustaría cotizar *Pancarteros y Flecheros* para una campaña de atracción en cruceros.',
+    gallery: PANCARTERO_GALLERY,
+  },
+  {
+    id: 'zanquero',
+    title: 'Zanquero',
+    description:
+      'Artistas en zancos con vestuarios vistosos y temáticos que dominan la vista panorámica de la calle en inauguraciones, ferias y desfiles.',
+    icon: Footprints,
+    tag: 'Presencia de Altura',
+    whatsappMsg:
+      'Hola, deseo solicitar cotización para *Zanqueros y Performance* en la Península.',
+    gallery: ZANQUERO_GALLERY,
+  },
+];
+
+export const Services: React.FC = () => {
+  const primaryServices = PRIMARY_SERVICES;
+  const secondaryServices = SECONDARY_SERVICES;
 
   // In-component active photo index for each service
   const [activePhotoIndices, setActivePhotoIndices] = useState<
@@ -672,18 +487,15 @@ export const Services: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Photo Caption Strip (Pie de foto) */}
-                  <div className="px-5 py-2.5 bg-gray-50/90 dark:bg-white/[0.04] border-b border-gray-200/80 dark:border-white/5 flex items-center justify-between gap-3">
-                    <p className="font-manrope text-xs text-gray-700 dark:text-gray-300 italic line-clamp-1 flex items-center gap-2">
-                      <span className="font-semibold text-brand-primary dark:text-brand-cyan not-italic">
-                        Foto {currentIdx + 1}:
-                      </span>{' '}
-                      {currentPhoto.caption}
-                    </p>
+                  {/* Photo Navigation Strip */}
+                  {totalPhotos > 1 && (
+                    <div className="px-5 py-2 bg-gray-50/90 dark:bg-white/[0.04] border-b border-gray-200/80 dark:border-white/5 flex items-center justify-between gap-3">
+                      <span className="font-manrope text-xs text-gray-500 dark:text-gray-400 font-medium">
+                        Foto {currentIdx + 1} de {totalPhotos}
+                      </span>
 
-                    {/* Dots indicator */}
-                    {totalPhotos > 1 && (
-                      <div className="flex items-center gap-1.5 shrink-0">
+                      {/* Dots indicator */}
+                      <div className="flex items-center gap-1.5 shrink-0 max-w-[50%] overflow-x-auto scrollbar-none py-0.5">
                         {service.gallery.map((_, dotIdx) => (
                           <button
                             key={dotIdx}
@@ -700,8 +512,8 @@ export const Services: React.FC = () => {
                           />
                         ))}
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
 
                   {/* Card Content */}
                   <div className="p-6 sm:p-7">
@@ -849,33 +661,17 @@ export const Services: React.FC = () => {
                           </button>
                         </>
                       )}
-
-                      {/* Bottom icon + title quick indicator */}
-                      <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center gap-2 pointer-events-none">
-                        <div className="p-1.5 rounded-lg bg-brand-cyan text-white shadow-md shrink-0">
-                          <IconComp className="w-3.5 h-3.5" />
-                        </div>
-                        <span className="font-sora font-bold text-sm text-white drop-shadow-sm truncate">
-                          {capsule.title}
-                        </span>
-                      </div>
                     </div>
 
-                    {/* Capsule Photo Caption (Pie de foto) */}
-                    <div className="px-3.5 py-1.5 bg-gray-50/90 dark:bg-white/[0.03] border-b border-gray-100 dark:border-white/5 flex items-center justify-between gap-2">
-                      <p
-                        className="font-manrope text-[11px] text-gray-600 dark:text-gray-300 italic truncate"
-                        title={currentPhoto.caption}
-                      >
-                        <span className="font-semibold text-brand-primary dark:text-brand-cyan not-italic">
-                          Foto {currentIdx + 1}:
-                        </span>{' '}
-                        {currentPhoto.caption}
-                      </p>
+                    {/* Capsule Photo Dots Strip */}
+                    {totalPhotos > 1 && (
+                      <div className="px-3.5 py-1.5 bg-gray-50/90 dark:bg-white/[0.03] border-b border-gray-100 dark:border-white/5 flex items-center justify-between gap-2">
+                        <span className="font-manrope text-[11px] text-gray-500 dark:text-gray-400 font-medium">
+                          Foto {currentIdx + 1} de {totalPhotos}
+                        </span>
 
-                      {/* Dots indicator */}
-                      {totalPhotos > 1 && (
-                        <div className="flex items-center gap-1 shrink-0">
+                        {/* Dots indicator */}
+                        <div className="flex items-center gap-1 shrink-0 max-w-[50%] overflow-x-auto scrollbar-none py-0.5">
                           {capsule.gallery.map((_, dotIdx) => (
                             <button
                               key={dotIdx}
@@ -892,8 +688,8 @@ export const Services: React.FC = () => {
                             />
                           ))}
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
 
                     {/* Content */}
                     <div className="p-4 sm:p-5">
@@ -1060,17 +856,8 @@ export const Services: React.FC = () => {
             )}
           </div>
 
-          {/* Modal Bottom Section: Pie de foto & Thumbnail bar */}
-          <div className="w-full px-4 sm:px-8 py-4 bg-black/60 backdrop-blur-lg border-t border-white/10 z-20 flex flex-col items-center gap-3">
-            {/* Prominent Caption (Pie de foto) */}
-            <div className="max-w-3xl text-center px-4 py-2 rounded-xl bg-white/[0.07] border border-white/10 backdrop-blur-sm">
-              <p className="font-manrope text-sm sm:text-base text-gray-200 flex items-center justify-center gap-2">
-                <Camera className="w-4 h-4 text-brand-lime shrink-0" />
-                <span className="font-bold text-white">Pie de foto:</span>
-                <span>{lightbox.photos[lightbox.currentIndex]?.caption}</span>
-              </p>
-            </div>
-
+          {/* Modal Bottom Section: Thumbnail bar */}
+          <div className="w-full px-4 sm:px-8 py-3 bg-black/60 backdrop-blur-lg border-t border-white/10 z-20 flex flex-col items-center gap-3">
             {/* Thumbnails Row */}
             {lightbox.photos.length > 1 && (
               <div className="flex items-center gap-2.5 overflow-x-auto max-w-full py-1 px-2 scrollbar-none">
@@ -1093,7 +880,7 @@ export const Services: React.FC = () => {
                   >
                     <img
                       src={photo.url}
-                      alt={photo.caption}
+                      alt={`${lightbox.serviceTitle} - Foto ${thumbIdx + 1}`}
                       className="w-full h-full object-cover"
                     />
                   </button>
