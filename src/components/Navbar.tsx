@@ -24,8 +24,8 @@ export const Navbar: React.FC = () => {
 
   const headerLogoUrl =
     theme === 'dark'
-      ? '/images/h-logo-header-dark.png'
-      : '/images/h-logo-header.png';
+      ? '/images/h-logo-header-dark.webp'
+      : '/images/h-logo-header.webp';
 
   return (
     <header

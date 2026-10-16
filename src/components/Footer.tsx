@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
   const [logoError, setLogoError] = useState(false);
   const [legalModalDoc, setLegalModalDoc] = useState<LegalDocType | null>(null);
 
-  const medallionLogoUrl = '/images/logo.png';
+  const medallionLogoUrl = '/images/logo.webp';
   return (
     <footer className="bg-gray-50 dark:bg-[#140F0E] text-gray-900 dark:text-white border-t border-gray-200 dark:border-white/10 relative overflow-hidden pt-16 pb-8 transition-colors duration-300">
       {/* Ambient background glow */}
@@ -22,6 +22,8 @@ export const Footer: React.FC = () => {
                 <img
                   src={medallionLogoUrl}
                   alt="Medallón Oficial Publicidad Total Q&R"
+                  loading="lazy"
+                  decoding="async"
                   onError={() => setLogoError(true)}
                   className="w-full h-full object-contain filter brightness-105"
                 />

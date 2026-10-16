@@ -388,6 +388,8 @@ export const Services: React.FC = () => {
                     <img
                       src={currentPhoto.url}
                       alt={currentPhoto.caption || service.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-500 ease-out cursor-pointer hover:scale-[1.02]"
                       onClick={() =>
                         openLightbox(
@@ -590,6 +592,8 @@ export const Services: React.FC = () => {
                       <img
                         src={currentPhoto.url}
                         alt={currentPhoto.caption || capsule.title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover transition-transform duration-500 ease-out cursor-pointer hover:scale-105"
                         onClick={() =>
                           openLightbox(
@@ -837,6 +841,7 @@ export const Services: React.FC = () => {
                   lightbox.photos[lightbox.currentIndex]?.caption ||
                   lightbox.serviceTitle
                 }
+                decoding="async"
                 className="max-h-[68vh] sm:max-h-[72vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl border border-white/10 select-none animate-fadeIn"
               />
             </div>
@@ -880,6 +885,8 @@ export const Services: React.FC = () => {
                     <img
                       src={photo.url}
                       alt={`${lightbox.serviceTitle} - Foto ${thumbIdx + 1}`}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   </button>
