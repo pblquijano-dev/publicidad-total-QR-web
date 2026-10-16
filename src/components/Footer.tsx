@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { MessageSquare, Phone, Mail, MapPin, Megaphone } from 'lucide-react';
+import { LegalModal, LegalDocType } from './LegalModal';
 
 export const Footer: React.FC = () => {
   const [logoError, setLogoError] = useState(false);
+  const [legalModalDoc, setLegalModalDoc] = useState<LegalDocType | null>(null);
 
-  const medallionLogoUrl =
-    'https://lh3.googleusercontent.com/aida/AEtjO1Ww3mxC_4QX7n5RYDK5a-SPE2XEUPVxg32mP-31D7Yrk4kxsqp4kvhZdBAg4Gftuas76-Jt4s031bsv8oguxL-hRNPH9T7ZB2vGnAAzbzroE2f1bHwEjqFkim5ac2aOZEsDwUMBmJK_Av-oMfORvxhkv8OsYOGK2rZNHT7r_5c9lxsDCwMD2fp1JF58A5WHZhkFaaOxtUOt4rg0FKHLFgBTU92XmC8z60_0ZByBsQAcxvQA90SnExpGSxw';
-
+  const medallionLogoUrl = '/images/logo.png';
   return (
-    <footer className="bg-[#140F0E] text-white border-t border-white/10 relative overflow-hidden pt-16 pb-8">
+    <footer className="bg-gray-50 dark:bg-[#140F0E] text-gray-900 dark:text-white border-t border-gray-200 dark:border-white/10 relative overflow-hidden pt-16 pb-8 transition-colors duration-300">
       {/* Ambient background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-b from-brand-primary/20 to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-brand-primary/5 dark:from-brand-primary/20 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 mb-12">
           {/* Brand Column (4 cols) */}
           <div className="lg:col-span-4 flex flex-col items-start">
             {/* Medallion Logo */}
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-[#1A1413] p-1 shadow-xl shadow-brand-primary/20 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden mb-3">
+            <div className="w-20 h-20 sm:w-40 sm:h-40 rounded-2xl bg-white p-1 shadow-xl shadow-brand-primary/10 dark:shadow-brand-primary/20 border border-gray-200 dark:border-white/10 flex items-center justify-center shrink-0 overflow-hidden mb-3">
               {!logoError ? (
                 <img
                   src={medallionLogoUrl}
@@ -26,9 +26,9 @@ export const Footer: React.FC = () => {
                   className="w-full h-full object-contain filter brightness-105"
                 />
               ) : (
-                <div className="w-full h-full bg-[#1A1413] rounded-xl flex flex-col items-center justify-center p-2 text-center">
+                <div className="w-full h-full bg-gray-100 dark:bg-[#1A1413] rounded-xl flex flex-col items-center justify-center p-2 text-center">
                   <Megaphone className="w-7 h-7 text-brand-cyan mb-0.5" />
-                  <span className="font-sora font-extrabold text-[11px] leading-tight text-white">
+                  <span className="font-sora font-extrabold text-[11px] leading-tight text-gray-900 dark:text-white">
                     TOTAL Q&R
                   </span>
                   <span className="font-sora font-bold text-[8px] text-brand-lime tracking-widest">
@@ -38,46 +38,29 @@ export const Footer: React.FC = () => {
               )}
             </div>
 
-            {/* Slogan Red Ribbon Badge */}
-            <div className="inline-block bg-brand-crimson text-white font-sora font-bold text-xs px-3.5 py-1.5 rounded-lg tracking-wide mb-3 shadow-md shadow-brand-crimson/20">
-              «¡Llevamos tu marca a las manos y oídos de todos!»
-            </div>
-
             {/* Description Paragraph */}
-            <p className="font-manrope text-xs sm:text-sm text-gray-400 leading-relaxed max-w-sm mb-4">
-              Especialistas en marketing BTL, perifoneo móvil y activaciones de
+            <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm mb-4">
+              Especialistas en publicidad BTL, perifoneo móvil y activaciones de
               alto impacto en el sureste de México con cobertura garantizada.
             </p>
-
-            {/* Operational Pills */}
-            <div className="flex flex-wrap items-center gap-2 pt-1">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-lime/10 border border-brand-lime/30 text-[10px] font-sora font-bold text-brand-lime tracking-wider uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse" />
-                7 DÍAS · 100% OPERATIVO
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/30 text-[10px] font-sora font-bold text-brand-cyan tracking-wider uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan" />
-                REPORTE FOTOGRÁFICO DIARIO
-              </span>
-            </div>
           </div>
 
           {/* Column 2: Servicios Principales (3 cols) */}
           <div className="lg:col-span-3">
             <div className="mb-4">
-              <h4 className="font-sora font-bold text-sm text-white uppercase tracking-wider">
+              <h4 className="font-sora font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider">
                 SERVICIOS PRINCIPALES
               </h4>
               <div className="w-10 h-0.5 bg-brand-cyan mt-1.5 rounded-full" />
             </div>
 
-            <ul className="space-y-2.5 text-xs font-manrope text-gray-300">
+            <ul className="space-y-2.5 text-xs font-manrope text-gray-600 dark:text-gray-300">
               <li>
                 <a
                   href="#servicios"
-                  className="hover:text-brand-cyan transition-colors flex items-center gap-2 group"
+                  className="hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
+                  <span className="text-brand-cyan/70 dark:text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
                     •
                   </span>
                   <span>Activaciones BTL en Punto de Venta</span>
@@ -86,9 +69,9 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href="#servicios"
-                  className="hover:text-brand-cyan transition-colors flex items-center gap-2 group"
+                  className="hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
+                  <span className="text-brand-cyan/70 dark:text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
                     •
                   </span>
                   <span>Edecanes y Personal de Imagen</span>
@@ -97,9 +80,9 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href="#servicios"
-                  className="hover:text-brand-cyan transition-colors flex items-center gap-2 group"
+                  className="hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
+                  <span className="text-brand-cyan/70 dark:text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
                     •
                   </span>
                   <span>Animadores y Conducción en Vivo</span>
@@ -108,9 +91,9 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href="#servicios"
-                  className="hover:text-brand-cyan transition-colors flex items-center gap-2 group"
+                  className="hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
+                  <span className="text-brand-cyan/70 dark:text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
                     •
                   </span>
                   <span>Promotoría y Demostradoras</span>
@@ -119,9 +102,9 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href="#servicios"
-                  className="hover:text-brand-cyan transition-colors flex items-center gap-2 group"
+                  className="hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
+                  <span className="text-brand-cyan/70 dark:text-brand-cyan/60 group-hover:text-brand-cyan transition-colors">
                     •
                   </span>
                   <span>Eventos Corporativos y Expos</span>
@@ -133,19 +116,19 @@ export const Footer: React.FC = () => {
           {/* Column 3: Operaciones de Campo (2 cols) */}
           <div className="lg:col-span-2">
             <div className="mb-4">
-              <h4 className="font-sora font-bold text-sm text-white uppercase tracking-wider">
+              <h4 className="font-sora font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider">
                 OPERACIONES DE CAMPO
               </h4>
               <div className="w-10 h-0.5 bg-brand-lime mt-1.5 rounded-full" />
             </div>
 
-            <ul className="space-y-2.5 text-xs font-manrope text-gray-300">
+            <ul className="space-y-2.5 text-xs font-manrope text-gray-600 dark:text-gray-300">
               <li>
                 <a
                   href="#servicios"
-                  className="hover:text-brand-lime transition-colors flex items-center gap-2 group"
+                  className="hover:text-brand-lime dark:hover:text-brand-lime transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-brand-lime/60 group-hover:text-brand-lime transition-colors">
+                  <span className="text-brand-lime/70 dark:text-brand-lime/60 group-hover:text-brand-lime transition-colors">
                     •
                   </span>
                   <span>Perifoneo Móvil con Flota Propia</span>
@@ -154,9 +137,9 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href="#servicios"
-                  className="hover:text-brand-lime transition-colors flex items-center gap-2 group"
+                  className="hover:text-brand-lime dark:hover:text-brand-lime transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-brand-lime/60 group-hover:text-brand-lime transition-colors">
+                  <span className="text-brand-lime/70 dark:text-brand-lime/60 group-hover:text-brand-lime transition-colors">
                     •
                   </span>
                   <span>Volanteo Estratégico por Supermanzanas</span>
@@ -165,9 +148,9 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href="#servicios"
-                  className="hover:text-brand-lime transition-colors flex items-center gap-2 group"
+                  className="hover:text-brand-lime dark:hover:text-brand-lime transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-brand-lime/60 group-hover:text-brand-lime transition-colors">
+                  <span className="text-brand-lime/70 dark:text-brand-lime/60 group-hover:text-brand-lime transition-colors">
                     •
                   </span>
                   <span>Batucadas y Eventos Especiales</span>
@@ -176,9 +159,9 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href="#servicios"
-                  className="hover:text-brand-lime transition-colors flex items-center gap-2 group"
+                  className="hover:text-brand-lime dark:hover:text-brand-lime transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-brand-lime/60 group-hover:text-brand-lime transition-colors">
+                  <span className="text-brand-lime/70 dark:text-brand-lime/60 group-hover:text-brand-lime transition-colors">
                     •
                   </span>
                   <span>Producción de Spots de Audio</span>
@@ -187,9 +170,9 @@ export const Footer: React.FC = () => {
               <li>
                 <a
                   href="#cobertura"
-                  className="hover:text-brand-lime transition-colors flex items-center gap-2 group"
+                  className="hover:text-brand-lime dark:hover:text-brand-lime transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-brand-lime/60 group-hover:text-brand-lime transition-colors">
+                  <span className="text-brand-lime/70 dark:text-brand-lime/60 group-hover:text-brand-lime transition-colors">
                     •
                   </span>
                   <span>Reportes Fotográficos Diarios</span>
@@ -201,7 +184,7 @@ export const Footer: React.FC = () => {
           {/* Column 4: Canales Oficiales (3 cols) */}
           <div className="lg:col-span-3">
             <div className="mb-4">
-              <h4 className="font-sora font-bold text-sm text-white uppercase tracking-wider">
+              <h4 className="font-sora font-bold text-sm text-gray-900 dark:text-white uppercase tracking-wider">
                 CANALES OFICIALES
               </h4>
               <div className="w-10 h-0.5 bg-brand-crimson mt-1.5 rounded-full" />
@@ -213,16 +196,16 @@ export const Footer: React.FC = () => {
                 href="https://wa.me/529981071359"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 hover:bg-brand-whatsapp/15 border border-white/5 hover:border-brand-whatsapp/30 transition-all group"
+                className="flex items-center gap-3 p-2.5 rounded-xl bg-white dark:bg-white/5 hover:bg-brand-whatsapp/10 dark:hover:bg-brand-whatsapp/15 border border-gray-200/80 dark:border-white/5 hover:border-brand-whatsapp/30 transition-all group shadow-sm dark:shadow-none"
               >
-                <div className="w-8 h-8 rounded-lg bg-brand-whatsapp/20 text-brand-whatsapp flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                <div className="w-8 h-8 rounded-lg bg-brand-whatsapp/15 dark:bg-brand-whatsapp/20 text-brand-whatsapp flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <MessageSquare className="w-4 h-4 fill-current" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-sora font-bold text-gray-400 uppercase tracking-wider">
+                  <div className="text-[10px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     WHATSAPP VENTAS DIRECTAS
                   </div>
-                  <div className="font-sora font-bold text-sm text-white group-hover:text-brand-whatsapp transition-colors">
+                  <div className="font-sora font-bold text-sm text-gray-900 dark:text-white group-hover:text-brand-whatsapp transition-colors">
                     998 107 1359
                   </div>
                 </div>
@@ -231,16 +214,16 @@ export const Footer: React.FC = () => {
               {/* Conmutador Mérida */}
               <a
                 href="tel:9999318581"
-                className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 hover:bg-brand-cyan/15 border border-white/5 hover:border-brand-cyan/30 transition-all group"
+                className="flex items-center gap-3 p-2.5 rounded-xl bg-white dark:bg-white/5 hover:bg-brand-cyan/10 dark:hover:bg-brand-cyan/15 border border-gray-200/80 dark:border-white/5 hover:border-brand-cyan/30 transition-all group shadow-sm dark:shadow-none"
               >
-                <div className="w-8 h-8 rounded-lg bg-brand-cyan/20 text-brand-cyan flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                <div className="w-8 h-8 rounded-lg bg-brand-cyan/15 dark:bg-brand-cyan/20 text-brand-cyan flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-sora font-bold text-gray-400 uppercase tracking-wider">
+                  <div className="text-[10px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     CONMUTADOR MÉRIDA (VOZ)
                   </div>
-                  <div className="font-sora font-bold text-sm text-white group-hover:text-brand-cyan transition-colors">
+                  <div className="font-sora font-bold text-sm text-gray-900 dark:text-white group-hover:text-brand-cyan transition-colors">
                     999 931 8581
                   </div>
                 </div>
@@ -249,31 +232,31 @@ export const Footer: React.FC = () => {
               {/* Correo */}
               <a
                 href="mailto:ventaspublicidad1@hotmail.com"
-                className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 hover:bg-brand-crimson/15 border border-white/5 hover:border-brand-crimson/30 transition-all group"
+                className="flex items-center gap-3 p-2.5 rounded-xl bg-white dark:bg-white/5 hover:bg-brand-crimson/10 dark:hover:bg-brand-crimson/15 border border-gray-200/80 dark:border-white/5 hover:border-brand-crimson/30 transition-all group shadow-sm dark:shadow-none"
               >
-                <div className="w-8 h-8 rounded-lg bg-brand-crimson/20 text-brand-crimson flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                <div className="w-8 h-8 rounded-lg bg-brand-crimson/15 dark:bg-brand-crimson/20 text-brand-crimson flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-sora font-bold text-gray-400 uppercase tracking-wider">
+                  <div className="text-[10px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     CORREO ÚNICO AUTORIZADO
                   </div>
-                  <div className="font-sora font-bold text-xs text-white group-hover:text-brand-crimson transition-colors break-all">
+                  <div className="font-sora font-bold text-xs text-gray-900 dark:text-white group-hover:text-brand-crimson transition-colors break-all">
                     ventaspublicidad1@hotmail.com
                   </div>
                 </div>
               </a>
 
               {/* Cobertura */}
-              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 border border-white/5">
-                <div className="w-8 h-8 rounded-lg bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0">
+              <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white dark:bg-white/5 border border-gray-200/80 dark:border-white/5 shadow-sm dark:shadow-none">
+                <div className="w-8 h-8 rounded-lg bg-brand-lime/15 dark:bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-sora font-bold text-gray-400 uppercase tracking-wider">
+                  <div className="text-[10px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     COBERTURA PENINSULAR
                   </div>
-                  <div className="font-manrope text-xs text-gray-300">
+                  <div className="font-manrope text-xs text-gray-600 dark:text-gray-300">
                     Yucatán, Quintana Roo y Campeche
                   </div>
                 </div>
@@ -283,27 +266,38 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-manrope text-gray-400">
+        <div className="pt-6 border-t border-gray-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-manrope text-gray-500 dark:text-gray-400">
           <p className="text-center sm:text-left">
-            © 2026 Publicidad Total Q&R Operadora BTL para el Sureste Mexicano.
-            Todos los derechos reservados.
+            © 2026 Publicidad Total Q&R. Todos los derechos reservados. Powered
+            by WYNOT.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-400">
-            <span className="hover:text-white transition-colors cursor-pointer">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+            <button
+              type="button"
+              onClick={() => setLegalModalDoc('terms')}
+              className="text-gray-600 dark:text-gray-400 hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors cursor-pointer underline-offset-4 hover:underline focus:outline-none focus:text-brand-cyan"
+            >
               Términos del Servicio
-            </span>
-            <span>·</span>
-            <span className="hover:text-white transition-colors cursor-pointer">
+            </button>
+            <span className="text-gray-300 dark:text-gray-600">·</span>
+            <button
+              type="button"
+              onClick={() => setLegalModalDoc('privacy')}
+              className="text-gray-600 dark:text-gray-400 hover:text-brand-lime dark:hover:text-brand-lime transition-colors cursor-pointer underline-offset-4 hover:underline focus:outline-none focus:text-brand-lime"
+            >
               Política de Privacidad de Datos
-            </span>
-            <span>·</span>
-            <span className="hover:text-white transition-colors cursor-pointer">
-              Reporte Operativo en Ruta
-            </span>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Legal Documents Modal */}
+      <LegalModal
+        isOpen={legalModalDoc !== null}
+        initialDoc={legalModalDoc || 'terms'}
+        onClose={() => setLegalModalDoc(null)}
+      />
     </footer>
   );
 };

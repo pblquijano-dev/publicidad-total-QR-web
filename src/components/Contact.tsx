@@ -108,7 +108,7 @@ export const Contact: React.FC = () => {
         access_key: accessKey,
         subject: `[PRUEBA] Nueva Cotización Q&R: ${formData.nombreEmpresa} (${plazasFormatted})`,
         from_name: formData.nombreEmpresa || 'Publicidad Total Q&R Web',
-        to: 'pblquijano@gmail.com',
+        to: 'grupoveltium@gmail.com',
         nombre_empresa: formData.nombreEmpresa,
         telefono_whatsapp: formData.telefonoWhatsApp,
         plaza_despliegue: plazasFormatted,
@@ -469,7 +469,7 @@ export const Contact: React.FC = () => {
                     <span>
                       Modo prueba: La solicitud se enviará a{' '}
                       <span className="font-semibold text-gray-700 dark:text-gray-300">
-                        pblquijano@gmail.com
+                        grupoveltium@gmail.com
                       </span>
                     </span>
                   </div>

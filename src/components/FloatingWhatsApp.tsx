@@ -8,16 +8,19 @@ export const FloatingWhatsApp: React.FC = () => {
     );
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center group">
-      {/* Tooltip on hover */}
-      <span className="hidden sm:inline-block mr-3 px-3.5 py-1.5 rounded-full bg-brand-dark text-white text-xs font-sora font-semibold shadow-xl border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
-        ¡Cotiza por WhatsApp ahora! 👋
-      </span>
+    <div className="fixed bottom-6 right-6 z-50 flex items-center justify-center pointer-events-none">
+      {/* Pulsing ring container & button with group hover */}
+      <div className="relative flex items-center justify-center group pointer-events-auto">
+        {/* Tooltip on hover - positioned absolutely to the left of the button */}
+        <span
+          role="tooltip"
+          className="absolute right-full mr-3 hidden sm:inline-block px-3.5 py-1.5 rounded-full bg-brand-dark text-white text-xs font-sora font-semibold shadow-xl border border-white/10 whitespace-nowrap pointer-events-none opacity-0 invisible translate-x-2 group-hover:opacity-100 group-hover:visible group-hover:translate-x-0 transition-all duration-200 z-10"
+        >
+          ¡Cotiza por WhatsApp ahora! 👋
+        </span>
 
-      {/* Pulsing ring container with spaced interval */}
-      <div className="relative flex items-center justify-center">
         {/* Slow Interval Pulsing Ring */}
-        <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-brand-whatsapp" />
+        <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-brand-whatsapp pointer-events-none" />
 
         {/* WhatsApp Button */}
         <a

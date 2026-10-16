@@ -111,7 +111,7 @@ export const Coverage: React.FC = () => {
         {/* Contenedor del Mapa con react-simple-maps */}
         <div className="relative w-full rounded-3xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-xl mb-12 bg-gradient-to-br from-[#ADD6FF] via-[#85C2FF] to-[#ADD6FF] dark:from-[#091122] dark:via-[#0c162d] dark:to-[#050a14] group/map select-none">
           {/* Mapa SVG de react-simple-maps */}
-          <div className="w-full h-[450px] sm:h-[520px] lg:h-[580px] flex items-center justify-center p-2 sm:p-4">
+          <div className="w-full h-[450px] sm:h-[520px] lg:h-[580px] flex items-center justify-center">
             <ComposableMap
               projection="geoMercator"
               projectionConfig={{

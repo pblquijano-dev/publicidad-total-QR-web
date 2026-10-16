@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Check } from 'lucide-react';
 
 export const Hero: React.FC = () => {
-  const heroImages = ['/images/hero/hero-1.jpg', '/images/hero/hero-2.jpg'];
+  const heroImages = [
+    '/images/hero/hero-1.jpg',
+    '/images/hero/hero-2.jpg',
+    '/images/hero/hero-3.jpg',
+    '/images/hero/hero-4.jpg',
+  ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
