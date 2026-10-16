@@ -12,11 +12,15 @@ import {
   Sparkles,
   Check,
 } from 'lucide-react';
+import { StatePlazaSelector } from './StatePlazaSelector';
+import { StateSelection, formatPlazasSummary } from '../services/geoService';
 
 export const Contact: React.FC = () => {
-  const [selectedPlaza, setSelectedPlaza] = useState<string>('Quintana Roo');
+  const [selectedStates, setSelectedStates] = useState<StateSelection[]>([
+    { estado: 'Quintana Roo', enTodoElEstado: true, municipios: [] },
+  ]);
   const [selectedServices, setSelectedServices] = useState<string[]>([
-    'Activación BTL',
+    'Activaciones de Marca',
   ]);
   const [formData, setFormData] = useState({
     nombreEmpresa: '',
@@ -29,19 +33,18 @@ export const Contact: React.FC = () => {
   >('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const plazas = [
-    { id: 'Quintana Roo', label: 'Quintana Roo' },
-    { id: 'Mérida / Yucatán', label: 'Mérida / Yucatán' },
-    { id: 'Campeche', label: 'Campeche' },
-    { id: 'Otro punto', label: 'Otro punto' },
-  ];
-
   const serviciosList = [
-    'Activación BTL',
-    'Edecanes',
-    'Animación y Audio',
-    'Promotoría',
-    'Perifoneo / Volanteo',
+    'Activaciones de Marca',
+    'Edecanes y Hostess',
+    'Animadores y Locución en Vivo',
+    'Promotoría e Impulsadoras',
+    'Perifoneo Móvil',
+    'Volanteo Estratégico',
+    'Batucada',
+    'Grabación de Spots',
+    'Botarguero',
+    'Pancartero',
+    'Zanquero',
   ];
 
   const toggleService = (service: string) => {
@@ -64,6 +67,26 @@ export const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (selectedStates.length === 0) {
+      setStatus('error');
+      setErrorMessage(
+        'Por favor selecciona al menos un estado para la plaza de despliegue.'
+      );
+      return;
+    }
+
+    const invalidState = selectedStates.find(
+      (s) => !s.enTodoElEstado && s.municipios.length === 0
+    );
+    if (invalidState) {
+      setStatus('error');
+      setErrorMessage(
+        `Por favor selecciona al menos un municipio o marca "En todo el estado" para ${invalidState.estado}.`
+      );
+      return;
+    }
+
     if (selectedServices.length === 0) {
       setStatus('error');
       setErrorMessage(
@@ -76,15 +99,25 @@ export const Contact: React.FC = () => {
     setErrorMessage('');
 
     try {
+      const plazasFormatted = formatPlazasSummary(selectedStates);
+      const accessKey =
+        import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim() ||
+        '4f19daf0-f52f-4487-9319-8454e32f2218';
+
       const payload = {
-        access_key: 'YOUR_ACCESS_KEY_HERE',
-        to: 'ventaspublicidad1@hotmail.com',
-        subject: `Nueva Cotización Web Q&R: ${formData.nombreEmpresa} (${selectedPlaza})`,
-        from_name: formData.nombreEmpresa,
-        plaza: selectedPlaza,
-        servicios: selectedServices.join(', '),
+        access_key: accessKey,
+        subject: `[PRUEBA] Nueva Cotización Q&R: ${formData.nombreEmpresa} (${plazasFormatted})`,
+        from_name: formData.nombreEmpresa || 'Publicidad Total Q&R Web',
+        to: 'pblquijano@gmail.com',
+        nombre_empresa: formData.nombreEmpresa,
         telefono_whatsapp: formData.telefonoWhatsApp,
-        mensaje_requerimientos: formData.mensajeRequerimientos,
+        plaza_despliegue: plazasFormatted,
+        servicios_solicitados: selectedServices.join(', '),
+        requerimientos_especiales:
+          formData.mensajeRequerimientos || 'Sin requerimientos especiales',
+        fecha_envio: new Date().toLocaleString('es-MX', {
+          timeZone: 'America/Cancun',
+        }),
       };
 
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -105,12 +138,15 @@ export const Contact: React.FC = () => {
           telefonoWhatsApp: '',
           mensajeRequerimientos: '',
         });
-        setSelectedServices(['Activación BTL']);
+        setSelectedServices(['Activaciones de Marca']);
+        setSelectedStates([
+          { estado: 'Quintana Roo', enTodoElEstado: true, municipios: [] },
+        ]);
       } else {
         setStatus('error');
         setErrorMessage(
           result.message ||
-            'Ocurrió un error al enviar el formulario. Por favor contáctanos vía WhatsApp.'
+            'Ocurrió un error al enviar el formulario con Web3Forms. Por favor revisa la clave de acceso.'
         );
       }
     } catch {
@@ -132,20 +168,20 @@ export const Contact: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-left max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary-fixed/60 dark:bg-brand-primary/30 border border-brand-primary/20 dark:border-brand-primary/50 text-[11px] font-sora font-bold text-brand-primary-dark dark:text-brand-primary-soft uppercase tracking-widest mb-4">
             <Sparkles className="w-3.5 h-3.5 text-brand-cyan" />
             <span>Canales de Atención Directa</span>
           </div>
 
           <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary-dark dark:text-white tracking-tight leading-[1.15]">
-            Cotiza tu Próximo Operativo BTL{' '}
-            <span className="text-brand-crimson">en Minutos</span>
+            Cotiza tu próximo operativo BTL{' '}
+            <span className="text-brand-crimson">en minutos</span>
           </h2>
 
-          <p className="font-manrope text-base sm:text-lg text-gray-600 dark:text-gray-300 mt-4 leading-relaxed max-w-2xl">
-            Respuesta clara y cotización formal el mismo día. Sin intermediarios
-            ni demoras burocráticas en toda la Península.
+          <p className="font-manrope text-base sm:text-lg text-gray-600 dark:text-gray-300 mt-4 leading-relaxed max-w-2xl mx-auto">
+            Respuesta clara y cotización formal. Sin intermediarios ni demoras
+            burocráticas en toda la Península.
           </p>
         </div>
 
@@ -175,8 +211,7 @@ export const Contact: React.FC = () => {
               </a>
 
               <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
-                Atención comercial inmediata para Cancún, Playa del Carmen,
-                Mérida y Campeche. Asignación directa de supervisor de cuenta.
+                Rápida atención comercial para Quintana Roo, Yucatán y Campeche.
               </p>
 
               <a
@@ -245,7 +280,7 @@ export const Contact: React.FC = () => {
               </div>
               <div>
                 <div className="font-sora font-bold text-xs sm:text-sm text-gray-900 dark:text-white">
-                  Garantía de Despliegue 24/48 Horas
+                  Garantía de Despliegue
                 </div>
                 <div className="font-manrope text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed">
                   Equipo listo con supervisión física en Cancún, Mérida y
@@ -264,7 +299,7 @@ export const Contact: React.FC = () => {
                 </h3>
                 <p className="font-manrope text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
                   Selecciona los parámetros de tu campaña y te entregamos
-                  propuesta económica hoy mismo.
+                  propuesta económica lo mas pronto posible.
                 </p>
               </div>
 
@@ -279,10 +314,10 @@ export const Contact: React.FC = () => {
                   <p className="font-manrope text-sm text-gray-600 dark:text-gray-300 max-w-md mx-auto leading-relaxed">
                     Hemos recibido los datos de tu campaña para{' '}
                     <span className="font-bold text-gray-900 dark:text-white">
-                      {selectedPlaza}
+                      {formatPlazasSummary(selectedStates)}
                     </span>
-                    . Un asesor comercial te enviará la propuesta económica al
-                    instante.
+                    . Un asesor comercial te enviará la propuesta económica
+                    pronto.
                   </p>
                   <button
                     type="button"
@@ -301,31 +336,11 @@ export const Contact: React.FC = () => {
                     </div>
                   )}
 
-                  {/* 1. Plaza de Despliegue */}
-                  <div>
-                    <label className="block font-sora text-xs font-bold text-gray-800 dark:text-gray-200 mb-2.5 uppercase tracking-wider">
-                      1. Plaza de Despliegue
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {plazas.map((plaza) => {
-                        const isSelected = selectedPlaza === plaza.id;
-                        return (
-                          <button
-                            key={plaza.id}
-                            type="button"
-                            onClick={() => setSelectedPlaza(plaza.id)}
-                            className={`py-2.5 px-3 rounded-xl text-xs font-sora font-semibold border transition-all duration-200 text-center ${
-                              isSelected
-                                ? 'bg-surface-low dark:bg-brand-dark-alt border-brand-primary dark:border-brand-primary text-brand-primary dark:text-brand-primary-soft shadow-sm ring-1 ring-brand-primary/30'
-                                : 'bg-gray-50/70 dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10'
-                            }`}
-                          >
-                            {plaza.label}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
+                  {/* 1. Plaza de Despliegue (Estados y Municipios vía API) */}
+                  <StatePlazaSelector
+                    selections={selectedStates}
+                    onChange={setSelectedStates}
+                  />
 
                   {/* 2. Servicio o Combinación BTL */}
                   <div>
@@ -452,11 +467,10 @@ export const Contact: React.FC = () => {
                   <div className="flex items-center justify-center gap-2 text-[11px] font-manrope text-gray-500 dark:text-gray-400 pt-1">
                     <Lock className="w-3.5 h-3.5 text-gray-400 shrink-0" />
                     <span>
-                      Tu solicitud se enviará exclusivamente a{' '}
+                      Modo prueba: La solicitud se enviará a{' '}
                       <span className="font-semibold text-gray-700 dark:text-gray-300">
-                        ventaspublicidad1@hotmail.com
-                      </span>{' '}
-                      para darte respuesta el mismo día.
+                        pblquijano@gmail.com
+                      </span>
                     </span>
                   </div>
                 </form>
