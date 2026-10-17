@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { StatePlazaSelector } from './StatePlazaSelector';
 import { StateSelection, formatPlazasSummary } from '../services/geoService';
+import { ScrollReveal } from './ScrollReveal';
 
 export const Contact: React.FC = () => {
   const [selectedStates, setSelectedStates] = useState<StateSelection[]>([
@@ -168,131 +169,145 @@ export const Contact: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary-fixed/60 dark:bg-brand-primary/30 border border-brand-primary/20 dark:border-brand-primary/50 text-[11px] font-sora font-bold text-brand-primary-dark dark:text-brand-primary-soft uppercase tracking-widest mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-brand-cyan" />
-            <span>Canales de Atención Directa</span>
+        <ScrollReveal animation="fade-up" duration={700}>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary-fixed/60 dark:bg-brand-primary/30 border border-brand-primary/20 dark:border-brand-primary/50 text-[11px] font-sora font-bold text-brand-primary-dark dark:text-brand-primary-soft uppercase tracking-widest mb-4">
+              <Sparkles className="w-3.5 h-3.5 text-brand-cyan" />
+              <span>Canales de Atención Directa</span>
+            </div>
+
+            <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary-dark dark:text-white tracking-tight leading-[1.15]">
+              Cotiza tu próximo operativo BTL{' '}
+              <span className="text-brand-crimson">en minutos</span>
+            </h2>
+
+            <p className="font-manrope text-base sm:text-lg text-gray-600 dark:text-gray-300 mt-4 leading-relaxed max-w-2xl mx-auto">
+              Respuesta clara y cotización formal. Sin intermediarios ni demoras
+              burocráticas en toda la Península.
+            </p>
           </div>
-
-          <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary-dark dark:text-white tracking-tight leading-[1.15]">
-            Cotiza tu próximo operativo BTL{' '}
-            <span className="text-brand-crimson">en minutos</span>
-          </h2>
-
-          <p className="font-manrope text-base sm:text-lg text-gray-600 dark:text-gray-300 mt-4 leading-relaxed max-w-2xl mx-auto">
-            Respuesta clara y cotización formal. Sin intermediarios ni demoras
-            burocráticas en toda la Península.
-          </p>
-        </div>
+        </ScrollReveal>
 
         {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Left Column: Canales de Atención Directa (5 cols) */}
-          <div className="lg:col-span-5 space-y-5">
-            {/* Card 1: Canal Más Rápido (WhatsApp) */}
-            <div className="rounded-2xl bg-white dark:bg-brand-dark border-2 border-brand-whatsapp/40 dark:border-brand-whatsapp/30 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden">
-              <div className="flex items-center justify-between gap-2 mb-3">
-                <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  # Canal más rápido (Ventas Directas)
-                </span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand-whatsapp/10 border border-brand-whatsapp/30 text-[10px] font-sora font-bold text-brand-whatsapp uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-whatsapp animate-pulse" />
-                  Activo
-                </span>
-              </div>
-
-              <a
-                href="https://wa.me/529981071359"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block font-sora text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white hover:text-brand-whatsapp transition-colors mb-2"
-              >
-                998 107 1359
-              </a>
-
-              <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
-                Rápida atención comercial para Quintana Roo, Yucatán y Campeche.
-              </p>
-
-              <a
-                href="https://wa.me/529981071359"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3.5 px-4 rounded-xl bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-white font-sora font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-md shadow-brand-whatsapp/20 hover:shadow-lg hover:shadow-brand-whatsapp/30 active:scale-[0.99]"
-              >
-                <MessageSquare className="w-4 h-4 fill-current" />
-                <span>Iniciar Chat en WhatsApp Ahora</span>
-              </a>
-            </div>
-
-            {/* Card 2: Llamadas de Voz (Mérida) */}
-            <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="flex items-start justify-between gap-3 mb-2">
-                <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  Llamadas de voz directas (Oficina Mérida)
-                </span>
-                <Phone className="w-4 h-4 text-brand-cyan shrink-0" />
-              </div>
-
-              <a
-                href="tel:9999318581"
-                className="block font-sora text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white hover:text-brand-cyan transition-colors"
-              >
-                999 931 8581
-              </a>
-
-              <div className="text-[11px] font-manrope text-gray-400 dark:text-gray-400 italic mb-2">
-                (Exclusivo llamadas telefónicas)
-              </div>
-
-              <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                Conmutador central para coordinación administrativa,
-                cotizaciones institucionales y compras públicas.
-              </p>
-            </div>
-
-            {/* Card 3: Correo Electrónico */}
-            <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="flex items-start justify-between gap-3 mb-2">
-                <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  Correo electrónico autorizado
-                </span>
-                <Mail className="w-4 h-4 text-brand-crimson shrink-0" />
-              </div>
-
-              <a
-                href="mailto:ventaspublicidad1@hotmail.com"
-                className="block font-sora text-lg sm:text-xl font-bold text-gray-900 dark:text-white hover:text-brand-crimson transition-colors break-all mb-2"
-              >
-                ventaspublicidad1@hotmail.com
-              </a>
-
-              <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                Canal formal para envío de briefings, fichas técnicas y órdenes
-                de servicio. (Único correo autorizado para cotizaciones).
-              </p>
-            </div>
-
-            {/* Guarantee / SLA Banner */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-surface-low dark:bg-brand-dark-alt border border-gray-200/80 dark:border-white/10 flex items-start gap-3.5">
-              <div className="p-2 rounded-xl bg-brand-primary/10 dark:bg-white/10 text-brand-primary dark:text-brand-primary-soft shrink-0 mt-0.5">
-                <Clock className="w-5 h-5 text-brand-lime" />
-              </div>
-              <div>
-                <div className="font-sora font-bold text-xs sm:text-sm text-gray-900 dark:text-white">
-                  Garantía de Despliegue
+          <ScrollReveal
+            animation="fade-right"
+            duration={700}
+            className="lg:col-span-5"
+          >
+            <div className="space-y-5">
+              {/* Card 1: Canal Más Rápido (WhatsApp) */}
+              <div className="rounded-2xl bg-white dark:bg-brand-dark border-2 border-brand-whatsapp/40 dark:border-brand-whatsapp/30 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden">
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    # Canal más rápido (Ventas Directas)
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand-whatsapp/10 border border-brand-whatsapp/30 text-[10px] font-sora font-bold text-brand-whatsapp uppercase">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-whatsapp animate-pulse" />
+                    Activo
+                  </span>
                 </div>
-                <div className="font-manrope text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed">
-                  Equipo listo con supervisión física en Cancún, Mérida y
+
+                <a
+                  href="https://wa.me/529981071359"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block font-sora text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white hover:text-brand-whatsapp transition-colors mb-2"
+                >
+                  998 107 1359
+                </a>
+
+                <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
+                  Rápida atención comercial para Quintana Roo, Yucatán y
                   Campeche.
+                </p>
+
+                <a
+                  href="https://wa.me/529981071359"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3.5 px-4 rounded-xl bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-white font-sora font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-md shadow-brand-whatsapp/20 hover:shadow-lg hover:shadow-brand-whatsapp/30 active:scale-[0.99]"
+                >
+                  <MessageSquare className="w-4 h-4 fill-current" />
+                  <span>Iniciar Chat en WhatsApp Ahora</span>
+                </a>
+              </div>
+
+              {/* Card 2: Llamadas de Voz (Mérida) */}
+              <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300">
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    Llamadas de voz directas (Oficina Mérida)
+                  </span>
+                  <Phone className="w-4 h-4 text-brand-cyan shrink-0" />
+                </div>
+
+                <a
+                  href="tel:9999318581"
+                  className="block font-sora text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white hover:text-brand-cyan transition-colors"
+                >
+                  999 931 8581
+                </a>
+
+                <div className="text-[11px] font-manrope text-gray-400 dark:text-gray-400 italic mb-2">
+                  (Exclusivo llamadas telefónicas)
+                </div>
+
+                <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Conmutador central para coordinación administrativa,
+                  cotizaciones institucionales y compras públicas.
+                </p>
+              </div>
+
+              {/* Card 3: Correo Electrónico */}
+              <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300">
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    Correo electrónico autorizado
+                  </span>
+                  <Mail className="w-4 h-4 text-brand-crimson shrink-0" />
+                </div>
+
+                <a
+                  href="mailto:ventaspublicidad1@hotmail.com"
+                  className="block font-sora text-lg sm:text-xl font-bold text-gray-900 dark:text-white hover:text-brand-crimson transition-colors break-all mb-2"
+                >
+                  ventaspublicidad1@hotmail.com
+                </a>
+
+                <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Canal formal para envío de briefings, fichas técnicas y
+                  órdenes de servicio. (Único correo autorizado para
+                  cotizaciones).
+                </p>
+              </div>
+
+              {/* Guarantee / SLA Banner */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-surface-low dark:bg-brand-dark-alt border border-gray-200/80 dark:border-white/10 flex items-start gap-3.5">
+                <div className="p-2 rounded-xl bg-brand-primary/10 dark:bg-white/10 text-brand-primary dark:text-brand-primary-soft shrink-0 mt-0.5">
+                  <Clock className="w-5 h-5 text-brand-lime" />
+                </div>
+                <div>
+                  <div className="font-sora font-bold text-xs sm:text-sm text-gray-900 dark:text-white">
+                    Garantía de Despliegue
+                  </div>
+                  <div className="font-manrope text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed">
+                    Equipo listo con supervisión física en Cancún, Mérida y
+                    Campeche.
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column: Interactive Form "Arma tu solicitud rápida" (7 cols) */}
-          <div className="lg:col-span-7">
-            <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-8 lg:p-10 shadow-md dark:shadow-xl relative">
+          <ScrollReveal
+            animation="fade-left"
+            duration={700}
+            className="lg:col-span-7"
+          >
+            <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-8 lg:p-10 shadow-md dark:shadow-xl relative h-full">
               <div className="mb-6">
                 <h3 className="font-sora font-bold text-2xl text-gray-900 dark:text-white tracking-tight">
                   Arma tu solicitud rápida
@@ -476,7 +491,7 @@ export const Contact: React.FC = () => {
                 </form>
               )}
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

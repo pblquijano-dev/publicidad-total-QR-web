@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Check } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 export const Hero: React.FC = () => {
   const heroImages = [
@@ -77,72 +78,99 @@ export const Hero: React.FC = () => {
         {/* Content Container */}
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center space-y-6">
           {/* Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-sora font-semibold text-white uppercase tracking-wider shadow-lg">
-            <span className="w-2 h-2 rounded-full bg-brand-lime animate-pulse" />
-            <span>Activaciones BTL, Edecanes y Publicidad en el Sureste</span>
-          </div>
+          <ScrollReveal
+            animation="fade-down"
+            delay={100}
+            duration={650}
+            width="fit"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-sora font-semibold text-white uppercase tracking-wider shadow-lg">
+              <span className="w-2 h-2 rounded-full bg-brand-lime animate-pulse" />
+              <span>Activaciones BTL, Edecanes y Publicidad en el Sureste</span>
+            </div>
+          </ScrollReveal>
 
           {/* Main Display H1 with enhanced text shadow */}
-          <h1 className="font-sora text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.15] tracking-tight max-w-4xl [text-shadow:_0_2px_12px_rgba(0,0,0,0.9),_0_6px_30px_rgba(0,0,0,0.8)]">
-            Llevamos tu marca a las manos y oídos de todos
-          </h1>
+          <ScrollReveal animation="fade-up" delay={200} duration={750}>
+            <h1 className="font-sora text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.15] tracking-tight max-w-4xl [text-shadow:_0_2px_12px_rgba(0,0,0,0.9),_0_6px_30px_rgba(0,0,0,0.8)]">
+              Llevamos tu marca a las manos y oídos de todos
+            </h1>
+          </ScrollReveal>
 
           {/* Subtitle with enhanced text shadow */}
-          <p className="font-manrope text-base sm:text-lg lg:text-xl text-gray-100 leading-relaxed font-medium max-w-2xl [text-shadow:_0_2px_10px_rgba(0,0,0,0.9)]">
-            Impulsamos tu negocio en punto de venta y en la calle con personal
-            capacitado, equipo propio y supervisión presencial en toda la
-            Península de Yucatán.
-          </p>
+          <ScrollReveal animation="fade-up" delay={350} duration={750}>
+            <p className="font-manrope text-base sm:text-lg lg:text-xl text-gray-100 leading-relaxed font-medium max-w-2xl mx-auto [text-shadow:_0_2px_10px_rgba(0,0,0,0.9)]">
+              Impulsamos tu negocio en punto de venta y en la calle con personal
+              capacitado, equipo propio y supervisión presencial en toda la
+              Península de Yucatán.
+            </p>
+          </ScrollReveal>
 
           {/* CTA Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full sm:w-auto">
-            <a
-              href="#contacto"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-crimson hover:bg-brand-crimson-hover text-white font-sora font-semibold text-base transition-all duration-200 shadow-xl shadow-brand-crimson/40 hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0"
-            >
-              <span>Cotizar mi Evento</span>
-              <ArrowRight className="w-5 h-5" />
-            </a>
+          <ScrollReveal
+            animation="fade-up"
+            delay={500}
+            duration={750}
+            width="fit"
+          >
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full sm:w-auto">
+              <a
+                href="#contacto"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-crimson hover:bg-brand-crimson-hover text-white font-sora font-semibold text-base transition-all duration-200 shadow-xl shadow-brand-crimson/40 hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0"
+              >
+                <span>Cotizar mi Evento</span>
+                <ArrowRight className="w-5 h-5" />
+              </a>
 
-            <a
-              href="#servicios"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-black/50 hover:bg-black/70 text-white font-sora font-semibold text-base backdrop-blur-md border border-white/30 transition-all duration-200 hover:border-white/50 shadow-lg"
-            >
-              Ver Servicios y Cobertura
-            </a>
-          </div>
+              <a
+                href="#servicios"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-black/50 hover:bg-black/70 text-white font-sora font-semibold text-base backdrop-blur-md border border-white/30 transition-all duration-200 hover:border-white/50 shadow-lg"
+              >
+                Ver Servicios y Cobertura
+              </a>
+            </div>
+          </ScrollReveal>
 
           {/* Trust Checkmarks with pill backdrop */}
-          <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 pt-3 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-xs sm:text-sm font-manrope font-medium text-gray-200 shadow-md">
-            <div className="inline-flex items-center gap-1.5">
-              <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
-              <span>Respuesta inmediata por WhatsApp</span>
+          <ScrollReveal
+            animation="fade-up"
+            delay={650}
+            duration={700}
+            width="fit"
+          >
+            <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 pt-3 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-xs sm:text-sm font-manrope font-medium text-gray-200 shadow-md">
+              <div className="inline-flex items-center gap-1.5">
+                <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
+                <span>Respuesta inmediata por WhatsApp</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5">
+                <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
+                <span>Cobertura en Yucatán, Q. Roo y Campeche</span>
+              </div>
+              <div className="inline-flex items-center gap-1.5">
+                <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
+                <span>Reportes diarios en campo</span>
+              </div>
             </div>
-            <div className="inline-flex items-center gap-1.5">
-              <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
-              <span>Cobertura en Yucatán, Q. Roo y Campeche</span>
-            </div>
-            <div className="inline-flex items-center gap-1.5">
-              <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
-              <span>Reportes diarios en campo</span>
-            </div>
-          </div>
+          </ScrollReveal>
 
           {/* Carousel Slide Indicators */}
-          <div className="flex items-center justify-center gap-2 pt-6">
-            {heroImages.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentImageIndex(idx)}
-                aria-label={`Ver diapositiva ${idx + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-500 focus:outline-none ${
-                  idx === currentImageIndex
-                    ? 'w-8 bg-brand-cyan'
-                    : 'w-2 bg-white/40 hover:bg-white/60'
-                }`}
-              />
-            ))}
-          </div>
+          <ScrollReveal animation="fade" delay={800} duration={600} width="fit">
+            <div className="flex items-center justify-center gap-2 pt-6">
+              {heroImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentImageIndex(idx)}
+                  aria-label={`Ver diapositiva ${idx + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-500 focus:outline-none ${
+                    idx === currentImageIndex
+                      ? 'w-8 bg-brand-cyan'
+                      : 'w-2 bg-white/40 hover:bg-white/60'
+                  }`}
+                />
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </div>
 
@@ -151,34 +179,40 @@ export const Hero: React.FC = () => {
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {kpiList.map((kpi, index) => (
-              <div
+              <ScrollReveal
                 key={index}
-                className="p-6 rounded-2xl bg-white dark:bg-brand-dark-card border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                animation="fade-up"
+                delay={index * 120}
+                duration={650}
               >
-                <div>
-                  <div
-                    className={`font-sora font-extrabold text-3xl sm:text-4xl tracking-tight leading-none mb-3 ${kpi.metricColor}`}
-                  >
-                    {kpi.metric}
+                <div className="p-6 rounded-2xl bg-white dark:bg-brand-dark-card border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1">
+                  <div>
+                    <div
+                      className={`font-sora font-extrabold text-3xl sm:text-4xl tracking-tight leading-none mb-3 ${kpi.metricColor}`}
+                    >
+                      {kpi.metric}
+                    </div>
+                    <h3 className="font-sora font-bold text-base text-on-surface dark:text-white mb-1">
+                      {kpi.title}
+                    </h3>
+                    <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-snug">
+                      {kpi.description}
+                    </p>
                   </div>
-                  <h3 className="font-sora font-bold text-base text-on-surface dark:text-white mb-1">
-                    {kpi.title}
-                  </h3>
-                  <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-snug">
-                    {kpi.description}
-                  </p>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 
           {/* Institutional Presence Strip */}
-          <div className="text-center py-4 px-6 rounded-2xl bg-white/60 dark:bg-brand-dark-card/60 border border-gray-200/60 dark:border-white/5 backdrop-blur-sm">
-            <p className="font-manrope text-xs sm:text-sm font-semibold text-gray-600 dark:text-gray-300 tracking-wide">
-              Presencia y activaciones en las principales plazas comerciales,
-              avenidas y supermercados del Sureste
-            </p>
-          </div>
+          <ScrollReveal animation="fade-up" delay={200} duration={650}>
+            <div className="text-center py-4 px-6 rounded-2xl bg-white/60 dark:bg-brand-dark-card/60 border border-gray-200/60 dark:border-white/5 backdrop-blur-sm">
+              <p className="font-manrope text-xs sm:text-sm font-semibold text-gray-600 dark:text-gray-300 tracking-wide">
+                Presencia y activaciones en las principales plazas comerciales,
+                avenidas y supermercados del Sureste
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
