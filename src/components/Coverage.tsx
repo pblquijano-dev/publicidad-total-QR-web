@@ -102,7 +102,7 @@ export const Coverage: React.FC = () => {
               • COBERTURA REGIONAL EN MAPA
             </span>
             <h2 className="font-sora text-[#312782] dark:text-white font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
-              Cobertura por Estado en la Península
+              Cobertura Publicitaria en la Península de Yucatán
             </h2>
             <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg mt-3 font-manrope">
               Interactúa directamente con el mapa para consultar la información
@@ -234,9 +234,9 @@ export const Coverage: React.FC = () => {
                   </button>
                 </div>
 
-                <h4 className="font-sora text-xl font-bold text-gray-900 dark:text-white">
+                <h3 className="font-sora text-xl font-bold text-gray-900 dark:text-white">
                   {activeStateInfo.name}
-                </h4>
+                </h3>
                 <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">
                   {activeStateInfo.tag}
                 </p>

@@ -355,7 +355,7 @@ export const Services: React.FC = () => {
             </div>
 
             <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary-dark dark:text-white tracking-tight leading-[1.15]">
-              Soluciones Integrales para{' '}
+              Servicios de Publicidad BTL para{' '}
               <span className="text-brand-crimson">Dominar la Calle</span>
             </h2>
 

@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
                 {!logoError ? (
                   <img
                     src={medallionLogoUrl}
-                    alt="Medallón Oficial Publicidad Total Q&R"
+                    alt="Publicidad Total Q&R - Agencia de Publicidad BTL, Perifoneo y Activaciones"
                     loading="lazy"
                     decoding="async"
                     onError={() => setLogoError(true)}

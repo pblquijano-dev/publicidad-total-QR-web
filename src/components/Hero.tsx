@@ -93,16 +93,17 @@ export const Hero: React.FC = () => {
           {/* Main Display H1 with enhanced text shadow */}
           <ScrollReveal animation="fade-up" delay={200} duration={750}>
             <h1 className="font-sora text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.15] tracking-tight max-w-4xl [text-shadow:_0_2px_12px_rgba(0,0,0,0.9),_0_6px_30px_rgba(0,0,0,0.8)]">
-              Llevamos tu marca a las manos y oídos de todos
+              Agencia de Publicidad BTL y Activaciones en el Sureste
             </h1>
           </ScrollReveal>
 
           {/* Subtitle with enhanced text shadow */}
           <ScrollReveal animation="fade-up" delay={350} duration={750}>
             <p className="font-manrope text-base sm:text-lg lg:text-xl text-gray-100 leading-relaxed font-medium max-w-2xl mx-auto [text-shadow:_0_2px_10px_rgba(0,0,0,0.9)]">
-              Impulsamos tu negocio en punto de venta y en la calle con personal
-              capacitado, equipo propio y supervisión presencial en toda la
-              Península de Yucatán.
+              Llevamos tu marca a las manos y oídos de todos. Impulsamos tu
+              negocio en punto de venta y en la calle con personal capacitado,
+              equipo propio y supervisión presencial en Quintana Roo, Yucatán y
+              Campeche.
             </p>
           </ScrollReveal>
 
@@ -192,9 +193,9 @@ export const Hero: React.FC = () => {
                     >
                       {kpi.metric}
                     </div>
-                    <h3 className="font-sora font-bold text-base text-on-surface dark:text-white mb-1">
+                    <p className="font-sora font-bold text-base text-on-surface dark:text-white mb-1">
                       {kpi.title}
-                    </h3>
+                    </p>
                     <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-400 leading-snug">
                       {kpi.description}
                     </p>

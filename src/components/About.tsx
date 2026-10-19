@@ -67,7 +67,7 @@ export const About: React.FC = () => {
               • NUESTRA IDENTIDAD INSTITUCIONAL
             </span>
             <h2 className="font-sora font-bold text-3xl sm:text-4xl lg:text-5xl text-[#312782] dark:text-white tracking-tight">
-              Sobre Nosotros
+              Sobre Nosotros: Expertos en BTL y Activaciones
             </h2>
             <p className="font-manrope text-gray-600 dark:text-gray-300 text-base sm:text-lg mt-3 leading-relaxed">
               Compromiso, experiencia y profesionalismo al servicio del

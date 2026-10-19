@@ -58,7 +58,7 @@ export const Navbar: React.FC = () => {
           >
             <img
               src={headerLogoUrl}
-              alt="Publicidad Total Q&R"
+              alt="Publicidad Total Q&R - Agencia BTL y Activaciones de Marca"
               className="h-11 sm:h-14 w-auto object-contain brightness-100 dark:brightness-110 group-hover:scale-105 transition-transform duration-300"
             />
           </a>
