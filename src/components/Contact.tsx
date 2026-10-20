@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   AlertCircle,
   ArrowRight,
-  Lock,
   Sparkles,
   Check,
 } from 'lucide-react';
@@ -107,9 +106,9 @@ export const Contact: React.FC = () => {
 
       const payload = {
         access_key: accessKey,
-        subject: `[PRUEBA] Nueva Cotización Q&R: ${formData.nombreEmpresa} (${plazasFormatted})`,
+        subject: `Nueva Cotización Q&R: ${formData.nombreEmpresa} (${plazasFormatted})`,
         from_name: formData.nombreEmpresa || 'Publicidad Total Q&R Web',
-        to: 'grupoveltium@gmail.com',
+        to: 'ventaspublicidad1@hotmail.com',
         nombre_empresa: formData.nombreEmpresa,
         telefono_whatsapp: formData.telefonoWhatsApp,
         plaza_despliegue: plazasFormatted,
@@ -477,17 +476,6 @@ export const Contact: React.FC = () => {
                       </>
                     )}
                   </button>
-
-                  {/* Privacy Disclaimer */}
-                  <div className="flex items-center justify-center gap-2 text-[11px] font-manrope text-gray-500 dark:text-gray-400 pt-1">
-                    <Lock className="w-3.5 h-3.5 text-gray-400 shrink-0" />
-                    <span>
-                      Modo prueba: La solicitud se enviará a{' '}
-                      <span className="font-semibold text-gray-700 dark:text-gray-300">
-                        grupoveltium@gmail.com
-                      </span>
-                    </span>
-                  </div>
                 </form>
               )}
             </div>

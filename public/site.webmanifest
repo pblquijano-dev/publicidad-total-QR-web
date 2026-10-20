@@ -1,0 +1,22 @@
+{
+  "name": "Publicidad Total Q&R",
+  "short_name": "Total Q&R",
+  "description": "Agencia BTL líder en el Sureste: activaciones de marca, edecanes, perifoneo y volanteo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1A1413",
+  "theme_color": "#312782",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

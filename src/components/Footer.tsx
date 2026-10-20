@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { MessageSquare, Phone, Mail, MapPin, Megaphone } from 'lucide-react';
-import { LegalModal, LegalDocType } from './LegalModal';
+import type { LegalDocType } from './LegalModal';
 import { ScrollReveal } from './ScrollReveal';
+
+const LegalModal = lazy(() => import('./LegalModal'));
 
 export const Footer: React.FC = () => {
   const [logoError, setLogoError] = useState(false);
@@ -300,12 +302,16 @@ export const Footer: React.FC = () => {
         </ScrollReveal>
       </div>
 
-      {/* Legal Documents Modal */}
-      <LegalModal
-        isOpen={legalModalDoc !== null}
-        initialDoc={legalModalDoc || 'terms'}
-        onClose={() => setLegalModalDoc(null)}
-      />
+      {/* Legal Documents Modal diferido (Code Splitting) */}
+      {legalModalDoc !== null && (
+        <Suspense fallback={null}>
+          <LegalModal
+            isOpen={true}
+            initialDoc={legalModalDoc}
+            onClose={() => setLegalModalDoc(null)}
+          />
+        </Suspense>
+      )}
     </footer>
   );
 };
