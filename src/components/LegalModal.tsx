@@ -62,23 +62,23 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/60 dark:bg-black/80 backdrop-blur-md transition-all duration-300 animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/60 backdrop-blur-md transition-all duration-300 animate-fadeIn"
       role="dialog"
       aria-modal="true"
       aria-labelledby="legal-modal-title"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-[#140F0E] text-gray-900 dark:text-white rounded-2xl border border-gray-200 dark:border-white/15 shadow-2xl flex flex-col overflow-hidden animate-scaleUp transition-colors duration-300"
+        className="relative w-full max-w-4xl max-h-[90vh] bg-white text-gray-900 rounded-2xl border border-gray-200 shadow-2xl flex flex-col overflow-hidden animate-scaleUp transition-colors duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Ambient Top Glow */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-cyan via-brand-primary to-brand-lime pointer-events-none" />
 
         {/* Modal Header */}
-        <div className="px-5 sm:px-7 py-4 border-b border-gray-200 dark:border-white/10 bg-gray-50/90 dark:bg-[#1A1413]/90 flex items-center justify-between gap-4 shrink-0">
+        <div className="px-5 sm:px-7 py-4 border-b border-gray-200 bg-gray-50/90 flex items-center justify-between gap-4 shrink-0">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center shrink-0">
               {activeDoc === 'terms' ? (
                 <Scale className="w-5 h-5 text-brand-cyan" />
               ) : (
@@ -86,13 +86,13 @@ export const LegalModal: React.FC<LegalModalProps> = ({
               )}
             </div>
             <div className="min-w-0">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-sora font-bold tracking-wider uppercase bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 mb-0.5">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-sora font-bold tracking-wider uppercase bg-gray-100 text-gray-600 border border-gray-200 mb-0.5">
                 <Calendar className="w-3 h-3 text-brand-cyan" />
                 Vigencia 2026 · Península de Yucatán
               </span>
               <h2
                 id="legal-modal-title"
-                className="font-sora font-bold text-base sm:text-lg text-gray-900 dark:text-white truncate"
+                className="font-sora font-bold text-base sm:text-lg text-gray-900 truncate"
               >
                 {activeDoc === 'terms'
                   ? 'Términos y Condiciones del Servicio'
@@ -104,7 +104,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="w-9 h-9 rounded-xl bg-gray-100 dark:bg-white/5 hover:bg-brand-crimson/80 text-gray-500 dark:text-gray-400 hover:text-white flex items-center justify-center transition-all border border-gray-200 dark:border-white/10 shrink-0"
+            className="w-9 h-9 rounded-xl bg-gray-100 hover:bg-brand-crimson/80 text-gray-500 hover:text-white flex items-center justify-center transition-all border border-gray-200 shrink-0"
             aria-label="Cerrar modal"
             title="Cerrar (Esc)"
           >
@@ -113,14 +113,14 @@ export const LegalModal: React.FC<LegalModalProps> = ({
         </div>
 
         {/* Document Selector Navigation Tabs */}
-        <div className="px-5 sm:px-7 pt-3 pb-2 bg-gray-100/70 dark:bg-[#171110] border-b border-gray-200 dark:border-white/5 flex items-center gap-2 overflow-x-auto shrink-0">
+        <div className="px-5 sm:px-7 pt-3 pb-2 bg-gray-100/70 border-b border-gray-200 flex items-center gap-2 overflow-x-auto shrink-0">
           <button
             type="button"
             onClick={() => setActiveDoc('terms')}
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl font-sora font-bold text-xs transition-all ${
               activeDoc === 'terms'
-                ? 'bg-brand-cyan/15 dark:bg-brand-cyan/20 text-brand-cyan-dark dark:text-brand-cyan border border-brand-cyan/40 shadow-sm'
-                : 'bg-white dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/10 border border-gray-200/80 dark:border-transparent'
+                ? 'bg-brand-cyan/15 text-brand-cyan-dark border border-brand-cyan/40 shadow-sm'
+                : 'bg-white text-gray-600 hover:text-gray-900:text-white hover:bg-gray-50:bg-white/10 border border-gray-200/80'
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -132,8 +132,8 @@ export const LegalModal: React.FC<LegalModalProps> = ({
             onClick={() => setActiveDoc('privacy')}
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl font-sora font-bold text-xs transition-all ${
               activeDoc === 'privacy'
-                ? 'bg-brand-lime/15 dark:bg-brand-lime/20 text-brand-lime-dark dark:text-brand-lime border border-brand-lime/40 shadow-sm'
-                : 'bg-white dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/10 border border-gray-200/80 dark:border-transparent'
+                ? 'bg-brand-lime/15 text-brand-lime-dark border border-brand-lime/40 shadow-sm'
+                : 'bg-white text-gray-600 hover:text-gray-900:text-white hover:bg-gray-50:bg-white/10 border border-gray-200/80'
             }`}
           >
             <Lock className="w-3.5 h-3.5" />
@@ -142,17 +142,17 @@ export const LegalModal: React.FC<LegalModalProps> = ({
         </div>
 
         {/* Scrollable Document Body */}
-        <div className="flex-1 overflow-y-auto px-5 sm:px-7 py-6 text-gray-700 dark:text-gray-300 font-manrope text-xs sm:text-sm leading-relaxed space-y-6">
+        <div className="flex-1 overflow-y-auto px-5 sm:px-7 py-6 text-gray-700 font-manrope text-xs sm:text-sm leading-relaxed space-y-6">
           {activeDoc === 'terms' ? (
             /* ================= TÉRMINOS DEL SERVICIO ================= */
             <div className="space-y-6">
               {/* Introduction Box */}
-              <div className="p-4 rounded-xl bg-brand-cyan/10 border border-brand-cyan/25 text-gray-800 dark:text-gray-200">
-                <p className="font-semibold text-gray-900 dark:text-white mb-1 flex items-center gap-2">
+              <div className="p-4 rounded-xl bg-brand-cyan/10 border border-brand-cyan/25 text-gray-800">
+                <p className="font-semibold text-gray-900 mb-1 flex items-center gap-2">
                   <Building2 className="w-4 h-4 text-brand-cyan shrink-0" />
                   Publicidad Total Q&R · Términos de Contratación y Uso
                 </p>
-                <p className="text-xs text-gray-600 dark:text-gray-300">
+                <p className="text-xs text-gray-600">
                   Bienvenido a Publicidad Total Q&R. Al acceder a nuestro portal
                   web, solicitar cotizaciones o contratar nuestros servicios
                   publicitarios BTL, perifoneo móvil o activaciones en la
@@ -163,38 +163,34 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 1 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 dark:bg-brand-cyan/20 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
                     1
                   </span>
                   Objeto y Alcance de las Operaciones
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-2">
+                <p className="text-gray-700 mb-2">
                   Publicidad Total Q&R presta servicios integrales de publicidad
                   exterior, mercadotecnia de campo (BTL) y difusión móvil en los
                   estados de Quintana Roo, Yucatán y Campeche, abarcando de
                   forma enunciativa más no limitativa:
                 </p>
-                <ul className="list-disc pl-5 space-y-1.5 text-xs text-gray-700 dark:text-gray-300">
+                <ul className="list-disc pl-5 space-y-1.5 text-xs text-gray-700">
                   <li>
-                    <strong className="text-gray-900 dark:text-white">
-                      Perifoneo Móvil:
-                    </strong>{' '}
+                    <strong className="text-gray-900">Perifoneo Móvil:</strong>{' '}
                     Emisión sonora de spots comerciales mediante vehículos
                     acondicionados con sistemas de audio de alto rendimiento,
                     recorriendo rutas programadas en supermanzanas, colonias y
                     corredores comerciales.
                   </li>
                   <li>
-                    <strong className="text-gray-900 dark:text-white">
-                      Activaciones BTL:
-                    </strong>{' '}
+                    <strong className="text-gray-900">Activaciones BTL:</strong>{' '}
                     Personal operativo en punto de venta, edecanes, animadores
                     con micrófono, botargueros, zanqueros, demostradoras y
                     batucadas.
                   </li>
                   <li>
-                    <strong className="text-gray-900 dark:text-white">
+                    <strong className="text-gray-900">
                       Volanteo y Distribución:
                     </strong>{' '}
                     Entrega mano a mano, punto fijo o casa por casa de material
@@ -202,7 +198,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                     por acuerdo mutuo.
                   </li>
                   <li>
-                    <strong className="text-gray-900 dark:text-white">
+                    <strong className="text-gray-900">
                       Producción de Audio:
                     </strong>{' '}
                     Grabación, edición y masterización de spots publicitarios
@@ -213,20 +209,18 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 2 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 dark:bg-brand-cyan/20 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
                     2
                   </span>
                   Cotizaciones, Tarifas y Reservas de Fecha
                 </h3>
-                <div className="space-y-2 text-gray-700 dark:text-gray-300">
+                <div className="space-y-2 text-gray-700">
                   <p>
                     Todas las cotizaciones extendidas a través de nuestros
                     canales oficiales (WhatsApp, correo electrónico o llamada
                     telefónica) tienen una vigencia ordinaria de{' '}
-                    <strong className="text-gray-900 dark:text-white">
-                      15 días naturales
-                    </strong>{' '}
+                    <strong className="text-gray-900">15 días naturales</strong>{' '}
                     contados a partir de su emisión, salvo pacto expreso por
                     escrito.
                   </p>
@@ -243,13 +237,13 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 3 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 dark:bg-brand-cyan/20 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
                     3
                   </span>
                   Obligaciones del Cliente y Permisos Municipales
                 </h3>
-                <div className="space-y-2 text-gray-700 dark:text-gray-300">
+                <div className="space-y-2 text-gray-700">
                   <p>
                     El cliente es responsable de suministrar de manera oportuna
                     los audios, volantes, impresos o guiones publicitarios
@@ -276,16 +270,16 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 4 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 dark:bg-brand-cyan/20 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
                     4
                   </span>
                   Bitácoras, Evidencia y Reportes Fotográficos Diarios
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
+                <p className="text-gray-700">
                   Como sello de transparencia y garantía operativa, Publicidad
                   Total Q&R se compromete a emitir al cliente un{' '}
-                  <strong className="text-gray-900 dark:text-white">
+                  <strong className="text-gray-900">
                     reporte fotográfico y/o bitácora diaria
                   </strong>{' '}
                   de las actividades realizadas (fotografías geolocalizadas,
@@ -297,15 +291,15 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 5 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 dark:bg-brand-cyan/20 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
                     5
                   </span>
                   Cancelaciones, Reprogramaciones y Contingencias Climáticas
                 </h3>
-                <div className="space-y-2 text-gray-700 dark:text-gray-300">
+                <div className="space-y-2 text-gray-700">
                   <p>
-                    <strong className="text-gray-900 dark:text-white">
+                    <strong className="text-gray-900">
                       Reprogramaciones ordinarias:
                     </strong>{' '}
                     El cliente podrá solicitar la reprogramación de fechas de
@@ -314,7 +308,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                     disponibilidad de unidades y talento.
                   </p>
                   <p>
-                    <strong className="text-gray-900 dark:text-white">
+                    <strong className="text-gray-900">
                       Causas de Fuerza Mayor y Clima:
                     </strong>{' '}
                     Dada la naturaleza climática de la Península de Yucatán
@@ -331,13 +325,13 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 6 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 dark:bg-brand-cyan/20 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-cyan/15 text-brand-cyan flex items-center justify-center text-xs shrink-0 font-bold">
                     6
                   </span>
                   Legislación Aplicable y Jurisdicción
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
+                <p className="text-gray-700">
                   Para la interpretación, cumplimiento o resolución de cualquier
                   discrepancia surgida de la relación comercial o del uso de
                   este sitio web, las partes se someten expresamente a las leyes
@@ -353,13 +347,13 @@ export const LegalModal: React.FC<LegalModalProps> = ({
             /* ================= POLÍTICA DE PRIVACIDAD ================= */
             <div className="space-y-6">
               {/* Introduction Box */}
-              <div className="p-4 rounded-xl bg-brand-lime/10 border border-brand-lime/25 text-gray-800 dark:text-gray-200">
-                <p className="font-semibold text-gray-900 dark:text-white mb-1 flex items-center gap-2">
+              <div className="p-4 rounded-xl bg-brand-lime/10 border border-brand-lime/25 text-gray-800">
+                <p className="font-semibold text-gray-900 mb-1 flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-brand-lime shrink-0" />
                   Aviso de Privacidad Integral · Ley Federal de Protección de
                   Datos (LFPDPPP)
                 </p>
-                <p className="text-xs text-gray-600 dark:text-gray-300">
+                <p className="text-xs text-gray-600">
                   En cumplimiento con lo establecido por la Ley Federal de
                   Protección de Datos Personales en Posesión de los Particulares
                   (LFPDPPP) y su Reglamento en México, Publicidad Total Q&R pone
@@ -371,14 +365,14 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 1 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 dark:bg-brand-lime/20 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
                     1
                   </span>
                   Identidad y Domicilio del Responsable
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  <strong className="text-gray-900 dark:text-white">
+                <p className="text-gray-700">
+                  <strong className="text-gray-900">
                     Publicidad Total Q&R
                   </strong>
                   , con operaciones activas en los estados de Quintana Roo
@@ -393,26 +387,26 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 2 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 dark:bg-brand-lime/20 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
                     2
                   </span>
                   Datos Personales que Recabamos
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-2">
+                <p className="text-gray-700 mb-2">
                   Para las finalidades descritas en este aviso, podemos recabar
                   los siguientes datos de manera directa:
                 </p>
-                <ul className="list-disc pl-5 space-y-1.5 text-xs text-gray-700 dark:text-gray-300">
+                <ul className="list-disc pl-5 space-y-1.5 text-xs text-gray-700">
                   <li>
-                    <strong className="text-gray-900 dark:text-white">
+                    <strong className="text-gray-900">
                       Datos de identificación y contacto:
                     </strong>{' '}
                     Nombre completo, empresa o marca que representa, número de
                     teléfono móvil o WhatsApp, y correo electrónico.
                   </li>
                   <li>
-                    <strong className="text-gray-900 dark:text-white">
+                    <strong className="text-gray-900">
                       Datos logísticos y de servicio:
                     </strong>{' '}
                     Ubicación del evento o campaña (supermanzana, colonia, plaza
@@ -420,7 +414,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                     técnicas de la activación requerida.
                   </li>
                   <li>
-                    <strong className="text-gray-900 dark:text-white">
+                    <strong className="text-gray-900">
                       Datos fiscales (exclusivamente para facturación):
                     </strong>{' '}
                     Registro Federal de Contribuyentes (RFC), razón social
@@ -428,7 +422,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                     constancia de situación fiscal emitida por el SAT.
                   </li>
                 </ul>
-                <div className="mt-2 text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-white/5 p-2.5 rounded-lg border border-gray-200 dark:border-white/5 flex items-center gap-2">
+                <div className="mt-2 text-xs text-gray-600 bg-gray-50 p-2.5 rounded-lg border border-gray-200 flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 text-brand-lime shrink-0" />
                   <span>
                     Importante: Publicidad Total Q&R{' '}
@@ -443,19 +437,19 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 3 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 dark:bg-brand-lime/20 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
                     3
                   </span>
                   Finalidades del Tratamiento de los Datos
                 </h3>
-                <div className="space-y-2 text-gray-700 dark:text-gray-300">
+                <div className="space-y-2 text-gray-700">
                   <p>
-                    <strong className="text-gray-900 dark:text-white">
+                    <strong className="text-gray-900">
                       Finalidades Primarias (Necesarias para el servicio):
                     </strong>
                   </p>
-                  <ul className="list-disc pl-5 space-y-1 text-xs text-gray-700 dark:text-gray-300">
+                  <ul className="list-disc pl-5 space-y-1 text-xs text-gray-700">
                     <li>
                       Generar y remitir cotizaciones formales de perifoneo, BTL
                       o activaciones.
@@ -474,20 +468,20 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                     </li>
                   </ul>
                   <p className="pt-1">
-                    <strong className="text-gray-900 dark:text-white">
+                    <strong className="text-gray-900">
                       Finalidades Secundarias (Opcionales):
                     </strong>
                   </p>
-                  <ul className="list-disc pl-5 space-y-1 text-xs text-gray-700 dark:text-gray-300">
+                  <ul className="list-disc pl-5 space-y-1 text-xs text-gray-700">
                     <li>
                       Envío de promociones especiales, avisos de temporadas
                       altas o encuestas de satisfacción.
                     </li>
                   </ul>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-gray-500">
                     Usted puede negarse en cualquier momento al uso de sus datos
                     para finalidades secundarias enviando un correo a{' '}
-                    <span className="text-brand-lime-dark dark:text-brand-lime font-semibold">
+                    <span className="text-brand-lime-dark font-semibold">
                       ventaspublicidad1@hotmail.com
                     </span>{' '}
                     sin que esto afecte el servicio contratado.
@@ -497,15 +491,15 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 4 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 dark:bg-brand-lime/20 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
                     4
                   </span>
                   No Transferencia de Datos Personales
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
+                <p className="text-gray-700">
                   Sus datos personales{' '}
-                  <strong className="text-gray-900 dark:text-white">
+                  <strong className="text-gray-900">
                     no son vendidos, alquilados, comercializados ni transferidos
                   </strong>{' '}
                   a terceras empresas o agencias con fines mercadológicos. Solo
@@ -518,41 +512,33 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 5 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 dark:bg-brand-lime/20 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
                     5
                   </span>
                   Medios para Ejercer los Derechos ARCO
                 </h3>
-                <div className="space-y-2 text-gray-700 dark:text-gray-300">
+                <div className="space-y-2 text-gray-700">
                   <p>
                     De acuerdo con la LFPDPPP, usted tiene derecho a conocer qué
                     datos personales tenemos de usted, para qué los utilizamos y
                     las condiciones del uso que les damos (
-                    <strong className="text-gray-900 dark:text-white">
-                      Acceso
-                    </strong>
+                    <strong className="text-gray-900">Acceso</strong>
                     ). Asimismo, es su derecho solicitar la corrección de su
                     información (
-                    <strong className="text-gray-900 dark:text-white">
-                      Rectificación
-                    </strong>
+                    <strong className="text-gray-900">Rectificación</strong>
                     ), solicitar que la eliminemos de nuestros registros (
-                    <strong className="text-gray-900 dark:text-white">
-                      Cancelación
-                    </strong>
+                    <strong className="text-gray-900">Cancelación</strong>
                     ), así como oponerse al uso de sus datos para fines
                     específicos (
-                    <strong className="text-gray-900 dark:text-white">
-                      Oposición
-                    </strong>
+                    <strong className="text-gray-900">Oposición</strong>
                     ).
                   </p>
-                  <div className="bg-gray-50 dark:bg-white/5 p-3 rounded-xl border border-gray-200 dark:border-white/10 space-y-2 text-xs">
-                    <p className="font-semibold text-gray-900 dark:text-white">
+                  <div className="bg-gray-50 p-3 rounded-xl border border-gray-200 space-y-2 text-xs">
+                    <p className="font-semibold text-gray-900">
                       ¿Cómo ejercer sus Derechos ARCO?
                     </p>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-gray-700">
                       Envíe un correo electrónico dirigido a la Dirección de
                       Operaciones al correo:{' '}
                       <a
@@ -562,7 +548,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                         ventaspublicidad1@hotmail.com
                       </a>
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-600">
                       Su solicitud debe contener: 1) Nombre del titular y correo
                       para recibir respuesta, 2) Identificación oficial que
                       acredite titularidad o representación, 3) Descripción
@@ -576,13 +562,13 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 6 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 dark:bg-brand-lime/20 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
                     6
                   </span>
                   Uso de Cookies y Tecnologías Web
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
+                <p className="text-gray-700">
                   Nuestra plataforma digital puede emplear cookies técnicas y
                   analíticas mínimas con la finalidad de optimizar la velocidad
                   de carga, recordar sus preferencias de navegación y evaluar el
@@ -595,13 +581,13 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               {/* Section 7 */}
               <div>
-                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 dark:bg-brand-lime/20 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
+                <h3 className="font-sora font-bold text-sm sm:text-base text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-brand-lime/15 text-brand-lime flex items-center justify-center text-xs shrink-0 font-bold">
                     7
                   </span>
                   Actualizaciones al Aviso de Privacidad
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
+                <p className="text-gray-700">
                   Publicidad Total Q&R se reserva el derecho de efectuar en
                   cualquier momento modificaciones o actualizaciones al presente
                   Aviso de Privacidad para la atención de novedades legislativas
@@ -614,15 +600,15 @@ export const LegalModal: React.FC<LegalModalProps> = ({
           )}
 
           {/* Quick Contact & Inquiries Card */}
-          <div className="p-4 sm:p-5 rounded-xl bg-gray-50 dark:bg-[#1A1413] border border-gray-200 dark:border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="p-4 sm:p-5 rounded-xl bg-gray-50 border border-gray-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="space-y-1">
-              <div className="font-sora font-bold text-xs sm:text-sm text-gray-900 dark:text-white flex items-center gap-2">
+              <div className="font-sora font-bold text-xs sm:text-sm text-gray-900 flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brand-lime shrink-0" />
                 <span>
                   ¿Tienes dudas sobre nuestros documentos o contrataciones?
                 </span>
               </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400">
+              <p className="text-xs text-gray-600">
                 Atención directa con nuestro equipo jurídico y operativo
                 peninsular.
               </p>
@@ -641,7 +627,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               <a
                 href="tel:9999318581"
-                className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white dark:bg-white/10 hover:bg-gray-100 dark:hover:bg-white/20 text-gray-800 dark:text-white font-sora font-bold text-xs transition-colors border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none"
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white hover:bg-gray-100:bg-white/20 text-gray-800 font-sora font-bold text-xs transition-colors border border-gray-200 shadow-sm"
               >
                 <Phone className="w-3.5 h-3.5" />
                 <span>999 931 8581</span>
@@ -649,7 +635,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
 
               <a
                 href="mailto:ventaspublicidad1@hotmail.com"
-                className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white dark:bg-white/10 hover:bg-gray-100 dark:hover:bg-white/20 text-gray-800 dark:text-white font-sora font-bold text-xs transition-colors border border-gray-200 dark:border-white/10 shadow-sm dark:shadow-none"
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white hover:bg-gray-100:bg-white/20 text-gray-800 font-sora font-bold text-xs transition-colors border border-gray-200 shadow-sm"
               >
                 <Mail className="w-3.5 h-3.5" />
                 <span>ventaspublicidad1@hotmail.com</span>
@@ -659,8 +645,8 @@ export const LegalModal: React.FC<LegalModalProps> = ({
         </div>
 
         {/* Modal Bottom Footer Actions */}
-        <div className="px-5 sm:px-7 py-3.5 border-t border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#1A1413] flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
-          <div className="text-[11px] text-gray-600 dark:text-gray-400 font-manrope flex items-center gap-2">
+        <div className="px-5 sm:px-7 py-3.5 border-t border-gray-200 bg-gray-50 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+          <div className="text-[11px] text-gray-600 font-manrope flex items-center gap-2">
             <MapPin className="w-3.5 h-3.5 text-brand-crimson shrink-0" />
             <span>Operando en Yucatán, Quintana Roo y Campeche</span>
           </div>

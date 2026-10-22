@@ -1,5 +1,4 @@
 import React from 'react';
-import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -11,20 +10,18 @@ import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 export const App: React.FC = () => {
   return (
-    <ThemeProvider>
-      <div className="min-h-screen bg-surface dark:bg-brand-dark text-on-surface dark:text-white transition-colors duration-300 flex flex-col selection:bg-brand-crimson selection:text-white">
-        <Navbar />
-        <main className="flex-grow">
-          <Hero />
-          <About />
-          <Services />
-          <Coverage />
-          <Contact />
-        </main>
-        <Footer />
-        <FloatingWhatsApp />
-      </div>
-    </ThemeProvider>
+    <div className="min-h-screen bg-white text-gray-900 transition-colors duration-300 flex flex-col selection:bg-brand-crimson selection:text-white">
+      <Navbar />
+      <main className="flex-grow">
+        <Hero />
+        <About />
+        <Services />
+        <Coverage />
+        <Contact />
+      </main>
+      <Footer />
+      <FloatingWhatsApp />
+    </div>
   );
 };
 

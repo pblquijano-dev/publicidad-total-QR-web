@@ -339,27 +339,27 @@ export const Services: React.FC = () => {
   return (
     <section
       id="servicios"
-      className="py-20 sm:py-24 bg-surface-low dark:bg-brand-dark-alt transition-colors duration-300 relative overflow-hidden"
+      className="py-20 sm:py-24 bg-[#F8F9FA] transition-colors duration-300 relative overflow-hidden"
     >
       {/* Ambient background glows */}
-      <div className="absolute top-1/4 -right-40 w-96 h-96 bg-brand-primary/10 dark:bg-brand-primary/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 -left-40 w-96 h-96 bg-brand-cyan/10 dark:bg-brand-cyan/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 -right-40 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -left-40 w-96 h-96 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <ScrollReveal animation="fade-up" duration={700}>
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary-fixed/60 dark:bg-brand-primary/30 border border-brand-primary/20 dark:border-brand-primary/50 text-[11px] font-sora font-bold text-brand-primary-dark dark:text-brand-primary-soft uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#092652]/10 border border-[#092652]/20 text-[11px] font-sora font-bold text-[#092652] uppercase tracking-widest mb-4">
               <Megaphone className="w-3.5 h-3.5 text-brand-cyan" />
               <span>Portafolio Especializado BTL</span>
             </div>
 
-            <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary-dark dark:text-white tracking-tight leading-[1.15]">
+            <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#092652] tracking-tight leading-[1.15]">
               Servicios de Publicidad BTL para{' '}
               <span className="text-brand-crimson">Dominar la Calle</span>
             </h2>
 
-            <p className="font-manrope text-base sm:text-lg text-gray-600 dark:text-gray-300 mt-4 leading-relaxed max-w-2xl mx-auto">
+            <p className="font-manrope text-base sm:text-lg text-gray-600 mt-4 leading-relaxed max-w-2xl mx-auto">
               Combinamos presencia humana, sonido profesional y logística de
               precisión para que tu marca no pase desapercibida. Explora
               nuestras galerías fotográficas en cada servicio.
@@ -386,7 +386,7 @@ export const Services: React.FC = () => {
                 delay={serviceIdx * 140}
                 duration={650}
               >
-                <div className="group rounded-3xl bg-white dark:bg-brand-dark border border-gray-200/90 dark:border-white/10 overflow-hidden hover:border-brand-cyan/60 dark:hover:border-brand-cyan/50 transition-all duration-300 shadow-md hover:shadow-2xl flex flex-col justify-between relative h-full">
+                <div className="group rounded-3xl bg-white border border-gray-200/90 overflow-hidden hover:border-brand-cyan/60 transition-all duration-300 shadow-md hover:shadow-2xl flex flex-col justify-between relative h-full">
                   <div>
                     {/* Interactive Gallery Container (Aspect 16:9) */}
                     <div className="relative aspect-video w-full overflow-hidden bg-black/80 select-none">
@@ -421,7 +421,7 @@ export const Services: React.FC = () => {
 
                       {/* Top Right Action & KPI Indicators */}
                       <div className="absolute top-3 sm:top-4 right-3 sm:right-4 flex items-center gap-2">
-                        <span className="hidden sm:inline-flex px-2.5 py-1 rounded-full bg-brand-lime text-brand-dark font-sora font-extrabold text-xs shadow-sm">
+                        <span className="hidden sm:inline-flex px-2.5 py-1 rounded-full bg-brand-lime text-gray-900 font-sora font-extrabold text-xs shadow-sm">
                           {service.kpi}
                         </span>
 
@@ -497,8 +497,8 @@ export const Services: React.FC = () => {
 
                     {/* Photo Navigation Strip */}
                     {totalPhotos > 1 && (
-                      <div className="px-5 py-2 bg-gray-50/90 dark:bg-white/[0.04] border-b border-gray-200/80 dark:border-white/5 flex items-center justify-between gap-3">
-                        <span className="font-manrope text-xs text-gray-500 dark:text-gray-400 font-medium">
+                      <div className="px-5 py-2 bg-gray-50/90 border-b border-gray-200/80 flex items-center justify-between gap-3">
+                        <span className="font-manrope text-xs text-gray-500 font-medium">
                           Foto {currentIdx + 1} de {totalPhotos}
                         </span>
 
@@ -514,7 +514,7 @@ export const Services: React.FC = () => {
                               className={`w-2 h-2 rounded-full transition-all duration-200 ${
                                 dotIdx === currentIdx
                                   ? 'bg-brand-cyan w-5'
-                                  : 'bg-gray-300 dark:bg-white/30 hover:bg-gray-400'
+                                  : 'bg-gray-300 hover:bg-gray-400'
                               }`}
                               aria-label={`Ver foto ${dotIdx + 1}`}
                             />
@@ -525,17 +525,17 @@ export const Services: React.FC = () => {
 
                     {/* Card Content */}
                     <div className="p-6 sm:p-7">
-                      <p className="font-manrope text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                      <p className="font-manrope text-sm sm:text-base text-gray-600 leading-relaxed mb-6">
                         {service.description}
                       </p>
 
                       <div className="space-y-3 mb-6">
                         {service.highlights.map((h, i) => (
                           <div key={i} className="flex items-start gap-2.5">
-                            <div className="w-4 h-4 rounded-full bg-brand-lime/20 text-brand-lime-dark dark:text-brand-lime flex items-center justify-center shrink-0 mt-0.5 border border-brand-lime/40">
+                            <div className="w-4 h-4 rounded-full bg-brand-lime/20 text-brand-lime-dark flex items-center justify-center shrink-0 mt-0.5 border border-brand-lime/40">
                               <Check className="w-3 h-3 stroke-[3]" />
                             </div>
-                            <span className="font-manrope text-xs sm:text-sm text-gray-700 dark:text-gray-200 leading-relaxed">
+                            <span className="font-manrope text-xs sm:text-sm text-gray-700 leading-relaxed">
                               {h}
                             </span>
                           </div>
@@ -550,7 +550,7 @@ export const Services: React.FC = () => {
                       href={waUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-brand-dark font-sora font-bold text-sm shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 group/btn"
+                      className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-gray-900 font-sora font-bold text-sm shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 group/btn"
                     >
                       <MessageCircle className="w-4 h-4 fill-current transition-transform group-hover/btn:scale-110" />
                       <span>Cotizar este servicio por WhatsApp</span>
@@ -566,13 +566,13 @@ export const Services: React.FC = () => {
         <div className="mb-20">
           <ScrollReveal animation="fade-up" duration={650}>
             <div className="text-center mb-10 max-w-2xl mx-auto">
-              <span className="text-[11px] font-sora font-bold uppercase tracking-widest text-brand-primary dark:text-brand-cyan block mb-1">
+              <span className="text-[11px] font-sora font-bold uppercase tracking-widest text-[#092652] block mb-1">
                 Servicios complementarios
               </span>
-              <h3 className="font-sora text-2xl sm:text-3xl font-bold text-brand-primary-dark dark:text-white">
+              <h3 className="font-sora text-2xl sm:text-3xl font-bold text-[#092652]">
                 Cápsulas de Soporte Publicitario
               </h3>
-              <p className="font-manrope text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-2">
+              <p className="font-manrope text-sm sm:text-base text-gray-600 mt-2">
                 Herramientas tácticas y de animación periférica para reforzar el
                 impacto y la recordación de tus campañas en calle. Explora las
                 fotos de cada servicio.
@@ -597,7 +597,7 @@ export const Services: React.FC = () => {
                   delay={(capsuleIdx % 4) * 80}
                   duration={600}
                 >
-                  <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200/90 dark:border-white/10 hover:border-brand-cyan/60 dark:hover:border-brand-cyan/50 transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-lg group overflow-hidden h-full">
+                  <div className="rounded-2xl bg-white border border-gray-200/90 hover:border-brand-cyan/60 transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-lg group overflow-hidden h-full">
                     <div>
                       {/* Compact Image Gallery Header */}
                       <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/70 select-none">
@@ -622,7 +622,7 @@ export const Services: React.FC = () => {
 
                         {/* Tag pill top left */}
                         <div className="absolute top-2.5 left-2.5 pointer-events-none">
-                          <span className="text-[10px] font-sora font-bold text-brand-lime-dark dark:text-brand-lime bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-brand-lime/30 uppercase tracking-wider">
+                          <span className="text-[10px] font-sora font-bold text-brand-lime-dark bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-brand-lime/30 uppercase tracking-wider">
                             {capsule.tag}
                           </span>
                         </div>
@@ -647,7 +647,7 @@ export const Services: React.FC = () => {
                             className="p-1 rounded-full bg-black/60 hover:bg-brand-cyan text-white backdrop-blur-md border border-white/20 transition-all hover:scale-110 shadow-md"
                             title="Ampliar foto a pantalla completa"
                           >
-                            <Maximize2 className="w-3 h-3" />
+                            <Maximize2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
 
@@ -680,8 +680,8 @@ export const Services: React.FC = () => {
 
                       {/* Capsule Photo Dots Strip */}
                       {totalPhotos > 1 && (
-                        <div className="px-3.5 py-1.5 bg-gray-50/90 dark:bg-white/[0.03] border-b border-gray-100 dark:border-white/5 flex items-center justify-between gap-2">
-                          <span className="font-manrope text-[11px] text-gray-500 dark:text-gray-400 font-medium">
+                        <div className="px-3.5 py-1.5 bg-gray-50/90 border-b border-gray-100 flex items-center justify-between gap-2">
+                          <span className="font-manrope text-[11px] text-gray-500 font-medium">
                             Foto {currentIdx + 1} de {totalPhotos}
                           </span>
 
@@ -697,7 +697,7 @@ export const Services: React.FC = () => {
                                 className={`w-1.5 h-1.5 rounded-full transition-all ${
                                   dotIdx === currentIdx
                                     ? 'bg-brand-cyan w-3.5'
-                                    : 'bg-gray-300 dark:bg-white/30'
+                                    : 'bg-gray-300'
                                 }`}
                                 aria-label={`Ver foto ${dotIdx + 1}`}
                               />
@@ -708,10 +708,10 @@ export const Services: React.FC = () => {
 
                       {/* Content */}
                       <div className="p-4 sm:p-5">
-                        <h4 className="font-sora font-bold text-base text-brand-primary-dark dark:text-white mb-2 leading-snug">
+                        <h4 className="font-sora font-bold text-base text-[#092652] mb-2 leading-snug">
                           {capsule.title}
                         </h4>
-                        <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                        <p className="font-manrope text-xs sm:text-sm text-gray-600 leading-relaxed">
                           {capsule.description}
                         </p>
                       </div>
@@ -723,7 +723,7 @@ export const Services: React.FC = () => {
                         href={waUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-1.5 text-xs font-sora font-semibold text-brand-whatsapp hover:text-brand-whatsapp-hover dark:hover:text-white transition-colors pt-3 border-t border-gray-100 dark:border-white/5 w-full"
+                        className="inline-flex items-center justify-center gap-1.5 text-xs font-sora font-semibold text-brand-whatsapp hover:text-brand-whatsapp-hover transition-colors pt-3 border-t border-gray-100 w-full"
                       >
                         <MessageCircle className="w-3.5 h-3.5" />
                         <span>Cotizar por WhatsApp</span>
@@ -738,7 +738,7 @@ export const Services: React.FC = () => {
 
         {/* Bottom Fast CTA Banner */}
         <ScrollReveal animation="zoom-in" duration={750}>
-          <div className="relative rounded-3xl bg-gradient-to-r from-brand-primary-dark via-brand-primary-deep to-brand-primary-deepest text-white p-8 sm:p-10 lg:p-12 shadow-2xl border border-brand-primary overflow-hidden">
+          <div className="relative rounded-3xl bg-gradient-to-r from-[#092652] via-[#0d3875] to-[#061a38] text-white p-8 sm:p-10 lg:p-12 shadow-2xl border border-[#092652]/60 overflow-hidden">
             {/* Subtle lighting accents */}
             <div className="absolute top-0 left-0 w-80 h-80 bg-brand-cyan/20 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-80 h-80 bg-brand-crimson/20 rounded-full blur-3xl pointer-events-none" />
@@ -752,7 +752,7 @@ export const Services: React.FC = () => {
                 <h3 className="font-sora text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-3">
                   ¿Requieres un paquete integral para tu evento o marca?
                 </h3>
-                <p className="font-manrope text-sm sm:text-base text-gray-300 leading-relaxed">
+                <p className="font-manrope text-sm sm:text-base text-blue-100 leading-relaxed">
                   Armamos tu propuesta personalizada con edecanes, perifoneo,
                   botargueros, animadores y dinámicas interactivas adaptadas al
                   presupuesto y metas de tu empresa.
@@ -764,7 +764,7 @@ export const Services: React.FC = () => {
                   href="https://wa.me/529981071359?text=Hola,%20deseo%20cotizar%20un%20paquete%20completo%20de%20servicios%20BTL%20para%20mi%20marca."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-brand-dark font-sora font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl shadow-lg transition-all duration-200"
+                  className="inline-flex items-center justify-center gap-2 bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-gray-900 font-sora font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl shadow-lg transition-all duration-200"
                 >
                   <MessageCircle className="w-4 h-4 fill-current" />
                   <span>WhatsApp Express</span>

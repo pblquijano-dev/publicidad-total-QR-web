@@ -22,10 +22,10 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: theme('colors.brand.dark');
+  background: #F8F9FA;
 }
 ::-webkit-scrollbar-thumb {
-  background: theme('colors.brand.primary');
+  background: #092652;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {

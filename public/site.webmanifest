@@ -4,8 +4,8 @@
   "description": "Agencia BTL líder en el Sureste: activaciones de marca, edecanes, perifoneo y volanteo.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1A1413",
-  "theme_color": "#312782",
+  "background_color": "#FFFFFF",
+  "theme_color": "#092652",
   "icons": [
     {
       "src": "/favicon.svg",

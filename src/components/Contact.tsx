@@ -160,27 +160,27 @@ export const Contact: React.FC = () => {
   return (
     <section
       id="contacto"
-      className="py-20 sm:py-24 bg-surface dark:bg-brand-dark-surface transition-colors duration-300 relative overflow-hidden"
+      className="py-20 sm:py-24 bg-[#F8F9FA] transition-colors duration-300 relative overflow-hidden"
     >
       {/* Ambient background glows */}
-      <div className="absolute top-1/4 -right-40 w-96 h-96 bg-brand-primary/10 dark:bg-brand-primary/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 -left-40 w-96 h-96 bg-brand-cyan/10 dark:bg-brand-cyan/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 -right-40 w-96 h-96 bg-brand-primary/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -left-40 w-96 h-96 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <ScrollReveal animation="fade-up" duration={700}>
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary-fixed/60 dark:bg-brand-primary/30 border border-brand-primary/20 dark:border-brand-primary/50 text-[11px] font-sora font-bold text-brand-primary-dark dark:text-brand-primary-soft uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#092652]/10 border border-[#092652]/20 text-[11px] font-sora font-bold text-[#092652] uppercase tracking-widest mb-4">
               <Sparkles className="w-3.5 h-3.5 text-brand-cyan" />
               <span>Canales de Atención Directa</span>
             </div>
 
-            <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary-dark dark:text-white tracking-tight leading-[1.15]">
+            <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#092652] tracking-tight leading-[1.15]">
               Cotiza tu próximo operativo BTL{' '}
               <span className="text-brand-crimson">en minutos</span>
             </h2>
 
-            <p className="font-manrope text-base sm:text-lg text-gray-600 dark:text-gray-300 mt-4 leading-relaxed max-w-2xl mx-auto">
+            <p className="font-manrope text-base sm:text-lg text-gray-600 mt-4 leading-relaxed max-w-2xl mx-auto">
               Respuesta clara y cotización formal. Sin intermediarios ni demoras
               burocráticas en toda la Península.
             </p>
@@ -197,9 +197,9 @@ export const Contact: React.FC = () => {
           >
             <div className="space-y-5">
               {/* Card 1: Canal Más Rápido (WhatsApp) */}
-              <div className="rounded-2xl bg-white dark:bg-brand-dark border-2 border-brand-whatsapp/40 dark:border-brand-whatsapp/30 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden">
+              <div className="rounded-2xl bg-white border-2 border-brand-whatsapp/40 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden">
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <span className="text-[11px] font-sora font-bold text-gray-500 uppercase tracking-wider">
                     # Canal más rápido (Ventas Directas)
                   </span>
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand-whatsapp/10 border border-brand-whatsapp/30 text-[10px] font-sora font-bold text-brand-whatsapp uppercase">
@@ -212,12 +212,12 @@ export const Contact: React.FC = () => {
                   href="https://wa.me/529981071359"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block font-sora text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white hover:text-brand-whatsapp transition-colors mb-2"
+                  className="block font-sora text-2xl sm:text-3xl font-extrabold text-[#092652] hover:text-brand-whatsapp transition-colors mb-2"
                 >
                   998 107 1359
                 </a>
 
-                <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
+                <p className="font-manrope text-xs sm:text-sm text-gray-600 leading-relaxed mb-5">
                   Rápida atención comercial para Quintana Roo, Yucatán y
                   Campeche.
                 </p>
@@ -234,9 +234,9 @@ export const Contact: React.FC = () => {
               </div>
 
               {/* Card 2: Llamadas de Voz (Mérida) */}
-              <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="rounded-2xl bg-white border border-gray-200/80 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="flex items-start justify-between gap-3 mb-2">
-                  <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <span className="text-[11px] font-sora font-bold text-gray-500 uppercase tracking-wider">
                     Llamadas de voz directas (Oficina Mérida)
                   </span>
                   <Phone className="w-4 h-4 text-brand-cyan shrink-0" />
@@ -244,25 +244,25 @@ export const Contact: React.FC = () => {
 
                 <a
                   href="tel:9999318581"
-                  className="block font-sora text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white hover:text-brand-cyan transition-colors"
+                  className="block font-sora text-2xl sm:text-3xl font-extrabold text-[#092652] hover:text-brand-cyan transition-colors"
                 >
                   999 931 8581
                 </a>
 
-                <div className="text-[11px] font-manrope text-gray-400 dark:text-gray-400 italic mb-2">
+                <div className="text-[11px] font-manrope text-gray-400 italic mb-2">
                   (Exclusivo llamadas telefónicas)
                 </div>
 
-                <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="font-manrope text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Conmutador central para coordinación administrativa,
                   cotizaciones institucionales y compras públicas.
                 </p>
               </div>
 
               {/* Card 3: Correo Electrónico */}
-              <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="rounded-2xl bg-white border border-gray-200/80 p-6 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="flex items-start justify-between gap-3 mb-2">
-                  <span className="text-[11px] font-sora font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <span className="text-[11px] font-sora font-bold text-gray-500 uppercase tracking-wider">
                     Correo electrónico autorizado
                   </span>
                   <Mail className="w-4 h-4 text-brand-crimson shrink-0" />
@@ -270,12 +270,12 @@ export const Contact: React.FC = () => {
 
                 <a
                   href="mailto:ventaspublicidad1@hotmail.com"
-                  className="block font-sora text-lg sm:text-xl font-bold text-gray-900 dark:text-white hover:text-brand-crimson transition-colors break-all mb-2"
+                  className="block font-sora text-lg sm:text-xl font-bold text-[#092652] hover:text-brand-crimson transition-colors break-all mb-2"
                 >
                   ventaspublicidad1@hotmail.com
                 </a>
 
-                <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="font-manrope text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Canal formal para envío de briefings, fichas técnicas y
                   órdenes de servicio. (Único correo autorizado para
                   cotizaciones).
@@ -283,15 +283,15 @@ export const Contact: React.FC = () => {
               </div>
 
               {/* Guarantee / SLA Banner */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-surface-low dark:bg-brand-dark-alt border border-gray-200/80 dark:border-white/10 flex items-start gap-3.5">
-                <div className="p-2 rounded-xl bg-brand-primary/10 dark:bg-white/10 text-brand-primary dark:text-brand-primary-soft shrink-0 mt-0.5">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-gray-200/80 flex items-start gap-3.5 shadow-xs">
+                <div className="p-2 rounded-xl bg-brand-primary/10 text-brand-primary shrink-0 mt-0.5">
                   <Clock className="w-5 h-5 text-brand-lime" />
                 </div>
                 <div>
-                  <div className="font-sora font-bold text-xs sm:text-sm text-gray-900 dark:text-white">
+                  <div className="font-sora font-bold text-xs sm:text-sm text-[#092652]">
                     Garantía de Despliegue
                   </div>
-                  <div className="font-manrope text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed">
+                  <div className="font-manrope text-xs text-gray-500 mt-0.5 leading-relaxed">
                     Equipo listo con supervisión física en Cancún, Mérida y
                     Campeche.
                   </div>
@@ -306,12 +306,12 @@ export const Contact: React.FC = () => {
             duration={700}
             className="lg:col-span-7"
           >
-            <div className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200 dark:border-white/10 p-6 sm:p-8 lg:p-10 shadow-md dark:shadow-xl relative h-full">
+            <div className="rounded-2xl bg-white border border-gray-200/80 p-6 sm:p-8 lg:p-10 shadow-lg relative h-full">
               <div className="mb-6">
-                <h3 className="font-sora font-bold text-2xl text-gray-900 dark:text-white tracking-tight">
+                <h3 className="font-sora font-bold text-2xl text-[#092652] tracking-tight">
                   Arma tu solicitud rápida
                 </h3>
-                <p className="font-manrope text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p className="font-manrope text-xs sm:text-sm text-gray-500 mt-1">
                   Selecciona los parámetros de tu campaña y te entregamos
                   propuesta económica lo mas pronto posible.
                 </p>
@@ -322,12 +322,12 @@ export const Contact: React.FC = () => {
                   <div className="w-16 h-16 rounded-full bg-brand-lime/20 text-brand-lime flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
-                  <h4 className="font-sora font-bold text-2xl text-gray-900 dark:text-white">
+                  <h4 className="font-sora font-bold text-2xl text-gray-900">
                     ¡Solicitud Enviada con Éxito!
                   </h4>
-                  <p className="font-manrope text-sm text-gray-600 dark:text-gray-300 max-w-md mx-auto leading-relaxed">
+                  <p className="font-manrope text-sm text-gray-600 max-w-md mx-auto leading-relaxed">
                     Hemos recibido los datos de tu campaña para{' '}
-                    <span className="font-bold text-gray-900 dark:text-white">
+                    <span className="font-bold text-gray-900">
                       {formatPlazasSummary(selectedStates)}
                     </span>
                     . Un asesor comercial te enviará la propuesta económica
@@ -344,8 +344,8 @@ export const Contact: React.FC = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {status === 'error' && (
-                    <div className="p-4 rounded-xl bg-red-100 dark:bg-red-950/40 border border-red-300 dark:border-red-800 text-red-800 dark:text-red-200 text-xs flex items-center gap-3">
-                      <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400 shrink-0" />
+                    <div className="p-4 rounded-xl bg-red-100 border border-red-300 text-red-800 text-xs flex items-center gap-3">
+                      <AlertCircle className="w-5 h-5 text-red-500 shrink-0" />
                       <span>{errorMessage}</span>
                     </div>
                   )}
@@ -358,7 +358,7 @@ export const Contact: React.FC = () => {
 
                   {/* 2. Servicio o Combinación BTL */}
                   <div>
-                    <label className="block font-sora text-xs font-bold text-gray-800 dark:text-gray-200 mb-2.5 uppercase tracking-wider">
+                    <label className="block font-sora text-xs font-bold text-gray-800 mb-2.5 uppercase tracking-wider">
                       2. Servicio o Combinación BTL (Selecciona uno o más):
                     </label>
                     <div className="flex flex-wrap gap-2">
@@ -371,15 +371,15 @@ export const Contact: React.FC = () => {
                             onClick={() => toggleService(service)}
                             className={`inline-flex items-center gap-2 py-2 px-3.5 rounded-xl text-xs font-sora font-semibold border transition-all duration-200 ${
                               isChecked
-                                ? 'bg-brand-primary/10 dark:bg-brand-primary/30 border-brand-primary/50 text-brand-primary dark:text-white'
-                                : 'bg-gray-50/70 dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10'
+                                ? 'bg-brand-primary/10 border-brand-primary/50 text-brand-primary'
+                                : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'
                             }`}
                           >
                             <span
                               className={`w-3.5 h-3.5 rounded border flex items-center justify-center text-[9px] transition-colors ${
                                 isChecked
                                   ? 'bg-brand-primary border-brand-primary text-white'
-                                  : 'border-gray-400 dark:border-gray-500'
+                                  : 'border-gray-400'
                               }`}
                             >
                               {isChecked && (
@@ -395,7 +395,7 @@ export const Contact: React.FC = () => {
 
                   {/* 3. Datos para el envío de la cotización */}
                   <div className="space-y-4">
-                    <label className="block font-sora text-xs font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider">
+                    <label className="block font-sora text-xs font-bold text-gray-800 uppercase tracking-wider">
                       3. Datos para el envío de la cotización:
                     </label>
 
@@ -403,7 +403,7 @@ export const Contact: React.FC = () => {
                       <div>
                         <label
                           htmlFor="nombreEmpresa"
-                          className="block font-sora text-[11px] font-bold text-gray-600 dark:text-gray-300 mb-1.5 uppercase"
+                          className="block font-sora text-[11px] font-bold text-gray-600 mb-1.5 uppercase"
                         >
                           NOMBRE O EMPRESA *
                         </label>
@@ -415,14 +415,14 @@ export const Contact: React.FC = () => {
                           value={formData.nombreEmpresa}
                           onChange={handleInputChange}
                           placeholder="Ej. Corporativo Maya / Carlos Ruiz"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary text-sm text-gray-900 placeholder-gray-400 transition-colors"
                         />
                       </div>
 
                       <div>
                         <label
                           htmlFor="telefonoWhatsApp"
-                          className="block font-sora text-[11px] font-bold text-gray-600 dark:text-gray-300 mb-1.5 uppercase"
+                          className="block font-sora text-[11px] font-bold text-gray-600 mb-1.5 uppercase"
                         >
                           TELÉFONO / WHATSAPP *
                         </label>
@@ -434,7 +434,7 @@ export const Contact: React.FC = () => {
                           value={formData.telefonoWhatsApp}
                           onChange={handleInputChange}
                           placeholder="Ej. +52 998 123 4567"
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary text-sm text-gray-900 placeholder-gray-400 transition-colors"
                         />
                       </div>
                     </div>
@@ -442,7 +442,7 @@ export const Contact: React.FC = () => {
                     <div>
                       <label
                         htmlFor="mensajeRequerimientos"
-                        className="block font-sora text-[11px] font-bold text-gray-600 dark:text-gray-300 mb-1.5 uppercase"
+                        className="block font-sora text-[11px] font-bold text-gray-600 mb-1.5 uppercase"
                       >
                         FECHA ESTIMADA O REQUERIMIENTOS ESPECIALES
                       </label>
@@ -453,7 +453,7 @@ export const Contact: React.FC = () => {
                         value={formData.mensajeRequerimientos}
                         onChange={handleInputChange}
                         placeholder="Indícanos días del evento, puntos de venta requeridos, número de horas o metas de prospección..."
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors resize-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary text-sm text-gray-900 placeholder-gray-400 transition-colors resize-none"
                       />
                     </div>
                   </div>
@@ -462,7 +462,7 @@ export const Contact: React.FC = () => {
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="w-full py-3.5 px-6 rounded-xl bg-surface-low dark:bg-white/10 hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primary border border-gray-300 dark:border-white/20 text-gray-800 dark:text-white font-sora font-bold text-xs sm:text-sm transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 px-6 rounded-xl bg-brand-primary hover:bg-brand-primary-dark text-white font-sora font-bold text-xs sm:text-sm transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {status === 'loading' ? (
                       <>

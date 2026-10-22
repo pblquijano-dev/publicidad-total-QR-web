@@ -7,7 +7,6 @@ import {
 } from 'react-simple-maps';
 import { MessageCircle, X, Sparkles } from 'lucide-react';
 import type { GeoJsonObject } from 'geojson';
-import { useTheme } from '../context/ThemeContext';
 import peninsulaGeo from '../data/peninsula.json';
 import { ScrollReveal } from './ScrollReveal';
 
@@ -70,9 +69,6 @@ const STATE_COVERAGE: Record<string, StateCoverageInfo> = {
 };
 
 export const Coverage: React.FC = () => {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
-
   const [hoveredState, setHoveredState] = useState<string | null>(null);
   const [selectedState, setSelectedState] = useState<string | null>(null);
 
@@ -88,23 +84,23 @@ export const Coverage: React.FC = () => {
   return (
     <section
       id="cobertura"
-      className="w-full py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-brand-dark transition-colors duration-300 relative overflow-hidden"
+      className="w-full py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white transition-colors duration-300 relative overflow-hidden"
     >
       {/* Background Ambient Glows */}
-      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-brand-primary/5 dark:bg-brand-primary/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 -right-40 w-96 h-96 bg-brand-cyan/5 dark:bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -right-40 w-96 h-96 bg-brand-cyan/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header de Sección */}
         <ScrollReveal animation="fade-up" duration={700}>
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <span className="bg-indigo-50 dark:bg-brand-primary/20 text-[#312782] dark:text-brand-primary-soft font-semibold text-xs px-3.5 py-1.5 rounded-full inline-block mb-3 border border-indigo-100 dark:border-brand-primary/40 font-sora">
+            <span className="bg-[#092652]/10 text-[#092652] font-semibold text-xs px-3.5 py-1.5 rounded-full inline-block mb-3 border border-[#092652]/20 font-sora">
               • COBERTURA REGIONAL EN MAPA
             </span>
-            <h2 className="font-sora text-[#312782] dark:text-white font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
+            <h2 className="font-sora text-[#092652] font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
               Cobertura Publicitaria en la Península de Yucatán
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg mt-3 font-manrope">
+            <p className="text-gray-600 text-base sm:text-lg mt-3 font-manrope">
               Interactúa directamente con el mapa para consultar la información
               operativa de Quintana Roo, Yucatán y Campeche.
             </p>
@@ -113,7 +109,7 @@ export const Coverage: React.FC = () => {
 
         {/* Contenedor del Mapa con react-simple-maps */}
         <ScrollReveal animation="zoom-in" duration={800}>
-          <div className="relative w-full rounded-3xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-xl mb-12 bg-gradient-to-br from-[#ADD6FF] via-[#85C2FF] to-[#ADD6FF] dark:from-[#091122] dark:via-[#0c162d] dark:to-[#050a14] group/map select-none">
+          <div className="relative w-full rounded-3xl overflow-hidden border border-gray-200 shadow-xl mb-12 bg-gradient-to-br from-[#d4e8fc] via-[#b9dbfd] to-[#d4e8fc] group/map select-none">
             {/* Mapa SVG de react-simple-maps */}
             <div className="w-full h-[450px] sm:h-[520px] lg:h-[580px] flex items-center justify-center">
               <ComposableMap
@@ -137,8 +133,8 @@ export const Coverage: React.FC = () => {
                       const isPeninsula = Boolean(stateInfo);
 
                       // Colores para estados vecinos fuera de la Península
-                      let fill = isDark ? '#1e293b' : '#F2F4F8';
-                      const stroke = isDark ? '#334155' : '#A4B6CB';
+                      let fill = '#F2F4F8';
+                      const stroke = '#A4B6CB';
                       let strokeWidth = 0.8;
                       let cursor = 'default';
 
@@ -216,7 +212,7 @@ export const Coverage: React.FC = () => {
 
             {/* Tarjeta Flotante Interactiva de Detalle del Estado Seleccionado */}
             {activeStateInfo && (
-              <div className="absolute bottom-4 right-4 sm:right-6 max-w-xs sm:max-w-sm w-[calc(100%-2rem)] bg-white/95 dark:bg-brand-dark/95 backdrop-blur-xl p-5 rounded-2xl shadow-2xl border border-gray-200/90 dark:border-white/10 z-30 animate-fadeIn font-manrope">
+              <div className="absolute bottom-4 right-4 sm:right-6 max-w-xs sm:max-w-sm w-[calc(100%-2rem)] bg-white/95 backdrop-blur-xl p-5 rounded-2xl shadow-2xl border border-gray-200/90 z-30 animate-fadeIn font-manrope">
                 <div className="flex items-start justify-between gap-2 mb-2.5">
                   <span
                     className="px-2.5 py-1 rounded-md text-[10px] font-bold font-sora uppercase tracking-wider text-white shadow-xs"
@@ -227,20 +223,20 @@ export const Coverage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setSelectedState(null)}
-                    className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors cursor-pointer"
+                    className="p-1 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-800 transition-colors cursor-pointer"
                     aria-label="Cerrar detalle de estado"
                   >
                     <X className="w-4 h-4" />
                   </button>
                 </div>
 
-                <h3 className="font-sora text-xl font-bold text-gray-900 dark:text-white">
+                <h3 className="font-sora text-xl font-bold text-[#092652]">
                   {activeStateInfo.name}
                 </h3>
-                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">
+                <p className="text-xs font-semibold text-gray-500 mb-2">
                   {activeStateInfo.tag}
                 </p>
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-5">
                   {activeStateInfo.description}
                 </p>
 
