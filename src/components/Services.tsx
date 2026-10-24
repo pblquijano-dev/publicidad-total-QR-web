@@ -7,6 +7,8 @@ import {
   ChevronRight,
   Images,
   Maximize2,
+  Link2,
+  Check,
 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import {
@@ -33,6 +35,7 @@ import {
 } from '../data/servicesPhotos';
 
 export interface ServiceItem {
+  slug: string;
   title: string;
   description: string;
   coverImage: string;
@@ -45,12 +48,13 @@ interface Category {
   services: ServiceItem[];
 }
 
-const CATEGORIES: Category[] = [
+export const CATEGORIES: Category[] = [
   {
     id: 'activacion',
     name: 'Activación de Marca',
     services: [
       {
+        slug: 'edecanes-aa-aaa',
         title: 'Edecanes AA y AAA',
         description:
           'Personal de imagen calificado con excelente presentación, facilidad de palabra y vestuario corporativo coordinado para congresos, lanzamientos, expos y eventos VIP en la Península.',
@@ -59,6 +63,7 @@ const CATEGORIES: Category[] = [
         gallery: EDECANES_GALLERY,
       },
       {
+        slug: 'animadores-comerciales',
         title: 'Animadores Comerciales',
         description:
           'Conducción profesional con micrófono en mano, animación de dinámicas, concursos y ambientación comercial para atraer clientes a tu tienda o sucursal.',
@@ -67,6 +72,7 @@ const CATEGORIES: Category[] = [
         gallery: ANIMADORES_GALLERY,
       },
       {
+        slug: 'audio-profesional',
         title: 'Audio Profesional',
         description:
           'Sistemas de sonido de alta fidelidad y potencia para sonorización en punto de venta, carpas publicitarias y eventos masivos en exteriores.',
@@ -75,6 +81,7 @@ const CATEGORIES: Category[] = [
         gallery: AUDIO_GALLERY,
       },
       {
+        slug: 'botargueros',
         title: 'Botargueros',
         description:
           'Animadores caracterizados de alta energía para dinamizar el punto de venta, interactuar con el público familiar y generar contenido de alto impacto visual.',
@@ -83,6 +90,7 @@ const CATEGORIES: Category[] = [
         gallery: BOTARGUERO_GALLERY,
       },
       {
+        slug: 'zanqueros',
         title: 'Zanqueros',
         description:
           'Artistas visuales en zancos con vistosos vestuarios temáticos de gran impacto para elevar la visibilidad de tu marca desde largas distancias en avenidas y desfiles.',
@@ -91,6 +99,7 @@ const CATEGORIES: Category[] = [
         gallery: ZANQUERO_GALLERY,
       },
       {
+        slug: 'batucada',
         title: 'Batucada',
         description:
           'Espectáculo musical de percusión y ritmo en vivo para capturar la atención masiva en inauguraciones, eventos comerciales y desfiles festivos.',
@@ -99,6 +108,7 @@ const CATEGORIES: Category[] = [
         gallery: BATUCADA_GALLERY,
       },
       {
+        slug: 'pancarteros',
         title: 'Pancarteros',
         description:
           'Personal dinámico en camellones y cruceros estratégicos con pancartas y flechas de alta visibilidad para desviar el tráfico hacia tu sucursal.',
@@ -107,6 +117,7 @@ const CATEGORIES: Category[] = [
         gallery: PANCARTERO_GALLERY,
       },
       {
+        slug: 'promodegustadoras',
         title: 'Promodegustadoras',
         description:
           'Personal capacitado en punto de venta para demostración de producto, degustación, entrega de muestras y desplazamiento de inventario en tienda.',
@@ -115,6 +126,7 @@ const CATEGORIES: Category[] = [
         gallery: PROMODEGUSTADORAS_GALLERY,
       },
       {
+        slug: 'gios',
         title: 'Gios',
         description:
           'Personal masculino de imagen comercial y protocolo para bienvenida, eventos deportivos, exposiciones corporativas y activaciones de marca.',
@@ -129,6 +141,7 @@ const CATEGORIES: Category[] = [
     name: 'Audiovisuales',
     services: [
       {
+        slug: 'fotografia-de-eventos',
         title: 'Fotografía de Eventos',
         description:
           'Cobertura fotográfica profesional en alta resolución para documentar activaciones, aperturas, congresos y campañas corporativas con entrega de material optimizado.',
@@ -137,6 +150,7 @@ const CATEGORIES: Category[] = [
         gallery: FOTOGRAFIA_GALLERY,
       },
       {
+        slug: 'video-y-cobertura',
         title: 'Video y Cobertura',
         description:
           'Producción audiovisual completa con tomas cinematográficas, reels dinámicos para redes sociales y videos resumen con edición y musicalización profesional.',
@@ -145,6 +159,7 @@ const CATEGORIES: Category[] = [
         gallery: VIDEO_GALLERY,
       },
       {
+        slug: 'pantallas-digitales',
         title: 'Pantallas Digitales',
         description:
           'Renta e instalación de pantallas LED de gran formato y alta luminosidad para proyección de spots comerciales, branding dinámico y eventos en vivo.',
@@ -159,6 +174,7 @@ const CATEGORIES: Category[] = [
     name: 'Perifoneo',
     services: [
       {
+        slug: 'carros-de-sonido',
         title: 'Carros de Sonido (Flotilla propia con bocinas de alto alcance)',
         description:
           'Flotilla propia de unidades equipadas con bocinas de alto alcance y amplificadores profesionales recorriendo colonias, avenidas y supermanzanas estratégicas.',
@@ -167,6 +183,7 @@ const CATEGORIES: Category[] = [
         gallery: PERIFONEO_GALLERY,
       },
       {
+        slug: 'vallas-moviles',
         title: 'Vallas Móviles',
         description:
           'Unidades equipadas con paneles publicitarios iluminados de gran impacto visual que recorren las principales vialidades urbanas en horarios de máxima afluencia.',
@@ -181,6 +198,7 @@ const CATEGORIES: Category[] = [
     name: 'Volanteo',
     services: [
       {
+        slug: 'volanteo-casa-por-casa',
         title: 'Volanteo Casa por Casa',
         description:
           'Distribución selectiva bajo puerta y en buzones por supermanzanas y fraccionamientos objetivo, con supervisión en campo y reportes de entrega.',
@@ -189,6 +207,7 @@ const CATEGORIES: Category[] = [
         gallery: VOLANTEO_GALLERY,
       },
       {
+        slug: 'publiandantes',
         title: 'Publiandantes',
         description:
           'Cuadrillas móviles de promotores equipados con mochilas banner y banderas publicitarias recorriendo andadores peatonales y centros comerciales.',
@@ -197,6 +216,7 @@ const CATEGORIES: Category[] = [
         gallery: PUBLIANDANTES_GALLERY,
       },
       {
+        slug: 'volanteo-mano-a-mano',
         title: 'Volanteo Mano a Mano',
         description:
           'Entrega personalizada y directa de material impreso a peatones y automovilistas en cruces, paraderos y semáforos de alto flujo con personal identificado.',
@@ -211,6 +231,7 @@ const CATEGORIES: Category[] = [
     name: 'Impresos',
     services: [
       {
+        slug: 'volantes-publicitarios',
         title: 'Volantes Publicitarios',
         description:
           'Impresión en papel couché de primera calidad a todo color, con acabados brillante o mate para campañas masivas de difusión y promociones.',
@@ -219,6 +240,7 @@ const CATEGORIES: Category[] = [
         gallery: VOLANTES_IMPRESOS_GALLERY,
       },
       {
+        slug: 'lonas-gran-formato',
         title: 'Lonas Gran Formato',
         description:
           'Impresión digital de lonas frontlit resistentes a la intemperie, con refuerzo perimetral y ojillos para fachadas, espectaculares y eventos.',
@@ -227,6 +249,7 @@ const CATEGORIES: Category[] = [
         gallery: LONAS_GALLERY,
       },
       {
+        slug: 'vinil-publicitario',
         title: 'Vinil Publicitario',
         description:
           'Vinil adhesivo de alta resistencia, microperforado para cristales y rotulación de flotillas vehiculares para transformar cualquier superficie en medio publicitario.',
@@ -238,6 +261,61 @@ const CATEGORIES: Category[] = [
   },
 ];
 
+/**
+ * Busca un servicio específico por su slug dentro de todas las categorías
+ */
+export const findServiceBySlug = (
+  slug: string
+): { service: ServiceItem; categoryIndex: number } | null => {
+  const normalized = slug.toLowerCase().trim();
+  for (let catIdx = 0; catIdx < CATEGORIES.length; catIdx++) {
+    const service = CATEGORIES[catIdx].services.find(
+      (s) => s.slug === normalized
+    );
+    if (service) {
+      return { service, categoryIndex: catIdx };
+    }
+  }
+  return null;
+};
+
+/**
+ * Obtiene el slug de servicio presente en el URL actual (?servicio=slug o #slug)
+ */
+const getSlugFromUrl = (): string | null => {
+  if (typeof window === 'undefined') return null;
+
+  // 1. Parámetro de búsqueda: ?servicio=slug o ?service=slug
+  const searchParams = new URLSearchParams(window.location.search);
+  const paramSlug = searchParams.get('servicio') || searchParams.get('service');
+  if (paramSlug) return paramSlug.toLowerCase().trim();
+
+  // 2. Hash con query: ej: #servicios?servicio=slug o #?servicio=slug
+  const hash = window.location.hash;
+  if (hash.includes('?')) {
+    const hashQuery = hash.substring(hash.indexOf('?') + 1);
+    const hashParams = new URLSearchParams(hashQuery);
+    const hSlug = hashParams.get('servicio') || hashParams.get('service');
+    if (hSlug) return hSlug.toLowerCase().trim();
+  }
+
+  // 3. Hash directo: ej: #edecanes-aa-aaa o #servicio=edecanes-aa-aaa
+  if (hash) {
+    const cleanHash = hash.replace(/^#/, '').toLowerCase().trim();
+    if (cleanHash.startsWith('servicio=')) {
+      return cleanHash.replace('servicio=', '');
+    }
+    if (cleanHash.startsWith('servicio/')) {
+      return cleanHash.replace('servicio/', '');
+    }
+    if (findServiceBySlug(cleanHash)) {
+      return cleanHash;
+    }
+  }
+
+  return null;
+};
+
 export const Services: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(
@@ -245,18 +323,109 @@ export const Services: React.FC = () => {
   );
   const [activePhotoIndex, setActivePhotoIndex] = useState<number>(0);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const [copiedLink, setCopiedLink] = useState<boolean>(false);
+
+  // Sincronizar modal con el slug presente en el URL (al cargar y al navegar)
+  useEffect(() => {
+    const syncModalWithUrl = () => {
+      const slug = getSlugFromUrl();
+      if (slug) {
+        const result = findServiceBySlug(slug);
+        if (result) {
+          setActiveTab(result.categoryIndex);
+          setSelectedService(result.service);
+          setActivePhotoIndex(0);
+          setIsFullscreen(false);
+          return;
+        }
+      }
+
+      // Si no hay slug en el URL y el modal estaba abierto por URL, se cierra
+      setSelectedService((current) => {
+        if (current) {
+          setIsFullscreen(false);
+          return null;
+        }
+        return current;
+      });
+    };
+
+    syncModalWithUrl();
+
+    window.addEventListener('popstate', syncModalWithUrl);
+    window.addEventListener('hashchange', syncModalWithUrl);
+
+    return () => {
+      window.removeEventListener('popstate', syncModalWithUrl);
+      window.removeEventListener('hashchange', syncModalWithUrl);
+    };
+  }, []);
 
   const openServiceModal = (service: ServiceItem) => {
     setSelectedService(service);
     setActivePhotoIndex(0);
     setIsFullscreen(false);
+
+    // Actualizar el slug en el URL sin recargar la página
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('servicio', service.slug);
+      window.history.pushState({ servicio: service.slug }, '', url.toString());
+    }
   };
 
   const closeServiceModal = useCallback(() => {
     setSelectedService(null);
     setActivePhotoIndex(0);
     setIsFullscreen(false);
+    setCopiedLink(false);
+
+    // Limpiar el slug del URL al cerrar el modal
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      let urlChanged = false;
+
+      if (url.searchParams.has('servicio') || url.searchParams.has('service')) {
+        url.searchParams.delete('servicio');
+        url.searchParams.delete('service');
+        urlChanged = true;
+      }
+
+      if (window.location.hash) {
+        const cleanHash = window.location.hash.replace(/^#/, '');
+        if (
+          findServiceBySlug(cleanHash) ||
+          cleanHash.startsWith('servicio=') ||
+          cleanHash.startsWith('servicio/')
+        ) {
+          url.hash = 'servicios';
+          urlChanged = true;
+        }
+      }
+
+      if (urlChanged) {
+        window.history.pushState({}, '', url.toString());
+      }
+    }
   }, []);
+
+  const handleCopyDirectLink = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!selectedService || typeof window === 'undefined') return;
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('servicio', selectedService.slug);
+
+    navigator.clipboard
+      .writeText(url.toString())
+      .then(() => {
+        setCopiedLink(true);
+        setTimeout(() => setCopiedLink(false), 2200);
+      })
+      .catch((err) => {
+        console.error('Error al copiar el enlace:', err);
+      });
+  };
 
   // Manejo de teclado (ESC y flechas del carrusel) y bloqueo de scroll
   const handleKeyDown = useCallback(
@@ -358,7 +527,8 @@ export const Services: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {CATEGORIES[activeTab].services.map((service) => (
             <div
-              key={service.title}
+              key={service.slug}
+              id={`service-card-${service.slug}`}
               className="group bg-surface border border-surface-container rounded-2xl shadow-sm hover:shadow-md overflow-hidden flex flex-col justify-between transition-all duration-300"
             >
               <div>
@@ -435,14 +605,38 @@ export const Services: React.FC = () => {
                   {selectedService.title}
                 </h3>
               </div>
-              <button
-                type="button"
-                onClick={closeServiceModal}
-                aria-label="Cerrar modal"
-                className="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-dim text-on-surface-variant hover:text-brand-primary transition-colors flex items-center justify-center flex-shrink-0"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                {/* Botón para compartir/copiar enlace directo con el slug */}
+                <button
+                  type="button"
+                  onClick={handleCopyDirectLink}
+                  title="Copiar enlace directo a este servicio"
+                  aria-label="Copiar enlace directo"
+                  className="h-10 px-3 rounded-full bg-surface-container hover:bg-surface-dim text-on-surface-variant hover:text-brand-primary transition-colors flex items-center gap-1.5 text-xs font-sora font-semibold"
+                >
+                  {copiedLink ? (
+                    <>
+                      <Check className="w-4 h-4 text-brand-lime" />
+                      <span className="hidden sm:inline text-brand-lime">
+                        ¡Copiado!
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <Link2 className="w-4 h-4" />
+                      <span className="hidden sm:inline">Compartir</span>
+                    </>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={closeServiceModal}
+                  aria-label="Cerrar modal"
+                  className="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-dim text-on-surface-variant hover:text-brand-primary transition-colors flex items-center justify-center flex-shrink-0"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
             </div>
 
             {/* Contenido desplazable del modal */}

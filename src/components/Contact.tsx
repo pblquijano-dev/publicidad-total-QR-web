@@ -1,27 +1,90 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   MessageSquare,
   Phone,
   Mail,
-  Clock,
+  Facebook,
+  Instagram,
   Loader2,
   CheckCircle2,
   AlertCircle,
   ArrowRight,
   Sparkles,
   Check,
+  X,
+  ChevronDown,
+  Search,
 } from 'lucide-react';
 import { StatePlazaSelector } from './StatePlazaSelector';
 import { StateSelection, formatPlazasSummary } from '../services/geoService';
 import { ScrollReveal } from './ScrollReveal';
+
+interface ServiceCategory {
+  category: string;
+  services: string[];
+}
+
+const SERVICES_BY_CATEGORY: ServiceCategory[] = [
+  {
+    category: 'Activación de Marca',
+    services: [
+      'Edecanes AA y AAA',
+      'Animadores Comerciales',
+      'Audio Profesional',
+      'Botargueros',
+      'Zanqueros',
+      'Batucada',
+      'Pancarteros',
+      'Promodegustadoras',
+      'Gios',
+    ],
+  },
+  {
+    category: 'Audiovisuales',
+    services: [
+      'Fotografía de Eventos',
+      'Video y Cobertura',
+      'Pantallas Digitales',
+    ],
+  },
+  {
+    category: 'Perifoneo',
+    services: [
+      'Carros de Sonido (Flotilla propia con bocinas de alto alcance)',
+      'Vallas Móviles',
+    ],
+  },
+  {
+    category: 'Volanteo',
+    services: [
+      'Volanteo Casa por Casa',
+      'Publiandantes',
+      'Volanteo Mano a Mano',
+    ],
+  },
+  {
+    category: 'Impresos',
+    services: [
+      'Volantes Publicitarios',
+      'Lonas Gran Formato',
+      'Vinil Publicitario',
+    ],
+  },
+];
+
+const ALL_SERVICES = SERVICES_BY_CATEGORY.flatMap((group) => group.services);
 
 export const Contact: React.FC = () => {
   const [selectedStates, setSelectedStates] = useState<StateSelection[]>([
     { estado: 'Quintana Roo', enTodoElEstado: true, municipios: [] },
   ]);
   const [selectedServices, setSelectedServices] = useState<string[]>([
-    'Activaciones de Marca',
+    'Edecanes AA y AAA',
   ]);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [serviceSearchTerm, setServiceSearchTerm] = useState('');
+  const servicesDropdownRef = useRef<HTMLDivElement>(null);
+
   const [formData, setFormData] = useState({
     nombreEmpresa: '',
     telefonoWhatsApp: '',
@@ -33,19 +96,22 @@ export const Contact: React.FC = () => {
   >('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const serviciosList = [
-    'Activaciones de Marca',
-    'Edecanes y Hostess',
-    'Animadores y Locución en Vivo',
-    'Promotoría e Impulsadoras',
-    'Perifoneo Móvil',
-    'Volanteo Estratégico',
-    'Batucada',
-    'Grabación de Spots',
-    'Botarguero',
-    'Pancartero',
-    'Zanquero',
-  ];
+  // Cerrar el dropdown al hacer clic fuera del componente
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        servicesDropdownRef.current &&
+        !servicesDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsServicesDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const toggleService = (service: string) => {
     setSelectedServices((prev) =>
@@ -54,6 +120,31 @@ export const Contact: React.FC = () => {
         : [...prev, service]
     );
   };
+
+  const removeService = (service: string, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setSelectedServices((prev) => prev.filter((s) => s !== service));
+  };
+
+  const clearAllServices = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setSelectedServices([]);
+  };
+
+  const selectAllServices = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setSelectedServices([...ALL_SERVICES]);
+  };
+
+  const filteredCategories = SERVICES_BY_CATEGORY.map((group) => {
+    const matching = group.services.filter((s) =>
+      s.toLowerCase().includes(serviceSearchTerm.toLowerCase().trim())
+    );
+    return {
+      category: group.category,
+      services: matching,
+    };
+  }).filter((group) => group.services.length > 0);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -138,7 +229,7 @@ export const Contact: React.FC = () => {
           telefonoWhatsApp: '',
           mensajeRequerimientos: '',
         });
-        setSelectedServices(['Activaciones de Marca']);
+        setSelectedServices(['Edecanes AA y AAA']);
         setSelectedStates([
           { estado: 'Quintana Roo', enTodoElEstado: true, municipios: [] },
         ]);
@@ -282,19 +373,53 @@ export const Contact: React.FC = () => {
                 </p>
               </div>
 
-              {/* Guarantee / SLA Banner */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-gray-200/80 flex items-start gap-3.5 shadow-xs">
-                <div className="p-2 rounded-xl bg-brand-primary/10 text-brand-primary shrink-0 mt-0.5">
-                  <Clock className="w-5 h-5 text-brand-lime" />
-                </div>
-                <div>
-                  <div className="font-sora font-bold text-xs sm:text-sm text-[#092652]">
-                    Garantía de Despliegue
-                  </div>
-                  <div className="font-manrope text-xs text-gray-500 mt-0.5 leading-relaxed">
-                    Equipo listo con supervisión física en Cancún, Mérida y
-                    Campeche.
-                  </div>
+              {/* Redes Sociales Oficiales */}
+              <div className="rounded-2xl bg-white border border-gray-200/80 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
+                <span className="text-[11px] font-sora font-bold text-gray-500 uppercase tracking-wider block mb-3">
+                  Síguenos en nuestras redes oficiales
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {/* Facebook */}
+                  <a
+                    href="https://www.facebook.com/publicidadtotalqyr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook de Publicidad Total Q&R"
+                    className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-[#1877F2]/10 border border-gray-200 hover:border-[#1877F2]/30 transition-all duration-200 group"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-[#1877F2]/10 text-[#1877F2] group-hover:bg-[#1877F2] group-hover:text-white flex items-center justify-center transition-colors shrink-0">
+                      <Facebook className="w-5 h-5 fill-current" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-sora font-bold text-xs sm:text-sm text-[#092652] group-hover:text-[#1877F2] transition-colors truncate">
+                        Facebook
+                      </div>
+                      <div className="text-[10px] sm:text-[11px] font-manrope text-gray-400 group-hover:text-gray-600 transition-colors truncate">
+                        @publicidadtotalqyr
+                      </div>
+                    </div>
+                  </a>
+
+                  {/* Instagram */}
+                  <a
+                    href="https://www.instagram.com/publicidadtotal_qyr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram de Publicidad Total Q&R"
+                    className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-[#E4405F]/10 border border-gray-200 hover:border-[#E4405F]/30 transition-all duration-200 group"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-[#E4405F]/10 text-[#E4405F] group-hover:bg-[#E4405F] group-hover:text-white flex items-center justify-center transition-colors shrink-0">
+                      <Instagram className="w-5 h-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-sora font-bold text-xs sm:text-sm text-[#092652] group-hover:text-[#E4405F] transition-colors truncate">
+                        Instagram
+                      </div>
+                      <div className="text-[10px] sm:text-[11px] font-manrope text-gray-400 group-hover:text-gray-600 transition-colors truncate">
+                        @publicidadtotal_qyr
+                      </div>
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -357,40 +482,221 @@ export const Contact: React.FC = () => {
                   />
 
                   {/* 2. Servicio o Combinación BTL */}
-                  <div>
-                    <label className="block font-sora text-xs font-bold text-gray-800 mb-2.5 uppercase tracking-wider">
-                      2. Servicio o Combinación BTL (Selecciona uno o más):
-                    </label>
-                    <div className="flex flex-wrap gap-2">
-                      {serviciosList.map((service) => {
-                        const isChecked = selectedServices.includes(service);
-                        return (
-                          <button
-                            key={service}
-                            type="button"
-                            onClick={() => toggleService(service)}
-                            className={`inline-flex items-center gap-2 py-2 px-3.5 rounded-xl text-xs font-sora font-semibold border transition-all duration-200 ${
-                              isChecked
-                                ? 'bg-brand-primary/10 border-brand-primary/50 text-brand-primary'
-                                : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'
-                            }`}
-                          >
-                            <span
-                              className={`w-3.5 h-3.5 rounded border flex items-center justify-center text-[9px] transition-colors ${
-                                isChecked
-                                  ? 'bg-brand-primary border-brand-primary text-white'
-                                  : 'border-gray-400'
-                              }`}
-                            >
-                              {isChecked && (
-                                <Check className="w-2.5 h-2.5 stroke-[3]" />
-                              )}
-                            </span>
-                            <span>{service}</span>
-                          </button>
-                        );
-                      })}
+                  <div className="relative" ref={servicesDropdownRef}>
+                    <div className="flex items-center justify-between mb-2">
+                      <label className="block font-sora text-xs font-bold text-gray-800 uppercase tracking-wider">
+                        2. Servicio o Combinación BTL (Selecciona uno o más):
+                      </label>
+                      {selectedServices.length > 0 && (
+                        <button
+                          type="button"
+                          onClick={clearAllServices}
+                          className="text-[11px] font-sora font-semibold text-brand-crimson hover:underline"
+                        >
+                          Limpiar ({selectedServices.length})
+                        </button>
+                      )}
                     </div>
+
+                    {/* Campo selector interactivo con Chips */}
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setIsServicesDropdownOpen((prev) => !prev)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setIsServicesDropdownOpen((prev) => !prev);
+                        }
+                      }}
+                      className={`w-full min-h-[50px] p-2.5 rounded-xl bg-gray-50 border text-sm transition-all flex items-center justify-between gap-2 cursor-pointer ${
+                        isServicesDropdownOpen
+                          ? 'border-brand-primary ring-1 ring-brand-primary bg-white shadow-xs'
+                          : 'border-gray-200 hover:border-gray-300 hover:bg-gray-100/60'
+                      }`}
+                    >
+                      {/* Contenedor de Chips */}
+                      <div className="flex-1 flex flex-wrap gap-1.5 items-center">
+                        {selectedServices.length === 0 ? (
+                          <span className="text-gray-400 text-xs sm:text-sm font-manrope px-1 select-none">
+                            Selecciona uno o más servicios del catálogo...
+                          </span>
+                        ) : (
+                          selectedServices.map((service) => (
+                            <span
+                              key={service}
+                              className="inline-flex items-center gap-1.5 py-1 pl-2.5 pr-1.5 rounded-lg bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-sora font-semibold shadow-2xs animate-in fade-in zoom-in-95 duration-150"
+                            >
+                              <span>{service}</span>
+                              <button
+                                type="button"
+                                onClick={(e) => removeService(service, e)}
+                                title={`Eliminar ${service}`}
+                                aria-label={`Eliminar ${service}`}
+                                className="w-4 h-4 rounded-full hover:bg-brand-primary/20 text-brand-primary hover:text-brand-crimson flex items-center justify-center transition-colors"
+                              >
+                                <X className="w-3 h-3" />
+                              </button>
+                            </span>
+                          ))
+                        )}
+                      </div>
+
+                      {/* Contador de seleccionados e icono de flecha */}
+                      <div className="flex items-center gap-2 pl-2 border-l border-gray-200 shrink-0 text-gray-500">
+                        {selectedServices.length > 0 && (
+                          <span className="text-[11px] font-sora font-bold px-1.5 py-0.5 rounded-md bg-brand-primary text-white">
+                            {selectedServices.length}
+                          </span>
+                        )}
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-200 ${
+                            isServicesDropdownOpen
+                              ? 'rotate-180 text-brand-primary'
+                              : ''
+                          }`}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Menú desplegable con buscador y categorías */}
+                    {isServicesDropdownOpen && (
+                      <div className="absolute z-30 left-0 right-0 mt-2 bg-white rounded-2xl border border-gray-200 shadow-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+                        {/* Buscador de servicios */}
+                        <div className="p-3 border-b border-gray-100 bg-gray-50/70">
+                          <div className="relative">
+                            <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                            <input
+                              type="text"
+                              value={serviceSearchTerm}
+                              onChange={(e) =>
+                                setServiceSearchTerm(e.target.value)
+                              }
+                              placeholder="Buscar servicio (ej. edecanes, perifoneo, lonas)..."
+                              className="w-full pl-9 pr-8 py-2 text-xs rounded-xl bg-white border border-gray-200 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary text-gray-800 placeholder-gray-400 transition-colors"
+                              autoFocus
+                            />
+                            {serviceSearchTerm && (
+                              <button
+                                type="button"
+                                onClick={() => setServiceSearchTerm('')}
+                                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                              >
+                                <X className="w-3.5 h-3.5" />
+                              </button>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Barra de acción rápida */}
+                        <div className="px-4 py-2 border-b border-gray-100 bg-white flex items-center justify-between text-xs">
+                          <span className="text-[11px] font-manrope text-gray-500">
+                            {selectedServices.length} de {ALL_SERVICES.length}{' '}
+                            seleccionados
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <button
+                              type="button"
+                              onClick={selectAllServices}
+                              className="text-[11px] font-sora font-semibold text-brand-primary hover:underline"
+                            >
+                              Seleccionar todos
+                            </button>
+                            <span className="text-gray-300">|</span>
+                            <button
+                              type="button"
+                              onClick={clearAllServices}
+                              className="text-[11px] font-sora font-semibold text-gray-500 hover:text-brand-crimson hover:underline"
+                            >
+                              Deseleccionar
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Lista clasificada por categorías */}
+                        <div className="max-h-64 sm:max-h-72 overflow-y-auto divide-y divide-gray-100">
+                          {filteredCategories.length === 0 ? (
+                            <div className="p-6 text-center text-xs text-gray-500 font-manrope">
+                              No se encontraron servicios que coincidan con "
+                              {serviceSearchTerm}".
+                            </div>
+                          ) : (
+                            filteredCategories.map((group) => (
+                              <div key={group.category} className="py-1">
+                                <div className="px-4 py-1.5 bg-gray-50/80 font-sora font-bold text-[10px] text-gray-500 uppercase tracking-wider flex items-center justify-between">
+                                  <span>{group.category}</span>
+                                  <span className="text-[9px] font-normal text-gray-400">
+                                    {group.services.length} opciones
+                                  </span>
+                                </div>
+                                <div className="p-1">
+                                  {group.services.map((service) => {
+                                    const isChecked =
+                                      selectedServices.includes(service);
+                                    return (
+                                      <div
+                                        key={service}
+                                        role="checkbox"
+                                        aria-checked={isChecked}
+                                        tabIndex={0}
+                                        onClick={() => toggleService(service)}
+                                        onKeyDown={(e) => {
+                                          if (
+                                            e.key === 'Enter' ||
+                                            e.key === ' '
+                                          ) {
+                                            e.preventDefault();
+                                            toggleService(service);
+                                          }
+                                        }}
+                                        className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-colors cursor-pointer ${
+                                          isChecked
+                                            ? 'bg-brand-primary/10 text-brand-primary font-semibold'
+                                            : 'text-gray-700 hover:bg-gray-100'
+                                        }`}
+                                      >
+                                        <div className="flex items-center gap-2.5">
+                                          <div
+                                            className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${
+                                              isChecked
+                                                ? 'bg-brand-primary border-brand-primary text-white'
+                                                : 'border-gray-300 bg-white'
+                                            }`}
+                                          >
+                                            {isChecked && (
+                                              <Check className="w-3 h-3 stroke-[3]" />
+                                            )}
+                                          </div>
+                                          <span className="font-manrope">
+                                            {service}
+                                          </span>
+                                        </div>
+                                        {isChecked && (
+                                          <span className="text-[10px] font-sora font-medium text-brand-primary bg-brand-primary/10 px-2 py-0.5 rounded-md">
+                                            Seleccionado
+                                          </span>
+                                        )}
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            ))
+                          )}
+                        </div>
+
+                        {/* Pie del desplegable */}
+                        <div className="p-2.5 border-t border-gray-100 bg-gray-50 flex items-center justify-end">
+                          <button
+                            type="button"
+                            onClick={() => setIsServicesDropdownOpen(false)}
+                            className="px-4 py-1.5 rounded-lg bg-brand-primary hover:bg-brand-primary-dark text-white font-sora font-semibold text-xs transition-colors"
+                          >
+                            Listo
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* 3. Datos para el envío de la cotización */}

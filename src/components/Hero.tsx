@@ -9,6 +9,10 @@ export const Hero: React.FC = () => {
     '/images/hero/hero-2.webp',
     '/images/hero/hero-3.webp',
     '/images/hero/hero-4.webp',
+    '/images/hero/hero-5.webp',
+    '/images/hero/hero-6.webp',
+    '/images/hero/hero-7.webp',
+    '/images/hero/hero-8.webp',
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

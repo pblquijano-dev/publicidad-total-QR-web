@@ -1,5 +1,12 @@
 import React, { useState, Suspense, lazy } from 'react';
-import { MessageSquare, Phone, Mail, MapPin, Megaphone } from 'lucide-react';
+import {
+  MessageSquare,
+  Phone,
+  Mail,
+  Megaphone,
+  Facebook,
+  Instagram,
+} from 'lucide-react';
 import type { LegalDocType } from './LegalModal';
 import { ScrollReveal } from './ScrollReveal';
 
@@ -21,7 +28,7 @@ export const Footer: React.FC = () => {
             {/* Brand Column (4 cols) */}
             <div className="lg:col-span-4 flex flex-col items-start">
               {/* Medallion Logo */}
-              <div className="w-20 h-20 sm:w-36 sm:h-36 rounded-2xl bg-white p-2 shadow-2xl border border-white/20 flex items-center justify-center shrink-0 overflow-hidden mb-4">
+              <div className="w-40 h-40 lg:w-52 lg:h-52 rounded-2xl bg-white p-2 shadow-2xl border border-white/20 flex items-center justify-center shrink-0 overflow-hidden mb-4">
                 {!logoError ? (
                   <img
                     src={medallionLogoUrl}
@@ -254,19 +261,49 @@ export const Footer: React.FC = () => {
                   </div>
                 </a>
 
-                {/* Cobertura */}
-                <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/10 border border-white/15">
-                  <div className="w-8 h-8 rounded-lg bg-brand-lime/20 text-brand-lime flex items-center justify-center shrink-0">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-[10px] font-sora font-bold text-blue-200/80 uppercase tracking-wider">
-                      COBERTURA PENINSULAR
+                {/* Redes Sociales Oficiales */}
+                <div className="grid grid-cols-2 gap-2.5">
+                  {/* Facebook */}
+                  <a
+                    href="https://www.facebook.com/publicidadtotalqyr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook de Publicidad Total Q&R"
+                    className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 hover:border-[#1877F2]/50 transition-all group"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-[#1877F2]/20 text-[#1877F2] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                      <Facebook className="w-4 h-4 fill-current" />
                     </div>
-                    <div className="font-manrope text-xs text-blue-100">
-                      Yucatán, Quintana Roo y Campeche
+                    <div className="min-w-0">
+                      <div className="text-[9px] font-sora font-bold text-blue-200/80 uppercase tracking-wider truncate">
+                        FACEBOOK
+                      </div>
+                      <div className="font-sora font-bold text-xs text-white group-hover:text-[#1877F2] transition-colors truncate">
+                        Seguir
+                      </div>
                     </div>
-                  </div>
+                  </a>
+
+                  {/* Instagram */}
+                  <a
+                    href="https://www.instagram.com/publicidadtotal_qyr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram de Publicidad Total Q&R"
+                    className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 hover:border-[#E4405F]/50 transition-all group"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-[#E4405F]/20 text-[#E4405F] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                      <Instagram className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[9px] font-sora font-bold text-blue-200/80 uppercase tracking-wider truncate">
+                        INSTAGRAM
+                      </div>
+                      <div className="font-sora font-bold text-xs text-white group-hover:text-[#E4405F] transition-colors truncate">
+                        Seguir
+                      </div>
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
