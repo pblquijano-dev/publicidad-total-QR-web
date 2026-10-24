@@ -84,16 +84,12 @@ export const Coverage: React.FC = () => {
   return (
     <section
       id="cobertura"
-      className="w-full py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white transition-colors duration-300 relative overflow-hidden"
+      className="w-full pt-20 lg:pt-24 bg-[#99E0FF] transition-colors duration-300 relative overflow-hidden"
     >
-      {/* Background Ambient Glows */}
-      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 -right-40 w-96 h-96 bg-brand-cyan/5 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="w-full relative z-10">
         {/* Header de Sección */}
         <ScrollReveal animation="fade-up" duration={700}>
-          <div className="max-w-3xl mx-auto text-center mb-12">
+          <div className="max-w-3xl mx-auto text-center">
             <span className="bg-[#092652]/10 text-[#092652] font-semibold text-xs px-3.5 py-1.5 rounded-full inline-block mb-3 border border-[#092652]/20 font-sora">
               • COBERTURA REGIONAL EN MAPA
             </span>
@@ -109,7 +105,7 @@ export const Coverage: React.FC = () => {
 
         {/* Contenedor del Mapa con react-simple-maps */}
         <ScrollReveal animation="zoom-in" duration={800}>
-          <div className="relative w-full rounded-3xl overflow-hidden border border-gray-200 shadow-xl mb-12 bg-gradient-to-br from-[#d4e8fc] via-[#b9dbfd] to-[#d4e8fc] group/map select-none">
+          <div className="relative w-full overflow-hidden bg-[#99E0FF] group/map select-none">
             {/* Mapa SVG de react-simple-maps */}
             <div className="w-full h-[450px] sm:h-[520px] lg:h-[580px] flex items-center justify-center">
               <ComposableMap
@@ -254,14 +250,6 @@ export const Coverage: React.FC = () => {
                 </a>
               </div>
             )}
-
-            {/* Indicador de ayuda al usuario en la esquina inferior izquierda */}
-            <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-20 pointer-events-none hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/40 backdrop-blur-md text-white/80 text-[11px] font-manrope">
-              <Sparkles className="w-3.5 h-3.5 text-brand-lime" />
-              <span>
-                Haz clic en un estado para ver mas información y cotizar
-              </span>
-            </div>
           </div>
         </ScrollReveal>
       </div>
