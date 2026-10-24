@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ShieldCheck, Clock, MessageCircle, ThumbsUp } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
+import { getAssetUrl } from '../utils/assets';
 
 type TabType = 'mision' | 'vision' | 'valores';
 
@@ -110,7 +111,7 @@ export const About: React.FC = () => {
                 <div className="absolute -bottom-12 -right-12 w-36 h-36 bg-brand-crimson/20 rounded-full blur-2xl pointer-events-none" />
 
                 <img
-                  src="/images/logo-dark.png"
+                  src={getAssetUrl('/images/logo-dark.png')}
                   alt="Publicidad Total Q&R - Identidad Institucional"
                   loading="lazy"
                   decoding="async"

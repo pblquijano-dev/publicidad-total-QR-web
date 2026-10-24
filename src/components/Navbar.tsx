@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,11 +37,11 @@ export const Navbar: React.FC = () => {
             className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brand-cyan rounded-lg p-1 transition-transform duration-200"
           >
             <img
-              src={
+              src={getAssetUrl(
                 isScrolled
                   ? '/images/h-logo-header.webp'
                   : '/images/h-logo-header-dark.webp'
-              }
+              )}
               alt="Publicidad Total Q&R - Agencia BTL y Activaciones de Marca"
               className={` ${isScrolled ? 'h-11 sm:h-14' : 'h-11 sm:h-14'} w-auto object-contain group-hover:scale-105 transition-transform duration-300`}
             />

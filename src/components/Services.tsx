@@ -33,6 +33,7 @@ import {
   LONAS_GALLERY,
   VINIL_GALLERY,
 } from '../data/servicesPhotos';
+import { getAssetUrl } from '../utils/assets';
 
 export interface ServiceItem {
   slug: string;
@@ -535,7 +536,7 @@ export const Services: React.FC = () => {
                 {/* Imagen de portada de la card */}
                 <div className="relative w-full h-48 sm:h-52 overflow-hidden bg-surface-dim">
                   <img
-                    src={service.coverImage}
+                    src={getAssetUrl(service.coverImage)}
                     alt={service.title}
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -646,7 +647,9 @@ export const Services: React.FC = () => {
                 <div className="relative w-full h-[300px] sm:h-[420px] md:h-[480px] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 flex items-center justify-center group/viewer">
                   {/* Fondo difuminado para rellenar los bordes con la misma imagen */}
                   <img
-                    src={selectedService.gallery[activePhotoIndex]?.url}
+                    src={getAssetUrl(
+                      selectedService.gallery[activePhotoIndex]?.url || ''
+                    )}
                     alt=""
                     aria-hidden="true"
                     className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 scale-110 pointer-events-none"
@@ -654,7 +657,9 @@ export const Services: React.FC = () => {
 
                   {/* Foto completa (object-contain) sin ningún recorte */}
                   <img
-                    src={selectedService.gallery[activePhotoIndex]?.url}
+                    src={getAssetUrl(
+                      selectedService.gallery[activePhotoIndex]?.url || ''
+                    )}
                     alt={`${selectedService.title} - Foto ${activePhotoIndex + 1}`}
                     onClick={() => setIsFullscreen(true)}
                     className="relative z-10 max-w-full max-h-full object-contain cursor-zoom-in transition-transform duration-300 group-hover/viewer:scale-[1.01] select-none"
@@ -715,7 +720,7 @@ export const Services: React.FC = () => {
                         }`}
                       >
                         <img
-                          src={photo.url}
+                          src={getAssetUrl(photo.url)}
                           alt={`Miniatura ${idx + 1}`}
                           className="w-full h-full object-cover"
                         />
@@ -795,7 +800,9 @@ export const Services: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={selectedService.gallery[activePhotoIndex]?.url}
+              src={getAssetUrl(
+                selectedService.gallery[activePhotoIndex]?.url || ''
+              )}
               alt={`${selectedService.title} - Foto ${activePhotoIndex + 1}`}
               className="max-w-full max-h-[82vh] object-contain rounded-xl shadow-2xl transition-all duration-300"
             />
@@ -841,7 +848,7 @@ export const Services: React.FC = () => {
                   }`}
                 >
                   <img
-                    src={photo.url}
+                    src={getAssetUrl(photo.url)}
                     alt={`Miniatura ${idx + 1}`}
                     className="w-full h-full object-cover"
                   />

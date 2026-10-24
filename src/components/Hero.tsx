@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Send } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { DotGrid } from './DotGrid';
+import { getAssetUrl } from '../utils/assets';
 
 export const Hero: React.FC = () => {
   const heroImages = [
@@ -13,7 +14,7 @@ export const Hero: React.FC = () => {
     '/images/hero/hero-6.webp',
     '/images/hero/hero-7.webp',
     '/images/hero/hero-8.webp',
-  ];
+  ].map(getAssetUrl);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [prevImageIndex, setPrevImageIndex] = useState<number | null>(null);

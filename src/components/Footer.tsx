@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import type { LegalDocType } from './LegalModal';
 import { ScrollReveal } from './ScrollReveal';
+import { getAssetUrl } from '../utils/assets';
 
 const LegalModal = lazy(() => import('./LegalModal'));
 
@@ -16,7 +17,7 @@ export const Footer: React.FC = () => {
   const [logoError, setLogoError] = useState(false);
   const [legalModalDoc, setLegalModalDoc] = useState<LegalDocType | null>(null);
 
-  const medallionLogoUrl = '/images/logo.webp';
+  const medallionLogoUrl = getAssetUrl('/images/logo.webp');
   return (
     <footer className="bg-[#092652] text-white border-t border-[#092652]/40 relative overflow-hidden pt-16 pb-8 transition-colors duration-300">
       {/* Ambient background glow */}
