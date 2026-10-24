@@ -5,7 +5,7 @@ import {
   Geography,
   Marker,
 } from 'react-simple-maps';
-import { MessageCircle, X, Sparkles } from 'lucide-react';
+import { MessageCircle, X } from 'lucide-react';
 import type { GeoJsonObject } from 'geojson';
 import peninsulaGeo from '../data/peninsula.json';
 import { ScrollReveal } from './ScrollReveal';

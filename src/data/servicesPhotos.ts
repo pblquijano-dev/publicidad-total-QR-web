@@ -256,13 +256,13 @@ export const BATUCADA_GALLERY: GalleryPhoto[] = [
 
 export const SPOTS_GALLERY: GalleryPhoto[] = [
   {
-    url: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80',
+    url: '/images/services/activaciones/462218574_1110582981070284_1134243037618149211_n.webp',
   },
   {
-    url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80',
+    url: '/images/services/activaciones/41caf4fa-bcde-4d10-a6b2-11cd37bdd883.webp',
   },
   {
-    url: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80',
+    url: '/images/services/activaciones/58a8ad00-a8ee-4173-97c8-ffae37416b59.webp',
   },
 ];
 
@@ -317,6 +317,159 @@ export const ZANQUERO_GALLERY: GalleryPhoto[] = [
   },
 ];
 
+export const AUDIO_GALLERY: GalleryPhoto[] = [
+  {
+    url: '/images/services/activaciones/462218574_1110582981070284_1134243037618149211_n.webp',
+  },
+  {
+    url: '/images/services/activaciones/41caf4fa-bcde-4d10-a6b2-11cd37bdd883.webp',
+  },
+  {
+    url: '/images/services/activaciones/58a8ad00-a8ee-4173-97c8-ffae37416b59.webp',
+  },
+  {
+    url: '/images/services/activaciones/87bd09f7-9be9-42ae-951b-1b795f25f039.webp',
+  },
+];
+
+export const GIOS_GALLERY: GalleryPhoto[] = [
+  {
+    url: '/images/services/promotores/ef915f31-d76a-4ba8-b6de-747edee2562d.webp',
+  },
+  {
+    url: '/images/services/edecanes/b727b0a4-7d16-4e7d-91e7-6938b6e323f4.webp',
+  },
+  {
+    url: '/images/services/edecanes/62b83e10-22ed-411a-b901-d1c044ddc075.webp',
+  },
+  {
+    url: '/images/services/activaciones/467350536_1146543880807527_9082922120127835289_n.webp',
+  },
+];
+
+export const PROMODEGUSTADORAS_GALLERY: GalleryPhoto[] = [
+  {
+    url: '/images/services/promotores/14f73005-0ee6-40f4-a361-69e16f66b7ce.webp',
+  },
+  {
+    url: '/images/services/promotores/ef915f31-d76a-4ba8-b6de-747edee2562d.webp',
+  },
+  {
+    url: '/images/services/activaciones/016c77ae-485c-44c6-b95b-3bdadfa574ac.webp',
+  },
+  {
+    url: '/images/services/activaciones/045c6fb6-9997-4ba3-8370-a8ff5c1d67b7.webp',
+  },
+];
+
+export const FOTOGRAFIA_GALLERY: GalleryPhoto[] = [
+  {
+    url: '/images/services/activaciones/459711880_1093188256143090_1418466810763835263_n.webp',
+  },
+  {
+    url: '/images/services/activaciones/453209202_1055990376529545_10899115011624420_n.webp',
+  },
+  {
+    url: '/images/services/activaciones/459365034_1092927802835802_6614399614389521511_n.webp',
+  },
+  {
+    url: '/images/services/activaciones/4f5db5c7-c3ac-49a2-ade0-f4282a306549.webp',
+  },
+];
+
+export const VIDEO_GALLERY: GalleryPhoto[] = [
+  {
+    url: '/images/services/activaciones/5dba4fd3-9a2f-49ff-8c4d-1dd943ba32cc.webp',
+  },
+  {
+    url: '/images/services/activaciones/5e055a1b-31af-4024-95d7-05d27ad120c9.webp',
+  },
+  {
+    url: '/images/services/activaciones/60310ca0-450c-405d-9fb1-adca19d9b5b7.webp',
+  },
+  {
+    url: '/images/services/activaciones/c41435e4-5020-474f-9749-535a54dca792.webp',
+  },
+];
+
+export const PANTALLAS_GALLERY: GalleryPhoto[] = [
+  {
+    url: '/images/services/activaciones/d625b53b-eeb4-4c19-9ac0-39ce49880cec.webp',
+  },
+  {
+    url: '/images/services/activaciones/e5201da3-4f2b-4bfe-bef2-0015a8eef63e.webp',
+  },
+  {
+    url: '/images/services/activaciones/155b6090-bbac-4201-8e2c-03f2208f966a.webp',
+  },
+  {
+    url: '/images/services/activaciones/16eb7be4-7b3b-423e-a28d-ca450c97b156.webp',
+  },
+];
+
+export const VALLAS_MOVILES_GALLERY: GalleryPhoto[] = [
+  {
+    url: '/images/services/perifoneo/be437349-ff37-4ee4-88cc-97e14a84597e.webp',
+  },
+  {
+    url: '/images/services/perifoneo/112a07af-8b2a-4ca6-ab03-1f64bfeffbf2.webp',
+  },
+  {
+    url: '/images/services/perifoneo/e71102ee-2d28-481b-8ccc-c43503c080ce.webp',
+  },
+];
+
+export const PUBLIANDANTES_GALLERY: GalleryPhoto[] = [
+  {
+    url: '/images/services/volanteo/329131488_1363140147772815_3246469811862417756_n.webp',
+  },
+  {
+    url: '/images/services/volanteo/345638749_9532667550106807_3393180472345962782_n.webp',
+  },
+  {
+    url: '/images/services/volanteo/9eddf49a-7f7b-4247-a8ff-24a146f35ddd.webp',
+  },
+  {
+    url: '/images/services/volanteo/c0f1ffcb-bfdc-4f56-b739-db95f94da475.webp',
+  },
+];
+
+export const VOLANTES_IMPRESOS_GALLERY: GalleryPhoto[] = [
+  {
+    url: '/images/services/volanteo/3484d541-6491-432c-9fd9-101111dd9ea5.webp',
+  },
+  {
+    url: '/images/services/volanteo/b786e258-f02d-4858-92ca-7855aa78712c.webp',
+  },
+  {
+    url: '/images/services/volanteo/345638749_9532667550106807_3393180472345962782_n.webp',
+  },
+];
+
+export const LONAS_GALLERY: GalleryPhoto[] = [
+  {
+    url: '/images/services/pancartero/367475347_810289221099663_2025243568995935940_n.webp',
+  },
+  {
+    url: '/images/services/pancartero/369704166_821228080005777_704491612468148993_n.webp',
+  },
+  {
+    url: '/images/services/activaciones/269d9334-1031-4f8c-8672-cf273d275808.webp',
+  },
+];
+
+export const VINIL_GALLERY: GalleryPhoto[] = [
+  {
+    url: '/images/services/perifoneo/be437349-ff37-4ee4-88cc-97e14a84597e.webp',
+  },
+  {
+    url: '/images/services/perifoneo/347438804_1074578150596382_9033849059967819392_n.webp',
+  },
+  {
+    url: '/images/services/perifoneo/a616261d-1e96-446c-843d-9a7d461cc641.webp',
+  },
+];
+
 // Mapa con todas las galerías indexadas por el identificador del servicio
 export const SERVICE_GALLERIES: Record<string, GalleryPhoto[]> = {
   activaciones: ACTIVACIONES_GALLERY,
@@ -330,4 +483,15 @@ export const SERVICE_GALLERIES: Record<string, GalleryPhoto[]> = {
   botarguero: BOTARGUERO_GALLERY,
   pancartero: PANCARTERO_GALLERY,
   zanquero: ZANQUERO_GALLERY,
+  audio: AUDIO_GALLERY,
+  gios: GIOS_GALLERY,
+  promodegustadoras: PROMODEGUSTADORAS_GALLERY,
+  fotografia: FOTOGRAFIA_GALLERY,
+  video: VIDEO_GALLERY,
+  pantallas: PANTALLAS_GALLERY,
+  vallas: VALLAS_MOVILES_GALLERY,
+  publiandantes: PUBLIANDANTES_GALLERY,
+  volantesImpresos: VOLANTES_IMPRESOS_GALLERY,
+  lonas: LONAS_GALLERY,
+  vinil: VINIL_GALLERY,
 };
