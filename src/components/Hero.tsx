@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Send } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
+import { DotGrid } from './DotGrid';
 
 export const Hero: React.FC = () => {
   const heroImages = [
@@ -64,11 +65,29 @@ export const Hero: React.FC = () => {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.5)_0%,_rgba(0,0,0,0.6)_50%,_rgba(0,0,0,0.92)_100%)] z-10 pointer-events-none h-full w-full" />
         </div>
 
+        {/* Interactive DotGrid Effect directly above the image carousel */}
+        <div className="absolute inset-0 z-10 pointer-events-none">
+          <DotGrid
+            dotSize={4}
+            gap={20}
+            baseColor="#22426f"
+            activeColor="#009EE2"
+            proximity={160}
+            strength={1.2}
+            bounce={0.65}
+            tension={0.4}
+            shockRadius={320}
+            shockStrength={6}
+            glow={0.7}
+            opacity={0.3}
+          />
+        </div>
+
         {/* Content Container */}
         <div className="relative z-20 w-full max-w-7xl flex flex-col px-4 sm:px-6 lg:px-8">
           {/* Main Display H1 with enhanced text shadow */}
           <ScrollReveal animation="fade-up" delay={200} duration={750}>
-            <h1 className="font-bold font-sora text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.15] tracking-tight">
+            <h1 className="font-sora text-4xl sm:text-5xl lg:text-7xl text-white leading-[1.15] text-center sm:text-left tracking-tight">
               Llevamos tu{' '}
               <span className="text-brand-lime font-normal italic">marca</span>
               <br />a las manos y oídos <br />
@@ -86,17 +105,17 @@ export const Hero: React.FC = () => {
             duration={750}
             width="fit"
           >
-            <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto">
+            <div className="flex flex-row flex-wrap-reverse items-center justify-center sm:justify-start gap-4 pt-4 w-auto">
               <a
                 href="#servicios"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-sora font-semibold text-base backdrop-blur-md border border-white/30 transition-all duration-200 hover:border-white/50 shadow-lg"
+                className="inline-flex items-center justify-center gap-2 w-auto px-8 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-sora font-semibold text-base backdrop-blur-md border border-white/30 transition-all duration-200 hover:border-white/50 shadow-lg"
               >
                 Ver Servicios
                 <ArrowRight className="w-5 h-5" />
               </a>
               <a
                 href="#contacto"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-crimson hover:bg-brand-crimson-hover text-white font-sora font-semibold text-base transition-all duration-200 shadow-xl shadow-brand-crimson/40 hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center justify-center gap-2 w-auto px-8 py-3.5 rounded-xl bg-brand-crimson hover:bg-brand-crimson-hover text-white font-sora font-semibold text-base transition-all duration-200 shadow-xl shadow-brand-crimson/40 hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0"
               >
                 <span>Cotizar ahora</span>
                 <Send className="w-5 h-5" />

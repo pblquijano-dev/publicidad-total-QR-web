@@ -51,7 +51,7 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className={`text-sm font-manrope font-semibold ${isScrolled ? 'text-gray-700 hover:text-brand-primary' : 'text-white hover:text-brand-cyan'}  transition-colors duration-200 relative group py-1 tracking-wide`}
+                className={`text-sm lg:text-base font-manrope font-semibold ${isScrolled ? 'text-gray-700 hover:text-brand-primary' : 'text-white hover:text-brand-cyan'}  transition-colors duration-200 relative group py-1 tracking-wide`}
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-brand-primary to-brand-cyan transition-all duration-300 group-hover:w-full" />
@@ -64,13 +64,13 @@ export const Navbar: React.FC = () => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               type="button"
-              className="p-2 rounded-lg text-gray-700 hover:text-brand-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-cyan"
+              className={`p-2 rounded-lg ${isScrolled ? 'text-gray-900 hover:text-brand-primary hover:bg-gray-100' : 'text-white hover:text-brand-cyan hover:bg-transparent'} transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand-cyan`}
               aria-label="Abrir menú de navegación"
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-gray-900" />
+                <X className="w-6 h-6" />
               ) : (
-                <Menu className="w-6 h-6 text-gray-900" />
+                <Menu className="w-6 h-6" />
               )}
             </button>
           </div>
@@ -78,14 +78,16 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-3 pt-3 pb-4 border-t border-gray-200 bg-white/95 backdrop-blur-xl rounded-b-2xl px-2 shadow-xl">
+          <div
+            className={`md:hidden mt-3 pt-3 pb-4  ${isScrolled ? 'bg-white/95 backdrop-blur-xl shadow-xl border-t border-gray-200 rounded-b-2xl' : 'bg-black/30  border border-black/30 rounded-2xl'}  px-2`}
+          >
             <div className="flex flex-col space-y-2">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-4 py-2.5 rounded-xl text-sm font-manrope font-semibold text-center text-gray-700 hover:text-brand-primary hover:bg-gray-100 transition-colors"
+                  className={`px-4 py-2.5 rounded-xl text-sm font-manrope font-semibold text-center ${isScrolled ? 'text-gray-700 hover:text-brand-primary hover:bg-gray-100' : 'text-white hover:text-brand-cyan hover:bg-transparent'} transition-colors`}
                 >
                   {link.name}
                 </a>

@@ -103,7 +103,7 @@ export const About: React.FC = () => {
           {/* Columna Izquierda: Logo Institucional */}
           <div className="lg:col-span-5 flex justify-center">
             <ScrollReveal animation="fade-up" duration={700}>
-              <div className="relative group w-full max-w-[340px] sm:max-w-[400px] lg:max-w-none flex items-center justify-center p-6 sm:p-8 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-2xl overflow-hidden hover:border-brand-cyan/30 transition-all duration-500">
+              <div className="relative group w-full mx-auto max-w-[340px] sm:max-w-[400px] lg:max-w-none flex items-center justify-center p-6 sm:p-8 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-2xl overflow-hidden hover:border-brand-cyan/30 transition-all duration-500">
                 {/* Glow decorativo de fondo */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-brand-cyan/10 via-transparent to-brand-crimson/10 opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 <div className="absolute -top-12 -left-12 w-36 h-36 bg-brand-cyan/20 rounded-full blur-2xl pointer-events-none" />
