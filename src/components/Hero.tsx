@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Send } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
 export const Hero: React.FC = () => {
@@ -11,100 +11,72 @@ export const Hero: React.FC = () => {
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [prevImageIndex, setPrevImageIndex] = useState<number | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 6000);
+      setCurrentImageIndex((prev) => {
+        setPrevImageIndex(prev);
+        return (prev + 1) % heroImages.length;
+      });
+    }, 4000);
     return () => clearInterval(interval);
   }, [heroImages.length]);
-
-  const kpiList = [
-    {
-      metric: '+10,000',
-      title: 'Volantes Diarios',
-      description: 'Volantes diarios distribuidos con control',
-      metricColor: 'text-brand-primary',
-    },
-    {
-      metric: '3 Estados',
-      title: 'Cobertura Peninsular',
-      description: 'Yucatán, Quintana Roo y Campeche',
-      metricColor: 'text-brand-primary',
-    },
-    {
-      metric: '100%',
-      title: 'Equipo Propio',
-      description: 'Flotilla y equipo de sonido propio para perifoneo',
-      metricColor: 'text-brand-primary',
-    },
-    {
-      metric: 'Evidencia',
-      title: 'Supervisión en Campo',
-      description: 'Reporte fotográfico diario entregado al cliente',
-      metricColor: 'text-brand-crimson',
-    },
-  ];
 
   return (
     <section id="hero" className="relative flex flex-col w-full">
       {/* Upper Dark Hero Section */}
-      <div className="relative min-h-[100vh] flex flex-col justify-center items-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+      <div className="relative min-h-[100vh] flex flex-col justify-center items-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background Image Carousel with Smooth Cross-Fade */}
-        <div className="absolute inset-0 z-0 overflow-hidden bg-brand-primary">
-          {heroImages.map((src, index) => (
-            <img
-              key={src}
-              src={src}
-              alt={`Activación BTL y publicidad en vía pública ${index + 1}`}
-              loading={index === 0 ? 'eager' : 'lazy'}
-              decoding="async"
-              fetchPriority={index === 0 ? 'high' : 'auto'}
-              className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-1000 ease-in-out ${
-                index === currentImageIndex
-                  ? 'opacity-100 scale-105 filter brightness-[0.45] contrast-[1.05] saturate-[0.85]'
-                  : 'opacity-0 scale-100 filter brightness-[0.50] pointer-events-none'
-              }`}
-            />
-          ))}
+        <div className="absolute inset-0 z-0 overflow-hidden bg-[brand-primary]">
+          {heroImages.map((src, index) => {
+            const isActive = index === currentImageIndex;
+            const isExiting = index === prevImageIndex;
+            const isCurrentOrPrev = isActive || isExiting;
+
+            return (
+              <img
+                key={src}
+                src={src}
+                alt={`Activación BTL y publicidad en vía pública ${index + 1}`}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+                fetchPriority={index === 0 ? 'high' : 'auto'}
+                style={{
+                  opacity: isCurrentOrPrev ? 1 : 0,
+                  zIndex: isActive ? 2 : isExiting ? 1 : 0,
+                  transform:
+                    isMounted && isCurrentOrPrev ? 'scale(1.045)' : 'scale(1)',
+                  transition:
+                    'opacity 1400ms cubic-bezier(0.4, 0, 0.2, 1), transform 9000ms cubic-bezier(0.2, 1, 0.3, 1)',
+                }}
+                className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.50] contrast-[1.05] saturate-[0.85]  pointer-events-none will-change-transform"
+              />
+            );
+          })}
 
           {/* Cinematic Vignette & Balanced Radial Shadows for Readability */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(9,38,82,0.82)_0%,_rgba(9,38,82,0.55)_50%,_rgba(9,38,82,0.92)_100%)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/90 via-brand-primary/30 to-brand-primary" />
-          <div className="absolute -top-24 opacity-30 right-0 w-[500px] h-[500px] bg-brand-primary-light/30 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute top-1/2 opacity-25 left-0 w-[450px] h-[450px] bg-brand-cyan/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.5)_0%,_rgba(0,0,0,0.6)_50%,_rgba(0,0,0,0.92)_100%)] z-10 pointer-events-none h-full w-full" />
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center space-y-6">
-          {/* Pill Badge */}
-          <ScrollReveal
-            animation="fade-down"
-            delay={100}
-            duration={650}
-            width="fit"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-sora font-semibold text-white uppercase tracking-wider shadow-lg">
-              <span className="w-2 h-2 rounded-full bg-brand-lime animate-pulse" />
-              <span>Activaciones BTL, Edecanes y Publicidad en el Sureste</span>
-            </div>
-          </ScrollReveal>
-
+        <div className="relative z-20 w-full max-w-7xl flex flex-col px-4 sm:px-6 lg:px-8">
           {/* Main Display H1 with enhanced text shadow */}
           <ScrollReveal animation="fade-up" delay={200} duration={750}>
-            <h1 className="font-sora text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.15] tracking-tight max-w-4xl [text-shadow:_0_2px_12px_rgba(0,0,0,0.9),_0_6px_30px_rgba(0,0,0,0.8)]">
-              Agencia de Publicidad BTL y Activaciones en el Sureste
+            <h1 className="font-bold font-sora text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.15] tracking-tight">
+              Llevamos tu{' '}
+              <span className="text-brand-lime font-normal italic">marca</span>
+              <br />a las manos y oídos <br />
+              de{' '}
+              <span className="bg-gradient-to-r font-extrabold from-brand-cyan via-brand-cyan-light to-brand-cyan bg-clip-text text-transparent [text-shadow:none] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
+                todos
+              </span>
             </h1>
-          </ScrollReveal>
-
-          {/* Subtitle with enhanced text shadow */}
-          <ScrollReveal animation="fade-up" delay={350} duration={750}>
-            <p className="font-manrope text-base sm:text-lg lg:text-xl text-blue-100 leading-relaxed font-medium max-w-2xl mx-auto [text-shadow:_0_2px_10px_rgba(0,0,0,0.9)]">
-              Llevamos tu marca a las manos y oídos de todos. Impulsamos tu
-              negocio en punto de venta y en la calle con personal capacitado,
-              equipo propio y supervisión presencial en Quintana Roo, Yucatán y
-              Campeche.
-            </p>
           </ScrollReveal>
 
           {/* CTA Action Buttons */}
@@ -114,104 +86,21 @@ export const Hero: React.FC = () => {
             duration={750}
             width="fit"
           >
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full sm:w-auto">
-              <a
-                href="#contacto"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-crimson hover:bg-brand-crimson-hover text-white font-sora font-semibold text-base transition-all duration-200 shadow-xl shadow-brand-crimson/40 hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0"
-              >
-                <span>Cotizar mi Evento</span>
-                <ArrowRight className="w-5 h-5" />
-              </a>
-
+            <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto">
               <a
                 href="#servicios"
                 className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-sora font-semibold text-base backdrop-blur-md border border-white/30 transition-all duration-200 hover:border-white/50 shadow-lg"
               >
-                Ver Servicios y Cobertura
+                Ver Servicios
+                <ArrowRight className="w-5 h-5" />
               </a>
-            </div>
-          </ScrollReveal>
-
-          {/* Trust Checkmarks with pill backdrop */}
-          <ScrollReveal
-            animation="fade-up"
-            delay={650}
-            duration={700}
-            width="fit"
-          >
-            <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-6 pt-3 px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-manrope font-medium text-white shadow-md">
-              <div className="inline-flex items-center gap-1.5">
-                <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
-                <span>Respuesta inmediata por WhatsApp</span>
-              </div>
-              <div className="inline-flex items-center gap-1.5">
-                <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
-                <span>Cobertura en Yucatán, Q. Roo y Campeche</span>
-              </div>
-              <div className="inline-flex items-center gap-1.5">
-                <Check className="w-4 h-4 text-brand-lime shrink-0 stroke-[2.5]" />
-                <span>Reportes diarios en campo</span>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Carousel Slide Indicators */}
-          <ScrollReveal animation="fade" delay={800} duration={600} width="fit">
-            <div className="flex items-center justify-center gap-2 pt-6">
-              {heroImages.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentImageIndex(idx)}
-                  aria-label={`Ver diapositiva ${idx + 1}`}
-                  className={`h-1.5 rounded-full transition-all duration-500 focus:outline-none ${
-                    idx === currentImageIndex
-                      ? 'w-8 bg-brand-cyan'
-                      : 'w-2 bg-white/40 hover:bg-white/60'
-                  }`}
-                />
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </div>
-
-      {/* KPI / Metric Cards Section */}
-      <div className="bg-[#F8F9FA] py-12 px-4 sm:px-6 lg:px-8 border-b border-gray-200/80">
-        <div className="max-w-7xl mx-auto space-y-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {kpiList.map((kpi, index) => (
-              <ScrollReveal
-                key={index}
-                animation="fade-up"
-                delay={index * 120}
-                duration={650}
+              <a
+                href="#contacto"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-crimson hover:bg-brand-crimson-hover text-white font-sora font-semibold text-base transition-all duration-200 shadow-xl shadow-brand-crimson/40 hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0"
               >
-                <div className="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1">
-                  <div>
-                    <div
-                      className={`font-sora font-extrabold text-3xl sm:text-4xl tracking-tight leading-none mb-3 ${kpi.metricColor}`}
-                    >
-                      {kpi.metric}
-                    </div>
-                    <p className="font-sora font-bold text-base text-[#092652] mb-1">
-                      {kpi.title}
-                    </p>
-                    <p className="font-manrope text-xs sm:text-sm text-gray-600 leading-snug">
-                      {kpi.description}
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          {/* Institutional Presence Strip */}
-          <ScrollReveal animation="fade-up" delay={200} duration={650}>
-            <div className="text-center py-4 px-6 rounded-2xl bg-white border border-gray-200/80 shadow-xs">
-              <p className="font-manrope text-xs sm:text-sm font-semibold text-gray-700 tracking-wide">
-                Presencia y activaciones en las principales plazas comerciales,
-                avenidas y supermercados del Sureste
-              </p>
+                <span>Cotizar ahora</span>
+                <Send className="w-5 h-5" />
+              </a>
             </div>
           </ScrollReveal>
         </div>
