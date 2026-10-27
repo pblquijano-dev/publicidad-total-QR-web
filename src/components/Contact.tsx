@@ -278,6 +278,67 @@ export const Contact: React.FC = () => {
           </div>
         </ScrollReveal>
 
+        {/* Atención Personalizada Banner */}
+        <ScrollReveal animation="fade-up" duration={600} delay={100}>
+          <div className="relative mb-10 rounded-2xl overflow-hidden shadow-lg">
+            {/* Dark gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-primary via-[#0c3068] to-brand-primary" />
+
+            {/* Decorative ambient orbs */}
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-cyan/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-crimson/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-20 bg-white/[0.03] rounded-full blur-2xl pointer-events-none" />
+
+            {/* Animated shimmer sweep */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.06) 55%, transparent 60%)',
+                backgroundSize: '200% 100%',
+                animation: 'shimmer-sweep 7s ease-in-out infinite',
+              }}
+            />
+
+            {/* Subtle top accent line */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-brand-cyan via-brand-lime to-brand-crimson opacity-80" />
+
+            {/* Content */}
+            <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 px-6 sm:px-10 py-6 sm:py-7">
+              {/* Glowing icon */}
+              <div className="relative shrink-0">
+                <div className="absolute inset-0 bg-brand-cyan/30 rounded-2xl blur-lg" />
+                <div className="relative w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-lg">
+                  <Sparkles className="w-6 h-6 text-brand-cyan" />
+                </div>
+              </div>
+
+              {/* Copy */}
+              <div className="text-center sm:text-left">
+                <h3 className="font-sora text-xl sm:text-2xl font-extrabold tracking-tight leading-snug">
+                  <span className="text-white">Atención </span>
+                  <span className="bg-gradient-to-r from-brand-cyan to-brand-lime bg-clip-text text-transparent">
+                    Personalizada
+                  </span>
+                </h3>
+                <p className="font-manrope text-xs sm:text-sm text-white/60 mt-1.5 leading-relaxed max-w-xl">
+                  Cada proyecto es único — por eso te atendemos directamente,
+                  sin bots ni respuestas genéricas. Escríbenos, llámanos o
+                  envíanos un correo por el canal que prefieras.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Shimmer keyframe (injected inline) */}
+          <style>{`
+            @keyframes shimmer-sweep {
+              0%, 100% { background-position: 200% 0; }
+              50% { background-position: -230% 0; }
+            }
+          `}</style>
+        </ScrollReveal>
+
         {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Left Column: Canales de Atención Directa (5 cols) */}
