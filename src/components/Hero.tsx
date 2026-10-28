@@ -6,14 +6,18 @@ import { getAssetUrl } from '../utils/assets';
 
 export const Hero: React.FC = () => {
   const heroImages = [
-    '/images/hero/hero-1.webp',
-    '/images/hero/hero-2.webp',
-    '/images/hero/hero-3.webp',
-    '/images/hero/hero-4.webp',
-    '/images/hero/hero-5.webp',
-    '/images/hero/hero-6.webp',
-    '/images/hero/hero-7.webp',
-    '/images/hero/hero-8.webp',
+    '/images/hero/IMG_20260424_204819.jpg',
+    '/images/hero/20260124_181456.jpg',
+    '/images/hero/FB_IMG_1768870530055.jpg',
+    '/images/hero/20250809_165806(0).jpg',
+    '/images/hero/FB_IMG_1769649611680.jpg',
+    '/images/hero/FB_IMG_1791150350625.jpg',
+    '/images/hero/d294a7dc-cbe6-4458-85ca-c01582a09947.jpg',
+    '/images/hero/IMG_20260522_183705.jpg',
+    '/images/hero/IMG_20260911_183523.jpg',
+    '/images/hero/20250913_100739.jpg',
+    '/images/hero/11e97626-d2bb-4ab3-b6fe-45e789835306.jpg',
+    '/images/hero/1a6a2da0-29b8-4838-a699-2d40a74433bc.jpg',
   ].map(getAssetUrl);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
