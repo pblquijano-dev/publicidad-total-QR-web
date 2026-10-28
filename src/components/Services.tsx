@@ -285,7 +285,8 @@ export const Services: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                   <span className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md text-[#092652] text-[11px] font-semibold font-sora px-2.5 py-1 rounded-lg shadow-sm flex items-center gap-1.5">
                     <Images className="w-3 h-3 text-[#092652]" />
-                    {service.gallery.length} fotos
+                    {service.gallery.length}{' '}
+                    {service.gallery.length === 1 ? 'foto' : 'fotos'}
                   </span>
                 </div>
 

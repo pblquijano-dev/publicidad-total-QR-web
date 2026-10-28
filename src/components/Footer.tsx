@@ -13,9 +13,58 @@ import { getAssetUrl } from '../utils/assets';
 
 const LegalModal = lazy(() => import('./LegalModal'));
 
+interface FooterServiceLink {
+  slug: string;
+  name: string;
+}
+
+const ACTIVACION_SERVICES: FooterServiceLink[] = [
+  { slug: 'edecanes-aa-aaa', name: 'Edecanes AA y AAA' },
+  { slug: 'animadores-comerciales', name: 'Animadores Comerciales' },
+  { slug: 'promodegustadoras', name: 'Promodegustadoras' },
+  { slug: 'gios', name: 'Gios' },
+  { slug: 'botargueros', name: 'Botargueros' },
+  { slug: 'zanqueros', name: 'Zanqueros' },
+  { slug: 'batucada', name: 'Batucada' },
+  { slug: 'audio-profesional', name: 'Audio Profesional' },
+  { slug: 'pantallas-digitales', name: 'Pantallas Digitales' },
+  { slug: 'video-y-cobertura', name: 'Video y Cobertura' },
+];
+
+const FIELD_SERVICES: FooterServiceLink[] = [
+  { slug: 'carros-de-sonido', name: 'Carros de Sonido (Perifoneo)' },
+  { slug: 'vallas-moviles', name: 'Vallas Móviles' },
+  { slug: 'volanteo-casa-por-casa', name: 'Volanteo Casa por Casa' },
+  { slug: 'volanteo-mano-a-mano', name: 'Volanteo Mano a Mano' },
+  { slug: 'publiandantes', name: 'Publiandantes' },
+  { slug: 'pancarteros', name: 'Pancarteros' },
+  { slug: 'fotografia-de-eventos', name: 'Fotografía de Eventos' },
+  { slug: 'volantes-publicitarios', name: 'Volantes Publicitarios' },
+  { slug: 'lonas-gran-formato', name: 'Lonas Gran Formato' },
+  /*   { slug: 'vinil-publicitario', name: 'Vinil Publicitario' }, */
+];
+
 export const Footer: React.FC = () => {
   const [logoError, setLogoError] = useState(false);
   const [legalModalDoc, setLegalModalDoc] = useState<LegalDocType | null>(null);
+
+  const handleOpenServiceModal = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    slug: string
+  ) => {
+    // Permitir atajos del navegador para abrir en nueva pestaña (Ctrl, Shift, Meta, botón medio)
+    if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) {
+      return;
+    }
+    e.preventDefault();
+
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('servicio', slug);
+      window.history.pushState({ servicio: slug }, '', url.toString());
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    }
+  };
 
   const medallionLogoUrl = getAssetUrl('/images/logo.webp');
   return (
@@ -25,11 +74,11 @@ export const Footer: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <ScrollReveal animation="fade-up" duration={700}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 mb-12">
-            {/* Brand Column (4 cols) */}
-            <div className="lg:col-span-4 flex flex-col items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
+            {/* Brand Column (3 cols) */}
+            <div className="lg:col-span-3 flex flex-col items-start">
               {/* Medallion Logo */}
-              <div className="w-40 h-40 lg:w-52 lg:h-52 rounded-2xl bg-white p-2 shadow-2xl border border-white/20 flex items-center justify-center shrink-0 overflow-hidden mb-4">
+              <div className="w-40 h-40 lg:w-48 lg:h-48 rounded-2xl bg-white p-2 shadow-2xl border border-white/20 flex items-center justify-center shrink-0 overflow-hidden mb-4">
                 {!logoError ? (
                   <img
                     src={medallionLogoUrl}
@@ -60,76 +109,40 @@ export const Footer: React.FC = () => {
               </p>
             </div>
 
-            {/* Column 2: Servicios Principales (3 cols) */}
+            {/* Column 2: Activación y BTL (3 cols) */}
             <div className="lg:col-span-3">
               <div className="mb-4">
                 <h4 className="font-sora font-bold text-sm text-white uppercase tracking-wider">
-                  SERVICIOS PRINCIPALES
+                  ACTIVACIÓN Y BTL
                 </h4>
                 <div className="w-10 h-0.5 bg-brand-cyan mt-1.5 rounded-full" />
               </div>
 
               <ul className="space-y-2.5 text-xs font-manrope text-blue-100/80">
-                <li>
-                  <a
-                    href="#servicios"
-                    className="hover:text-white transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="text-brand-cyan/70 group-hover:text-brand-cyan transition-colors">
-                      •
-                    </span>
-                    <span>Activaciones BTL en Punto de Venta</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#servicios"
-                    className="hover:text-white transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="text-brand-cyan/70 group-hover:text-brand-cyan transition-colors">
-                      •
-                    </span>
-                    <span>Edecanes y Personal de Imagen</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#servicios"
-                    className="hover:text-white transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="text-brand-cyan/70 group-hover:text-brand-cyan transition-colors">
-                      •
-                    </span>
-                    <span>Animadores y Conducción en Vivo</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#servicios"
-                    className="hover:text-white transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="text-brand-cyan/70 group-hover:text-brand-cyan transition-colors">
-                      •
-                    </span>
-                    <span>Promotoría y Demostradoras</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#servicios"
-                    className="hover:text-white transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="text-brand-cyan/70 group-hover:text-brand-cyan transition-colors">
-                      •
-                    </span>
-                    <span>Eventos Corporativos y Expos</span>
-                  </a>
-                </li>
+                {ACTIVACION_SERVICES.map((service) => (
+                  <li key={service.slug}>
+                    <a
+                      href={`?servicio=${service.slug}`}
+                      onClick={(e) => handleOpenServiceModal(e, service.slug)}
+                      className="hover:text-white transition-colors flex items-center gap-2 group cursor-pointer"
+                      title={`Ver detalles de ${service.name}`}
+                      aria-label={`Ver detalles de ${service.name}`}
+                      aria-haspopup="dialog"
+                    >
+                      <span className="text-brand-cyan/70 group-hover:text-brand-cyan transition-colors">
+                        •
+                      </span>
+                      <span className="group-hover:underline underline-offset-2">
+                        {service.name}
+                      </span>
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Column 3: Operaciones de Campo (2 cols) */}
-            <div className="lg:col-span-2">
+            {/* Column 3: Operaciones de Campo (3 cols) */}
+            <div className="lg:col-span-3">
               <div className="mb-4">
                 <h4 className="font-sora font-bold text-sm text-white uppercase tracking-wider">
                   OPERACIONES DE CAMPO
@@ -138,61 +151,25 @@ export const Footer: React.FC = () => {
               </div>
 
               <ul className="space-y-2.5 text-xs font-manrope text-blue-100/80">
-                <li>
-                  <a
-                    href="#servicios"
-                    className="hover:text-white transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="text-brand-lime/70 group-hover:text-brand-lime transition-colors">
-                      •
-                    </span>
-                    <span>Perifoneo Móvil con Flota Propia</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#servicios"
-                    className="hover:text-white transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="text-brand-lime/70 group-hover:text-brand-lime transition-colors">
-                      •
-                    </span>
-                    <span>Volanteo Estratégico por Supermanzanas</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#servicios"
-                    className="hover:text-white transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="text-brand-lime/70 group-hover:text-brand-lime transition-colors">
-                      •
-                    </span>
-                    <span>Batucadas y Eventos Especiales</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#servicios"
-                    className="hover:text-white transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="text-brand-lime/70 group-hover:text-brand-lime transition-colors">
-                      •
-                    </span>
-                    <span>Producción de Spots de Audio</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#cobertura"
-                    className="hover:text-white transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="text-brand-lime/70 group-hover:text-brand-lime transition-colors">
-                      •
-                    </span>
-                    <span>Reportes Fotográficos Diarios</span>
-                  </a>
-                </li>
+                {FIELD_SERVICES.map((service) => (
+                  <li key={service.slug}>
+                    <a
+                      href={`?servicio=${service.slug}`}
+                      onClick={(e) => handleOpenServiceModal(e, service.slug)}
+                      className="hover:text-white transition-colors flex items-center gap-2 group cursor-pointer"
+                      title={`Ver detalles de ${service.name}`}
+                      aria-label={`Ver detalles de ${service.name}`}
+                      aria-haspopup="dialog"
+                    >
+                      <span className="text-brand-lime/70 group-hover:text-brand-lime transition-colors">
+                        •
+                      </span>
+                      <span className="group-hover:underline underline-offset-2">
+                        {service.name}
+                      </span>
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 

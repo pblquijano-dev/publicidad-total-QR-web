@@ -6,6 +6,9 @@ export interface GalleryPhoto {
 
 export const EDECANES_GALLERY: GalleryPhoto[] = [
   {
+    url: '/images/servicios/activaciones de marca/edecanes/8c5b5d08-a098-47d8-b4ae-38439e7d4fb6.jpg',
+  },
+  {
     url: '/images/servicios/activaciones de marca/edecanes/099ad78e-8f5e-40d1-9c57-eab2bbd2136b.jpg',
   },
   {
@@ -48,9 +51,6 @@ export const EDECANES_GALLERY: GalleryPhoto[] = [
     url: '/images/servicios/activaciones de marca/edecanes/62b83e10-22ed-411a-b901-d1c044ddc075.jpg',
   },
   {
-    url: '/images/servicios/activaciones de marca/edecanes/8c5b5d08-a098-47d8-b4ae-38439e7d4fb6.jpg',
-  },
-  {
     url: '/images/servicios/activaciones de marca/edecanes/a2a6e033-0001-45df-b733-d5266a9060d4.jpg',
   },
   {
@@ -66,6 +66,9 @@ export const EDECANES_GALLERY: GalleryPhoto[] = [
 
 export const ANIMADORES_GALLERY: GalleryPhoto[] = [
   {
+    url: '/images/servicios/activaciones de marca/animadores/a307589d-583b-4669-a03a-991cbd175ccf.jpg',
+  },
+  {
     url: '/images/servicios/activaciones de marca/animadores/00f51318-4fd0-411b-b4ea-1daf0d5a4bf1.jpg',
   },
   {
@@ -73,9 +76,6 @@ export const ANIMADORES_GALLERY: GalleryPhoto[] = [
   },
   {
     url: '/images/servicios/activaciones de marca/animadores/0631a1a7-6378-42df-9080-960cbfc0771a.jpg',
-  },
-  {
-    url: '/images/servicios/activaciones de marca/animadores/075d7e68-dad1-4a52-96b8-bbaec2a78631.jpg',
   },
   {
     url: '/images/servicios/activaciones de marca/animadores/07636c37-3d31-4e68-b097-77e4c5ab3f7b.jpg',
@@ -207,9 +207,6 @@ export const ANIMADORES_GALLERY: GalleryPhoto[] = [
     url: '/images/servicios/activaciones de marca/animadores/Screenshot_20251006_065924_Facebook.jpg',
   },
   {
-    url: '/images/servicios/activaciones de marca/animadores/a307589d-583b-4669-a03a-991cbd175ccf.jpg',
-  },
-  {
     url: '/images/servicios/activaciones de marca/animadores/a8295805-b2ee-4c70-8756-0aa5bb6dc14f.jpg',
   },
   {
@@ -252,13 +249,13 @@ export const AUDIO_GALLERY: GalleryPhoto[] = [
 
 export const BOTARGUERO_GALLERY: GalleryPhoto[] = [
   {
+    url: '/images/servicios/activaciones de marca/botargueros/59966bc4-85e2-4436-87a6-2aa9a3fee7b0.jpg',
+  },
+  {
     url: '/images/servicios/activaciones de marca/botargueros/49877e5a-ddf5-48a9-8ca0-617340a5bf1c.jpg',
   },
   {
     url: '/images/servicios/activaciones de marca/botargueros/508af494-3f7b-4f0b-a67b-c75b1f1af4b3.jpg',
-  },
-  {
-    url: '/images/servicios/activaciones de marca/botargueros/59966bc4-85e2-4436-87a6-2aa9a3fee7b0.jpg',
   },
   {
     url: '/images/servicios/activaciones de marca/botargueros/66780915-853c-4033-a044-8c6ec0326cc1.jpg',
@@ -273,13 +270,13 @@ export const BOTARGUERO_GALLERY: GalleryPhoto[] = [
 
 export const ZANQUERO_GALLERY: GalleryPhoto[] = [
   {
+    url: '/images/servicios/activaciones de marca/zanqueros/458356884_1086215763507006_6909237291927740340_n.jpg',
+  },
+  {
     url: '/images/servicios/activaciones de marca/zanqueros/410283002_897070822421502_7905576576699243283_n.jpg',
   },
   {
     url: '/images/servicios/activaciones de marca/zanqueros/448496026_1026763739452209_3718897169833400947_n.jpg',
-  },
-  {
-    url: '/images/servicios/activaciones de marca/zanqueros/458356884_1086215763507006_6909237291927740340_n.jpg',
   },
   {
     url: '/images/servicios/activaciones de marca/zanqueros/FB_IMG_1769650452840.jpg',
@@ -306,19 +303,19 @@ export const BATUCADA_GALLERY: GalleryPhoto[] = [
 
 export const PANCARTERO_GALLERY: GalleryPhoto[] = [
   {
-    url: '/images/servicios/activaciones de marca/pancarteros/369704166_821228080005777_704491612468148993_n.jpg',
+    url: '/images/servicios/activaciones de marca/pancarteros/6250f005-39e9-4e96-b961-74d648de9ffa.jpg',
   },
   {
-    url: '/images/servicios/activaciones de marca/pancarteros/6250f005-39e9-4e96-b961-74d648de9ffa.jpg',
+    url: '/images/servicios/activaciones de marca/pancarteros/369704166_821228080005777_704491612468148993_n.jpg',
   },
 ];
 
 export const PROMODEGUSTADORAS_GALLERY: GalleryPhoto[] = [
   {
-    url: '/images/servicios/activaciones de marca/promodegustadoras/IMG_20260911_182547.jpg',
+    url: '/images/servicios/activaciones de marca/promodegustadoras/IMG_20260911_182849.jpg',
   },
   {
-    url: '/images/servicios/activaciones de marca/promodegustadoras/IMG_20260911_182849.jpg',
+    url: '/images/servicios/activaciones de marca/promodegustadoras/IMG_20260911_182547.jpg',
   },
   {
     url: '/images/servicios/activaciones de marca/promodegustadoras/ef915f31-d76a-4ba8-b6de-747edee2562d.jpg',
@@ -392,10 +389,10 @@ export const PERIFONEO_GALLERY: GalleryPhoto[] = [
 ];
 
 export const VALLAS_MOVILES_GALLERY: GalleryPhoto[] = [
+  { url: '/images/servicios/perifoneo/vallas moviles/20260124_181502.jpg' },
   { url: '/images/servicios/perifoneo/vallas moviles/20240113_090715.jpg' },
   { url: '/images/servicios/perifoneo/vallas moviles/20240114_121524.jpg' },
   { url: '/images/servicios/perifoneo/vallas moviles/20260124_181456.jpg' },
-  { url: '/images/servicios/perifoneo/vallas moviles/20260124_181502.jpg' },
   {
     url: '/images/servicios/perifoneo/vallas moviles/4cd0665a-f775-42c4-bb31-23b1ec32387e.jpg',
   },
@@ -415,6 +412,9 @@ export const VALLAS_MOVILES_GALLERY: GalleryPhoto[] = [
 
 export const VOLANTEO_CASA_GALLERY: GalleryPhoto[] = [
   {
+    url: '/images/servicios/volanteo/casa a casa/b786e258-f02d-4858-92ca-7855aa78712c.jpg',
+  },
+  {
     url: '/images/servicios/volanteo/casa a casa/329131488_1363140147772815_3246469811862417756_n.jpg',
   },
   {
@@ -422,9 +422,6 @@ export const VOLANTEO_CASA_GALLERY: GalleryPhoto[] = [
   },
   {
     url: '/images/servicios/volanteo/casa a casa/9eddf49a-7f7b-4247-a8ff-24a146f35ddd.jpg',
-  },
-  {
-    url: '/images/servicios/volanteo/casa a casa/b786e258-f02d-4858-92ca-7855aa78712c.jpg',
   },
   {
     url: '/images/servicios/volanteo/casa a casa/c0f1ffcb-bfdc-4f56-b739-db95f94da475.jpg',

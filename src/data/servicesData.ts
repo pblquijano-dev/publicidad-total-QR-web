@@ -19,7 +19,7 @@ import {
   VOLANTEO_MANO_GALLERY,
   VOLANTES_IMPRESOS_GALLERY,
   LONAS_GALLERY,
-  VINIL_GALLERY,
+  /* VINIL_GALLERY, */
 } from './servicesPhotos';
 
 export interface ServiceItem {
@@ -92,7 +92,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Espectáculo musical de percusión y ritmo en vivo para capturar la atención masiva en inauguraciones, eventos comerciales y desfiles festivos.',
         coverImage:
-          '/images/servicios/activaciones de marca/batucada/384192141_848130143982237_2975859918883456179_n.jpg',
+          '/images/servicios/activaciones de marca/batucada/309037420_555330266595561_3298176635245688820_n.jpg',
         gallery: BATUCADA_GALLERY,
       },
       {
@@ -110,7 +110,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Personal capacitado en punto de venta para demostración de producto, degustación, entrega de muestras y desplazamiento de inventario en tienda.',
         coverImage:
-          '/images/servicios/activaciones de marca/promodegustadoras/ef915f31-d76a-4ba8-b6de-747edee2562d.jpg',
+          '/images/servicios/activaciones de marca/promodegustadoras/IMG_20260911_182849.jpg',
         gallery: PROMODEGUSTADORAS_GALLERY,
       },
       {
@@ -119,7 +119,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Personal masculino de imagen comercial y protocolo para bienvenida, eventos deportivos, exposiciones corporativas y activaciones de marca.',
         coverImage:
-          '/images/servicios/activaciones de marca/gios/c41435e4-5020-474f-9749-535a54dca792.jpg',
+          '/images/servicios/activaciones de marca/gios/075d7e68-dad1-4a52-96b8-bbaec2a78631.jpg',
         gallery: GIOS_GALLERY,
       },
     ],
@@ -236,15 +236,15 @@ export const CATEGORIES: Category[] = [
           '/images/servicios/impresos/lonas/aa0d868d-64a3-406d-93f7-f6ba6b77236e.jpg',
         gallery: LONAS_GALLERY,
       },
-      {
-        slug: 'vinil-publicitario',
-        title: 'Vinil Publicitario',
-        description:
-          'Vinil adhesivo de alta resistencia, microperforado para cristales y rotulación de flotillas vehiculares para transformar cualquier superficie en medio publicitario.',
-        coverImage:
-          '/images/servicios/impresos/lonas/aa0d868d-64a3-406d-93f7-f6ba6b77236e.jpg',
-        gallery: VINIL_GALLERY,
-      },
+      /*       {
+              slug: 'vinil-publicitario',
+              title: 'Vinil Publicitario',
+              description:
+                'Vinil adhesivo de alta resistencia, microperforado para cristales y rotulación de flotillas vehiculares para transformar cualquier superficie en medio publicitario.',
+              coverImage:
+                '/images/servicios/impresos/lonas/aa0d868d-64a3-406d-93f7-f6ba6b77236e.jpg',
+              gallery: VINIL_GALLERY,
+            }, */
     ],
   },
 ];
