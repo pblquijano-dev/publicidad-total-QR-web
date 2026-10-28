@@ -21,13 +21,16 @@
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: theme('colors.brand.dark');
+  background: #f8f9fa;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: theme('colors.brand.primary');
+  background: #092652;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: theme('colors.brand.crimson');
 }
@@ -38,10 +41,12 @@
     transform: scale(1);
     opacity: 0.75;
   }
+
   40% {
     transform: scale(1.55);
     opacity: 0;
   }
+
   100% {
     transform: scale(1.55);
     opacity: 0;
@@ -50,4 +55,18 @@
 
 .animate-ping-slow {
   animation: pingSlow 3.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Scroll reveal animations styling */
+.transition-reveal {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .transition-reveal {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }

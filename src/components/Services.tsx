@@ -1,329 +1,200 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
-  Sparkles,
-  Users,
-  Mic,
-  TrendingUp,
-  Megaphone,
-  Radio,
-  FileText,
-  Music,
-  Disc3,
+  Eye,
   MessageCircle,
-  Check,
-  ArrowRight,
-  ShieldCheck,
+  X,
   ChevronLeft,
   ChevronRight,
+  Images,
   Maximize2,
-  X,
-  Camera,
-  PartyPopper,
-  Flag,
-  Footprints,
+  Link2,
+  Check,
 } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 import {
-  GalleryPhoto,
-  ACTIVACIONES_GALLERY,
-  EDECANES_GALLERY,
-  ANIMADORES_GALLERY,
-  PROMOTORIA_GALLERY,
-  PERIFONEO_GALLERY,
-  VOLANTEO_GALLERY,
-  BATUCADA_GALLERY,
-  SPOTS_GALLERY,
-  BOTARGUERO_GALLERY,
-  PANCARTERO_GALLERY,
-  ZANQUERO_GALLERY,
-} from '../data/servicesPhotos';
+  CATEGORIES,
+  Category,
+  ServiceItem,
+  findServiceBySlug,
+} from '../data/servicesData';
+import { getAssetUrl } from '../utils/assets';
 
-export type { GalleryPhoto };
+export { CATEGORIES, findServiceBySlug, type ServiceItem, type Category };
 
-interface PrimaryService {
-  id: string;
-  title: string;
-  description: string;
-  icon: React.ComponentType<{ className?: string }>;
-  kpi: string;
-  badge: string;
-  highlights: string[];
-  whatsappMsg: string;
-  gallery: GalleryPhoto[];
-}
+/**
+ * Obtiene el slug de servicio presente en el URL actual (?servicio=slug o #slug)
+ */
+const getSlugFromUrl = (): string | null => {
+  if (typeof window === 'undefined') return null;
 
-interface SecondaryService {
-  id: string;
-  title: string;
-  description: string;
-  icon: React.ComponentType<{ className?: string }>;
-  tag: string;
-  whatsappMsg: string;
-  gallery: GalleryPhoto[];
-}
+  // 1. Parámetro de búsqueda: ?servicio=slug o ?service=slug
+  const searchParams = new URLSearchParams(window.location.search);
+  const paramSlug = searchParams.get('servicio') || searchParams.get('service');
+  if (paramSlug) return paramSlug.toLowerCase().trim();
 
-interface LightboxState {
-  isOpen: boolean;
-  serviceTitle: string;
-  serviceTag?: string;
-  whatsappMsg: string;
-  photos: GalleryPhoto[];
-  currentIndex: number;
-}
+  // 2. Hash con query: ej: #servicios?servicio=slug o #?servicio=slug
+  const hash = window.location.hash;
+  if (hash.includes('?')) {
+    const hashQuery = hash.substring(hash.indexOf('?') + 1);
+    const hashParams = new URLSearchParams(hashQuery);
+    const hSlug = hashParams.get('servicio') || hashParams.get('service');
+    if (hSlug) return hSlug.toLowerCase().trim();
+  }
 
-// Configuración estática de servicios principales
-const PRIMARY_SERVICES: PrimaryService[] = [
-  {
-    id: 'activaciones',
-    title: 'Activaciones de Marca',
-    description:
-      'Montaje de carpa publicitaria, equipo de audio profesional, dinámicas comerciales en punto de venta, perifoneo en vivo y entrega de material promocional para atraer clientes a tu tienda.',
-    icon: Sparkles,
-    kpi: 'Alto Engagement',
-    badge: 'Servicio Estrella',
-    highlights: [
-      'Montaje de carpa publicitaria y equipo de audio profesional',
-      'Dinámicas comerciales y perifoneo en punto de venta',
-      'Supervisión presencial y entrega de material promocional',
-    ],
-    whatsappMsg:
-      'Hola, me interesa cotizar el servicio de *Activaciones de Marca* para mi empresa en la Península.',
-    gallery: ACTIVACIONES_GALLERY,
-  },
-  {
-    id: 'edecanes',
-    title: 'Edecanes y Hostess',
-    description:
-      'Personal de imagen con excelente presentación y vestuario coordinado para inauguraciones, eventos corporativos, congresos y expos. Briefing previo sobre tu producto y puntualidad rigurosa.',
-    icon: Users,
-    kpi: 'Imagen y Protocolo',
-    badge: 'Personal Capacitado',
-    highlights: [
-      'Excelente presentación y vestuario coordinado para eventos',
-      'Briefing previo sobre tu marca, producto y dinámicas',
-      'Puntualidad rigurosa y trato cordial en todo momento',
-    ],
-    whatsappMsg:
-      'Hola, me gustaría cotizar *Edecanes y Hostess* para un evento en la Península.',
-    gallery: EDECANES_GALLERY,
-  },
-  {
-    id: 'animadores',
-    title: 'Animadores y Locución en Vivo',
-    description:
-      'Locutores y animadores con micrófono y equipo de audio de alta potencia para conducir dinámicas, interactuar con el público e invitar a los transeúntes a conocer tus promociones.',
-    icon: Mic,
-    kpi: 'Atracción Inmediata',
-    badge: 'Conversión en Vivo',
-    highlights: [
-      'Locución comercial persuasiva y perifoneo en vivo',
-      'Conducción de dinámicas de regalos y concursos',
-      'Equipo de audio de alta potencia para eventos comerciales',
-    ],
-    whatsappMsg:
-      'Hola, solicito informes y cotización de *Animadores y Locución en Vivo* para mi negocio.',
-    gallery: ANIMADORES_GALLERY,
-  },
-  {
-    id: 'promotoria',
-    title: 'Promotoría e Impulsadoras',
-    description:
-      'Personal capacitado en piso de venta para demostración de producto, degustación, entrega de muestras y desplazamiento de producto en tienda de autoservicio.',
-    icon: TrendingUp,
-    kpi: 'Impulso de Venta',
-    badge: 'Piso de Venta',
-    highlights: [
-      'Demostración de producto y degustación en piso de venta',
-      'Entrega de muestras y desplazamiento en tiendas de autoservicio',
-      'Supervisión presencial y reporte de actividades diario',
-    ],
-    whatsappMsg:
-      'Hola, deseo cotizar una cuadrilla de *Promotoría e Impulsadoras* para punto de venta.',
-    gallery: PROMOTORIA_GALLERY,
-  },
-];
+  // 3. Hash directo: ej: #edecanes-aa-aaa o #servicio=edecanes-aa-aaa
+  if (hash) {
+    const cleanHash = hash.replace(/^#/, '').toLowerCase().trim();
+    if (cleanHash.startsWith('servicio=')) {
+      return cleanHash.replace('servicio=', '');
+    }
+    if (cleanHash.startsWith('servicio/')) {
+      return cleanHash.replace('servicio/', '');
+    }
+    if (findServiceBySlug(cleanHash)) {
+      return cleanHash;
+    }
+  }
 
-// Configuración estática de servicios secundarios
-const SECONDARY_SERVICES: SecondaryService[] = [
-  {
-    id: 'perifoneo',
-    title: 'Perifoneo Móvil',
-    description:
-      'Vehículos adaptados con bocinas de alto alcance (mínimo 5 horas diarias por unidad) recorriendo supermanzanas y avenidas.',
-    icon: Radio,
-    tag: 'Sonido en Calle',
-    whatsappMsg:
-      'Hola, me interesa una cotización de rutas de *Perifoneo Móvil* en la Península.',
-    gallery: PERIFONEO_GALLERY,
-  },
-  {
-    id: 'volanteo',
-    title: 'Volanteo Estratégico',
-    description:
-      'Distribución mano a mano y en buzones por supermanzanas y colonias clave con supervisión y reporte de entrega.',
-    icon: FileText,
-    tag: 'Mano a Mano',
-    whatsappMsg: 'Hola, quiero cotizar una campaña de *Volanteo Estratégico*.',
-    gallery: VOLANTEO_GALLERY,
-  },
-  {
-    id: 'batucada',
-    title: 'Batucada',
-    description:
-      'Animación rítmica y música en vivo con percusionistas para aperturas, desfiles y aniversarios que capturan al público.',
-    icon: Music,
-    tag: 'Música en Vivo',
-    whatsappMsg:
-      'Hola, me interesa contratar *Batucada* para una inauguración.',
-    gallery: BATUCADA_GALLERY,
-  },
-  {
-    id: 'spots',
-    title: 'Grabación de Spots',
-    description:
-      'Producción de audio publicitario con locución profesional, guion persuasivo y masterización para perifoneo y radio.',
-    icon: Disc3,
-    tag: 'Locución y Audio',
-    whatsappMsg: 'Hola, quiero solicitar la *Grabación de Spots* profesional.',
-    gallery: SPOTS_GALLERY,
-  },
-  {
-    id: 'botarguero',
-    title: 'Botarguero',
-    description:
-      'Animación con botargas de marca y botargueros enérgicos que interactúan con niños y familias, atrayendo miradas y generando fotos virales.',
-    icon: PartyPopper,
-    tag: 'Atracción Visual',
-    whatsappMsg:
-      'Hola, me interesa cotizar el servicio de *Botarguero* para mi negocio en la Península.',
-    gallery: BOTARGUERO_GALLERY,
-  },
-  {
-    id: 'pancartero',
-    title: 'Pancartero',
-    description:
-      'Personal dinámico en camellones y esquinas de alto aforo con pancartas y flechas llamativas para desviar el tráfico de clientes a tu tienda.',
-    icon: Flag,
-    tag: 'Impacto en Cruceros',
-    whatsappMsg:
-      'Hola, me gustaría cotizar *Pancarteros y Flecheros* para una campaña de atracción en cruceros.',
-    gallery: PANCARTERO_GALLERY,
-  },
-  {
-    id: 'zanquero',
-    title: 'Zanquero',
-    description:
-      'Artistas en zancos con vestuarios vistosos y temáticos que dominan la vista panorámica de la calle en inauguraciones, ferias y desfiles.',
-    icon: Footprints,
-    tag: 'Presencia de Altura',
-    whatsappMsg:
-      'Hola, deseo solicitar cotización para *Zanqueros y Performance* en la Península.',
-    gallery: ZANQUERO_GALLERY,
-  },
-];
+  return null;
+};
 
 export const Services: React.FC = () => {
-  const primaryServices = PRIMARY_SERVICES;
-  const secondaryServices = SECONDARY_SERVICES;
+  const [activeTab, setActiveTab] = useState<number>(0);
+  const [selectedService, setSelectedService] = useState<ServiceItem | null>(
+    null
+  );
+  const [activePhotoIndex, setActivePhotoIndex] = useState<number>(0);
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const [copiedLink, setCopiedLink] = useState<boolean>(false);
 
-  // In-component active photo index for each service
-  const [activePhotoIndices, setActivePhotoIndices] = useState<
-    Record<string, number>
-  >({});
-
-  const getActiveIndex = (serviceId: string) =>
-    activePhotoIndices[serviceId] || 0;
-
-  const handlePrevPhoto = (
-    e: React.MouseEvent,
-    serviceId: string,
-    totalPhotos: number
-  ) => {
-    e.stopPropagation();
-    setActivePhotoIndices((prev) => ({
-      ...prev,
-      [serviceId]: (getActiveIndex(serviceId) - 1 + totalPhotos) % totalPhotos,
-    }));
-  };
-
-  const handleNextPhoto = (
-    e: React.MouseEvent,
-    serviceId: string,
-    totalPhotos: number
-  ) => {
-    e.stopPropagation();
-    setActivePhotoIndices((prev) => ({
-      ...prev,
-      [serviceId]: (getActiveIndex(serviceId) + 1) % totalPhotos,
-    }));
-  };
-
-  const handleSelectPhoto = (
-    e: React.MouseEvent,
-    serviceId: string,
-    index: number
-  ) => {
-    e.stopPropagation();
-    setActivePhotoIndices((prev) => ({
-      ...prev,
-      [serviceId]: index,
-    }));
-  };
-
-  // Fullscreen Lightbox Modal state
-  const [lightbox, setLightbox] = useState<LightboxState>({
-    isOpen: false,
-    serviceTitle: '',
-    serviceTag: '',
-    whatsappMsg: '',
-    photos: [],
-    currentIndex: 0,
-  });
-
-  const openLightbox = (
-    serviceTitle: string,
-    whatsappMsg: string,
-    photos: GalleryPhoto[],
-    startIndex: number,
-    serviceTag?: string
-  ) => {
-    setLightbox({
-      isOpen: true,
-      serviceTitle,
-      serviceTag,
-      whatsappMsg,
-      photos,
-      currentIndex: startIndex,
-    });
-  };
-
-  const closeLightbox = useCallback(() => {
-    setLightbox((prev) => ({ ...prev, isOpen: false }));
-  }, []);
-
-  const nextLightboxPhoto = useCallback(() => {
-    setLightbox((prev) => ({
-      ...prev,
-      currentIndex: (prev.currentIndex + 1) % prev.photos.length,
-    }));
-  }, []);
-
-  const prevLightboxPhoto = useCallback(() => {
-    setLightbox((prev) => ({
-      ...prev,
-      currentIndex:
-        (prev.currentIndex - 1 + prev.photos.length) % prev.photos.length,
-    }));
-  }, []);
-
-  // Keyboard navigation & body scroll locking for lightbox
+  // Sincronizar modal con el slug presente en el URL (al cargar y al navegar)
   useEffect(() => {
-    if (!lightbox.isOpen) return;
+    const syncModalWithUrl = () => {
+      const slug = getSlugFromUrl();
+      if (slug) {
+        const result = findServiceBySlug(slug);
+        if (result) {
+          setActiveTab(result.categoryIndex);
+          setSelectedService(result.service);
+          setActivePhotoIndex(0);
+          setIsFullscreen(false);
+          return;
+        }
+      }
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') nextLightboxPhoto();
-      if (e.key === 'ArrowLeft') prevLightboxPhoto();
+      // Si no hay slug en el URL y el modal estaba abierto por URL, se cierra
+      setSelectedService((current) => {
+        if (current) {
+          setIsFullscreen(false);
+          return null;
+        }
+        return current;
+      });
     };
+
+    syncModalWithUrl();
+
+    window.addEventListener('popstate', syncModalWithUrl);
+    window.addEventListener('hashchange', syncModalWithUrl);
+
+    return () => {
+      window.removeEventListener('popstate', syncModalWithUrl);
+      window.removeEventListener('hashchange', syncModalWithUrl);
+    };
+  }, []);
+
+  const openServiceModal = (service: ServiceItem) => {
+    setSelectedService(service);
+    setActivePhotoIndex(0);
+    setIsFullscreen(false);
+
+    // Actualizar el slug en el URL sin recargar la página
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('servicio', service.slug);
+      window.history.pushState({ servicio: service.slug }, '', url.toString());
+    }
+  };
+
+  const closeServiceModal = useCallback(() => {
+    setSelectedService(null);
+    setActivePhotoIndex(0);
+    setIsFullscreen(false);
+    setCopiedLink(false);
+
+    // Limpiar el slug del URL al cerrar el modal
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      let urlChanged = false;
+
+      if (url.searchParams.has('servicio') || url.searchParams.has('service')) {
+        url.searchParams.delete('servicio');
+        url.searchParams.delete('service');
+        urlChanged = true;
+      }
+
+      if (window.location.hash) {
+        const cleanHash = window.location.hash.replace(/^#/, '');
+        if (
+          findServiceBySlug(cleanHash) ||
+          cleanHash.startsWith('servicio=') ||
+          cleanHash.startsWith('servicio/')
+        ) {
+          url.hash = 'servicios';
+          urlChanged = true;
+        }
+      }
+
+      if (urlChanged) {
+        window.history.pushState({}, '', url.toString());
+      }
+    }
+  }, []);
+
+  const handleCopyDirectLink = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!selectedService || typeof window === 'undefined') return;
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('servicio', selectedService.slug);
+
+    navigator.clipboard
+      .writeText(url.toString())
+      .then(() => {
+        setCopiedLink(true);
+        setTimeout(() => setCopiedLink(false), 2200);
+      })
+      .catch((err) => {
+        console.error('Error al copiar el enlace:', err);
+      });
+  };
+
+  // Manejo de teclado (ESC y flechas del carrusel) y bloqueo de scroll
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (!selectedService) return;
+
+      if (e.key === 'Escape') {
+        if (isFullscreen) {
+          setIsFullscreen(false);
+        } else {
+          closeServiceModal();
+        }
+      } else if (e.key === 'ArrowLeft') {
+        setActivePhotoIndex((prev) =>
+          prev === 0 ? selectedService.gallery.length - 1 : prev - 1
+        );
+      } else if (e.key === 'ArrowRight') {
+        setActivePhotoIndex((prev) =>
+          prev === selectedService.gallery.length - 1 ? 0 : prev + 1
+        );
+      }
+    },
+    [selectedService, isFullscreen, closeServiceModal]
+  );
+
+  useEffect(() => {
+    if (!selectedService) return;
 
     window.addEventListener('keydown', handleKeyDown);
     const originalOverflow = document.body.style.overflow;
@@ -333,567 +204,400 @@ export const Services: React.FC = () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = originalOverflow;
     };
-  }, [lightbox.isOpen, closeLightbox, nextLightboxPhoto, prevLightboxPhoto]);
+  }, [selectedService, handleKeyDown]);
+
+  const handlePrevPhoto = () => {
+    if (!selectedService) return;
+    setActivePhotoIndex((prev) =>
+      prev === 0 ? selectedService.gallery.length - 1 : prev - 1
+    );
+  };
+
+  const handleNextPhoto = () => {
+    if (!selectedService) return;
+    setActivePhotoIndex((prev) =>
+      prev === selectedService.gallery.length - 1 ? 0 : prev + 1
+    );
+  };
 
   return (
     <section
       id="servicios"
-      className="py-20 sm:py-24 bg-surface-low dark:bg-brand-dark-alt transition-colors duration-300 relative overflow-hidden"
+      className="bg-surface-low py-20 px-4 sm:px-6 lg:px-8"
     >
-      {/* Ambient background glows */}
-      <div className="absolute top-1/4 -right-40 w-96 h-96 bg-brand-primary/10 dark:bg-brand-primary/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 -left-40 w-96 h-96 bg-brand-cyan/10 dark:bg-brand-cyan/15 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary-fixed/60 dark:bg-brand-primary/30 border border-brand-primary/20 dark:border-brand-primary/50 text-[11px] font-sora font-bold text-brand-primary-dark dark:text-brand-primary-soft uppercase tracking-widest mb-4">
-            <Megaphone className="w-3.5 h-3.5 text-brand-cyan" />
-            <span>Portafolio Especializado BTL</span>
-          </div>
-
-          <h2 className="font-sora text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-primary-dark dark:text-white tracking-tight leading-[1.15]">
-            Soluciones Integrales para{' '}
-            <span className="text-brand-crimson">Dominar la Calle</span>
-          </h2>
-
-          <p className="font-manrope text-base sm:text-lg text-gray-600 dark:text-gray-300 mt-4 leading-relaxed max-w-2xl mx-auto">
-            Combinamos presencia humana, sonido profesional y logística de
-            precisión para que tu marca no pase desapercibida. Explora nuestras
-            galerías fotográficas en cada servicio.
-          </p>
-        </div>
-
-        {/* Priority 4 Star Services (Interactive Gallery Showcase) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-          {primaryServices.map((service) => {
-            const IconComponent = service.icon;
-            const waUrl = `https://wa.me/529981071359?text=${encodeURIComponent(
-              service.whatsappMsg
-            )}`;
-            const currentIdx = getActiveIndex(service.id);
-            const currentPhoto =
-              service.gallery[currentIdx] || service.gallery[0];
-            const totalPhotos = service.gallery.length;
-
-            return (
-              <div
-                key={service.id}
-                className="group rounded-3xl bg-white dark:bg-brand-dark border border-gray-200/90 dark:border-white/10 overflow-hidden hover:border-brand-cyan/60 dark:hover:border-brand-cyan/50 transition-all duration-300 shadow-md hover:shadow-2xl flex flex-col justify-between relative"
-              >
-                <div>
-                  {/* Interactive Gallery Container (Aspect 16:9) */}
-                  <div className="relative aspect-video w-full overflow-hidden bg-black/80 select-none">
-                    {/* Active Image */}
-                    <img
-                      src={currentPhoto.url}
-                      alt={currentPhoto.caption || service.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover transition-transform duration-500 ease-out cursor-pointer hover:scale-[1.02]"
-                      onClick={() =>
-                        openLightbox(
-                          service.title,
-                          service.whatsappMsg,
-                          service.gallery,
-                          currentIdx,
-                          service.badge
-                        )
-                      }
-                      title="Haz clic para ver en pantalla completa"
-                    />
-
-                    {/* Gradient Overlays */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/40 pointer-events-none" />
-
-                    {/* Top Left Badge */}
-                    <div className="absolute top-3 sm:top-4 left-3 sm:left-4 flex items-center gap-2 pointer-events-none">
-                      <span className="px-3 py-1 rounded-full bg-brand-primary/90 backdrop-blur-md text-white font-sora font-semibold text-xs border border-white/20 shadow-sm">
-                        {service.badge}
-                      </span>
-                    </div>
-
-                    {/* Top Right Action & KPI Indicators */}
-                    <div className="absolute top-3 sm:top-4 right-3 sm:right-4 flex items-center gap-2">
-                      <span className="hidden sm:inline-flex px-2.5 py-1 rounded-full bg-brand-lime text-brand-dark font-sora font-extrabold text-xs shadow-sm">
-                        {service.kpi}
-                      </span>
-
-                      {/* Fullscreen Expand Button */}
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          openLightbox(
-                            service.title,
-                            service.whatsappMsg,
-                            service.gallery,
-                            currentIdx,
-                            service.badge
-                          );
-                        }}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 hover:bg-brand-cyan text-white text-xs font-sora font-medium backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-105 shadow-md"
-                        title="Ver galería en pantalla completa"
-                      >
-                        <Maximize2 className="w-3.5 h-3.5" />
-                        <span className="hidden sm:inline">
-                          Pantalla completa
-                        </span>
-                      </button>
-                    </div>
-
-                    {/* Navigation Arrows for in-component interaction */}
-                    {totalPhotos > 1 && (
-                      <>
-                        <button
-                          type="button"
-                          onClick={(e) =>
-                            handlePrevPhoto(e, service.id, totalPhotos)
-                          }
-                          aria-label="Foto anterior"
-                          className="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 hover:bg-brand-cyan text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-200 hover:scale-110 shadow-lg active:scale-95"
-                        >
-                          <ChevronLeft className="w-5 h-5" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={(e) =>
-                            handleNextPhoto(e, service.id, totalPhotos)
-                          }
-                          aria-label="Foto siguiente"
-                          className="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 hover:bg-brand-cyan text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all duration-200 hover:scale-110 shadow-lg active:scale-95"
-                        >
-                          <ChevronRight className="w-5 h-5" />
-                        </button>
-                      </>
-                    )}
-
-                    {/* Bottom Title & Icon Overlay */}
-                    <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between gap-3 pointer-events-none">
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 sm:p-2.5 rounded-xl bg-brand-cyan text-white shadow-lg shrink-0">
-                          <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
-                        </div>
-                        <h3 className="font-sora font-bold text-lg sm:text-2xl text-white drop-shadow-sm leading-snug">
-                          {service.title}
-                        </h3>
-                      </div>
-
-                      {/* Photo Counter Pill */}
-                      <div className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white/90 text-xs font-sora font-semibold flex items-center gap-1 border border-white/10 shrink-0">
-                        <Camera className="w-3 h-3 text-brand-lime" />
-                        <span>
-                          {currentIdx + 1}/{totalPhotos}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Photo Navigation Strip */}
-                  {totalPhotos > 1 && (
-                    <div className="px-5 py-2 bg-gray-50/90 dark:bg-white/[0.04] border-b border-gray-200/80 dark:border-white/5 flex items-center justify-between gap-3">
-                      <span className="font-manrope text-xs text-gray-500 dark:text-gray-400 font-medium">
-                        Foto {currentIdx + 1} de {totalPhotos}
-                      </span>
-
-                      {/* Dots indicator */}
-                      <div className="flex items-center gap-1.5 shrink-0 max-w-[50%] overflow-x-auto scrollbar-none py-0.5">
-                        {service.gallery.map((_, dotIdx) => (
-                          <button
-                            key={dotIdx}
-                            type="button"
-                            onClick={(e) =>
-                              handleSelectPhoto(e, service.id, dotIdx)
-                            }
-                            className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                              dotIdx === currentIdx
-                                ? 'bg-brand-cyan w-5'
-                                : 'bg-gray-300 dark:bg-white/30 hover:bg-gray-400'
-                            }`}
-                            aria-label={`Ver foto ${dotIdx + 1}`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Card Content */}
-                  <div className="p-6 sm:p-7">
-                    <p className="font-manrope text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                      {service.description}
-                    </p>
-
-                    <div className="space-y-3 mb-6">
-                      {service.highlights.map((h, i) => (
-                        <div key={i} className="flex items-start gap-2.5">
-                          <div className="w-4 h-4 rounded-full bg-brand-lime/20 text-brand-lime-dark dark:text-brand-lime flex items-center justify-center shrink-0 mt-0.5 border border-brand-lime/40">
-                            <Check className="w-3 h-3 stroke-[3]" />
-                          </div>
-                          <span className="font-manrope text-xs sm:text-sm text-gray-700 dark:text-gray-200 leading-relaxed">
-                            {h}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* WhatsApp Action Button */}
-                <div className="px-6 pb-6 pt-0">
-                  <a
-                    href={waUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-brand-dark font-sora font-bold text-sm shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 group/btn"
-                  >
-                    <MessageCircle className="w-4 h-4 fill-current transition-transform group-hover/btn:scale-110" />
-                    <span>Cotizar este servicio por WhatsApp</span>
-                  </a>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Secondary Services (Support Capsules with Interactive Gallery) */}
-        <div className="mb-20">
-          <div className="text-center mb-10 max-w-2xl mx-auto">
-            <span className="text-[11px] font-sora font-bold uppercase tracking-widest text-brand-primary dark:text-brand-cyan block mb-1">
-              Servicios complementarios
+      <div className="max-w-7xl mx-auto">
+        {/* Encabezado de sección */}
+        <ScrollReveal animation="fade-up" duration={700}>
+          <div className="text-center">
+            <span className="bg-brand-primary-fixed text-brand-primary font-sora text-xs font-semibold px-3.5 py-1.5 rounded-full inline-block mb-3">
+              • CATÁLOGO DE SERVICIOS BTL
             </span>
-            <h3 className="font-sora text-2xl sm:text-3xl font-bold text-brand-primary-dark dark:text-white">
-              Cápsulas de Soporte Publicitario
-            </h3>
-            <p className="font-manrope text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-2">
-              Herramientas tácticas y de animación periférica para reforzar el
-              impacto y la recordación de tus campañas en calle. Explora las
-              fotos de cada servicio.
+            <h2 className="font-sora font-bold text-3xl sm:text-4xl text-brand-primary text-center mb-3">
+              Soluciones de Publicidad y Activación de Marca
+            </h2>
+            <p className="font-manrope text-on-surface-variant text-center max-w-2xl mx-auto mb-10">
+              Selecciona una categoría para explorar nuestros servicios y
+              operativos de campo en la Península.
             </p>
           </div>
+        </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {secondaryServices.map((capsule) => {
-              const waUrl = `https://wa.me/529981071359?text=${encodeURIComponent(
-                capsule.whatsappMsg
-              )}`;
-              const currentIdx = getActiveIndex(capsule.id);
-              const currentPhoto =
-                capsule.gallery[currentIdx] || capsule.gallery[0];
-              const totalPhotos = capsule.gallery.length;
-
+        {/* Selector de Pestañas (Tabs) con scroll horizontal en móvil */}
+        <ScrollReveal animation="fade-up" delay={100} duration={650}>
+          <div className="flex overflow-x-auto gap-2.5 pb-2 justify-start md:justify-center mb-12">
+            {CATEGORIES.map((category, index) => {
+              const isActive = activeTab === index;
               return (
-                <div
-                  key={capsule.id}
-                  className="rounded-2xl bg-white dark:bg-brand-dark border border-gray-200/90 dark:border-white/10 hover:border-brand-cyan/60 dark:hover:border-brand-cyan/50 transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-lg group overflow-hidden"
+                <button
+                  key={category.id}
+                  type="button"
+                  onClick={() => setActiveTab(index)}
+                  className={
+                    isActive
+                      ? 'bg-brand-primary text-surface font-sora font-semibold text-xs sm:text-sm rounded-xl px-5 py-2.5 shadow-sm whitespace-nowrap'
+                      : 'bg-surface text-on-surface-variant hover:text-brand-primary border border-surface-dim font-manrope font-medium text-xs sm:text-sm rounded-xl px-5 py-2.5 whitespace-nowrap transition-colors'
+                  }
                 >
-                  <div>
-                    {/* Compact Image Gallery Header */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/70 select-none">
-                      <img
-                        src={currentPhoto.url}
-                        alt={currentPhoto.caption || capsule.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover transition-transform duration-500 ease-out cursor-pointer hover:scale-105"
-                        onClick={() =>
-                          openLightbox(
-                            capsule.title,
-                            capsule.whatsappMsg,
-                            capsule.gallery,
-                            currentIdx,
-                            capsule.tag
-                          )
-                        }
-                        title="Haz clic para ver galería en pantalla completa"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-
-                      {/* Tag pill top left */}
-                      <div className="absolute top-2.5 left-2.5 pointer-events-none">
-                        <span className="text-[10px] font-sora font-bold text-brand-lime-dark dark:text-brand-lime bg-black/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-brand-lime/30 uppercase tracking-wider">
-                          {capsule.tag}
-                        </span>
-                      </div>
-
-                      {/* Expand & Counter top right */}
-                      <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5">
-                        <span className="px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-sora font-semibold text-white/90 border border-white/15">
-                          {currentIdx + 1}/{totalPhotos}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            openLightbox(
-                              capsule.title,
-                              capsule.whatsappMsg,
-                              capsule.gallery,
-                              currentIdx,
-                              capsule.tag
-                            );
-                          }}
-                          className="p-1 rounded-full bg-black/60 hover:bg-brand-cyan text-white backdrop-blur-md border border-white/20 transition-all hover:scale-110 shadow-md"
-                          title="Ampliar foto a pantalla completa"
-                        >
-                          <Maximize2 className="w-3 h-3" />
-                        </button>
-                      </div>
-
-                      {/* In-component gallery navigation arrows */}
-                      {totalPhotos > 1 && (
-                        <>
-                          <button
-                            type="button"
-                            onClick={(e) =>
-                              handlePrevPhoto(e, capsule.id, totalPhotos)
-                            }
-                            aria-label="Foto anterior"
-                            className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 hover:bg-brand-cyan text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all hover:scale-110 shadow-md"
-                          >
-                            <ChevronLeft className="w-4 h-4" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={(e) =>
-                              handleNextPhoto(e, capsule.id, totalPhotos)
-                            }
-                            aria-label="Foto siguiente"
-                            className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 hover:bg-brand-cyan text-white flex items-center justify-center backdrop-blur-sm border border-white/20 transition-all hover:scale-110 shadow-md"
-                          >
-                            <ChevronRight className="w-4 h-4" />
-                          </button>
-                        </>
-                      )}
-                    </div>
-
-                    {/* Capsule Photo Dots Strip */}
-                    {totalPhotos > 1 && (
-                      <div className="px-3.5 py-1.5 bg-gray-50/90 dark:bg-white/[0.03] border-b border-gray-100 dark:border-white/5 flex items-center justify-between gap-2">
-                        <span className="font-manrope text-[11px] text-gray-500 dark:text-gray-400 font-medium">
-                          Foto {currentIdx + 1} de {totalPhotos}
-                        </span>
-
-                        {/* Dots indicator */}
-                        <div className="flex items-center gap-1 shrink-0 max-w-[50%] overflow-x-auto scrollbar-none py-0.5">
-                          {capsule.gallery.map((_, dotIdx) => (
-                            <button
-                              key={dotIdx}
-                              type="button"
-                              onClick={(e) =>
-                                handleSelectPhoto(e, capsule.id, dotIdx)
-                              }
-                              className={`w-1.5 h-1.5 rounded-full transition-all ${
-                                dotIdx === currentIdx
-                                  ? 'bg-brand-cyan w-3.5'
-                                  : 'bg-gray-300 dark:bg-white/30'
-                              }`}
-                              aria-label={`Ver foto ${dotIdx + 1}`}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Content */}
-                    <div className="p-4 sm:p-5">
-                      <h4 className="font-sora font-bold text-base text-brand-primary-dark dark:text-white mb-2 leading-snug">
-                        {capsule.title}
-                      </h4>
-                      <p className="font-manrope text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-                        {capsule.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* WhatsApp Action Link */}
-                  <div className="p-4 sm:p-5 pt-0">
-                    <a
-                      href={waUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 text-xs font-sora font-semibold text-brand-whatsapp hover:text-brand-whatsapp-hover dark:hover:text-white transition-colors pt-3 border-t border-gray-100 dark:border-white/5 w-full"
-                    >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>Cotizar por WhatsApp</span>
-                    </a>
-                  </div>
-                </div>
+                  {category.name}
+                </button>
               );
             })}
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* Bottom Fast CTA Banner */}
-        <div className="relative rounded-3xl bg-gradient-to-r from-brand-primary-dark via-brand-primary-deep to-brand-primary-deepest text-white p-8 sm:p-10 lg:p-12 shadow-2xl border border-brand-primary overflow-hidden">
-          {/* Subtle lighting accents */}
-          <div className="absolute top-0 left-0 w-80 h-80 bg-brand-cyan/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 right-0 w-80 h-80 bg-brand-crimson/20 rounded-full blur-3xl pointer-events-none" />
+        {/* Tarjetas de servicio por categoría */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {CATEGORIES[activeTab].services.map((service) => (
+            <div
+              key={service.slug}
+              id={`service-card-${service.slug}`}
+              className="group bg-surface border border-surface-container rounded-2xl shadow-sm hover:shadow-md overflow-hidden flex flex-col justify-between transition-all duration-300"
+            >
+              <div>
+                {/* Imagen de portada de la card */}
+                <div className="relative w-full h-48 sm:h-52 overflow-hidden bg-surface-dim">
+                  <img
+                    src={getAssetUrl(service.coverImage)}
+                    alt={service.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                  <span className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md text-[#092652] text-[11px] font-semibold font-sora px-2.5 py-1 rounded-lg shadow-sm flex items-center gap-1.5">
+                    <Images className="w-3 h-3 text-[#092652]" />
+                    {service.gallery.length}{' '}
+                    {service.gallery.length === 1 ? 'foto' : 'fotos'}
+                  </span>
+                </div>
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-brand-lime border border-brand-lime/30 text-[11px] font-sora font-bold tracking-wider uppercase mb-3 backdrop-blur-sm">
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-lime" />
-                <span>Despliegue operativo garantizado</span>
+                {/* Título del servicio (Descripción oculta) */}
+                <div className="p-5">
+                  <h3 className="font-sora font-bold text-lg text-brand-primary line-clamp-2">
+                    {service.title}
+                  </h3>
+                </div>
               </div>
-              <h3 className="font-sora text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-3">
-                ¿Requieres un paquete integral para tu evento o marca?
-              </h3>
-              <p className="font-manrope text-sm sm:text-base text-gray-300 leading-relaxed">
-                Armamos tu propuesta personalizada con edecanes, perifoneo,
-                botargueros, animadores y dinámicas interactivas adaptadas al
-                presupuesto y metas de tu empresa.
-              </p>
-            </div>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto shrink-0">
-              <a
-                href="https://wa.me/529981071359?text=Hola,%20deseo%20cotizar%20un%20paquete%20completo%20de%20servicios%20BTL%20para%20mi%20marca."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-brand-dark font-sora font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl shadow-lg transition-all duration-200"
-              >
-                <MessageCircle className="w-4 h-4 fill-current" />
-                <span>WhatsApp Express</span>
-              </a>
-              <a
-                href="#contacto"
-                className="inline-flex items-center justify-center gap-2 bg-brand-crimson hover:bg-brand-crimson-hover text-white font-sora font-bold text-sm sm:text-base px-6 py-3.5 rounded-xl shadow-lg hover:shadow-red-900/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-              >
-                <span>Solicitar Cotización</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
+              {/* Botones de acción: Ver más y Cotizar por WhatsApp */}
+              <div className="p-5 pt-0 mt-auto flex flex-col sm:flex-row gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => openServiceModal(service)}
+                  className="flex-1 bg-surface-container hover:bg-brand-primary hover:text-surface text-brand-primary border border-surface-dim font-sora font-semibold text-xs py-2.5 px-3 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5"
+                >
+                  <Eye className="w-3.5 h-3.5" />
+                  Ver más
+                </button>
+                <a
+                  href={`https://wa.me/9981071359?text=${encodeURIComponent(
+                    `Hola, me interesa cotizar el servicio de *${service.title}* en la Península.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-surface font-sora font-semibold text-xs py-2.5 px-3 rounded-xl transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  Cotizar
+                </a>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
 
-      {/* Fullscreen Lightbox Modal (Pantalla Completa) */}
-      {lightbox.isOpen && (
+      {/* Modal interactivo de servicio con galería y descripción */}
+      {selectedService && (
         <div
-          className="fixed inset-0 z-50 flex flex-col justify-between bg-black/95 backdrop-blur-xl transition-all duration-300 animate-fadeIn"
           role="dialog"
           aria-modal="true"
-          aria-label={`Galería a pantalla completa: ${lightbox.serviceTitle}`}
+          aria-label={selectedService.title}
+          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5 overflow-y-auto animate-in fade-in duration-200"
+          onClick={closeServiceModal}
         >
-          {/* Modal Top Header Bar */}
-          <div className="w-full px-4 sm:px-8 py-4 flex items-center justify-between border-b border-white/10 bg-black/40 backdrop-blur-md z-20">
-            <div className="flex items-center gap-3">
-              {lightbox.serviceTag && (
-                <span className="hidden sm:inline-block px-3 py-1 rounded-full bg-brand-primary text-white font-sora font-bold text-xs uppercase tracking-wider border border-white/20">
-                  {lightbox.serviceTag}
-                </span>
-              )}
+          <div
+            className="bg-surface rounded-3xl max-w-3xl w-full mx-auto overflow-hidden shadow-2xl border border-surface-container flex flex-col max-h-[92vh] relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Cabecera del modal */}
+            <div className="px-6 py-4 border-b border-surface-container flex items-center justify-between gap-4 bg-surface sticky top-0 z-20">
               <div>
-                <h3 className="font-sora font-bold text-base sm:text-xl text-white">
-                  {lightbox.serviceTitle}
+                <span className="text-[11px] font-bold text-brand-cyan uppercase tracking-wider font-sora">
+                  Detalle del Servicio
+                </span>
+                <h3 className="font-sora font-bold text-lg sm:text-2xl text-brand-primary">
+                  {selectedService.title}
                 </h3>
-                <p className="font-manrope text-xs text-gray-400">
-                  Foto {lightbox.currentIndex + 1} de {lightbox.photos.length}
+              </div>
+              <div className="flex items-center gap-2">
+                {/* Botón para compartir/copiar enlace directo con el slug */}
+                <button
+                  type="button"
+                  onClick={handleCopyDirectLink}
+                  title="Copiar enlace directo a este servicio"
+                  aria-label="Copiar enlace directo"
+                  className="h-10 px-3 rounded-full bg-surface-container hover:bg-surface-dim text-on-surface-variant hover:text-brand-primary transition-colors flex items-center gap-1.5 text-xs font-sora font-semibold"
+                >
+                  {copiedLink ? (
+                    <>
+                      <Check className="w-4 h-4 text-brand-lime" />
+                      <span className="hidden sm:inline text-brand-lime">
+                        ¡Copiado!
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <Link2 className="w-4 h-4" />
+                      <span className="hidden sm:inline">Compartir</span>
+                    </>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={closeServiceModal}
+                  aria-label="Cerrar modal"
+                  className="w-10 h-10 rounded-full bg-surface-container hover:bg-surface-dim text-on-surface-variant hover:text-brand-primary transition-colors flex items-center justify-center flex-shrink-0"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Contenido desplazable del modal */}
+            <div className="overflow-y-auto p-5 sm:p-6 space-y-6">
+              {/* Visor de Galería Fotográfica (Muestra foto completa) */}
+              <div className="space-y-3">
+                <div className="relative w-full h-[300px] sm:h-[420px] md:h-[480px] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 flex items-center justify-center group/viewer">
+                  {/* Fondo difuminado para rellenar los bordes con la misma imagen */}
+                  <img
+                    src={getAssetUrl(
+                      selectedService.gallery[activePhotoIndex]?.url || ''
+                    )}
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 scale-110 pointer-events-none"
+                  />
+
+                  {/* Foto completa (object-contain) sin ningún recorte */}
+                  <img
+                    src={getAssetUrl(
+                      selectedService.gallery[activePhotoIndex]?.url || ''
+                    )}
+                    alt={`${selectedService.title} - Foto ${activePhotoIndex + 1}`}
+                    onClick={() => setIsFullscreen(true)}
+                    className="relative z-10 max-w-full max-h-full object-contain cursor-zoom-in transition-transform duration-300 group-hover/viewer:scale-[1.01] select-none"
+                    title="Haz clic para abrir a imagen completa"
+                  />
+
+                  {/* Botón para abrir la foto a imagen completa */}
+                  <button
+                    type="button"
+                    onClick={() => setIsFullscreen(true)}
+                    aria-label="Abrir a imagen completa"
+                    className="absolute top-3 right-3 z-20 px-3 py-1.5 rounded-xl bg-black/60 hover:bg-black/85 backdrop-blur-md text-white text-xs font-sora font-semibold flex items-center gap-1.5 transition-all shadow-md hover:scale-105"
+                  >
+                    <Maximize2 className="w-3.5 h-3.5" />
+                    <span>Ampliar</span>
+                  </button>
+
+                  {/* Contador de fotos */}
+                  <span className="absolute bottom-3 right-3 z-20 bg-black/60 backdrop-blur-md text-white text-xs font-sora font-semibold px-3 py-1.5 rounded-lg">
+                    {activePhotoIndex + 1} / {selectedService.gallery.length}
+                  </span>
+
+                  {/* Flechas de navegación si hay más de 1 foto */}
+                  {selectedService.gallery.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={handlePrevPhoto}
+                        aria-label="Foto anterior"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white flex items-center justify-center transition-all opacity-80 hover:opacity-100"
+                      >
+                        <ChevronLeft className="w-6 h-6" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleNextPhoto}
+                        aria-label="Foto siguiente"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white flex items-center justify-center transition-all opacity-80 hover:opacity-100"
+                      >
+                        <ChevronRight className="w-6 h-6" />
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {/* Tira de miniaturas (thumbnails) */}
+                {selectedService.gallery.length > 1 && (
+                  <div className="flex gap-2.5 overflow-x-auto pb-2 pt-1">
+                    {selectedService.gallery.map((photo, idx) => (
+                      <button
+                        key={photo.url}
+                        type="button"
+                        onClick={() => setActivePhotoIndex(idx)}
+                        className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 transition-all ${
+                          activePhotoIndex === idx
+                            ? 'border-brand-primary ring-2 ring-brand-primary/30 scale-105'
+                            : 'border-transparent opacity-70 hover:opacity-100'
+                        }`}
+                      >
+                        <img
+                          src={getAssetUrl(photo.url)}
+                          alt={`Miniatura ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Descripción completa que se ocultó en la card */}
+              <div className="bg-surface-low rounded-2xl p-4 sm:p-5 border border-surface-container">
+                <h4 className="font-sora font-semibold text-xs text-on-surface-variant uppercase tracking-wider mb-2">
+                  Descripción del Servicio
+                </h4>
+                <p className="font-manrope text-on-surface text-sm sm:text-base leading-relaxed">
+                  {selectedService.description}
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              {/* Direct WhatsApp quote button */}
+            {/* Pie del modal con llamada a la acción */}
+            <div className="p-4 sm:p-6 border-t border-surface-container bg-surface flex flex-col sm:flex-row gap-3 items-center justify-between">
+              <span className="text-xs text-on-surface-variant font-manrope text-center sm:text-left">
+                ¿Requieres este servicio para tu activación o campaña?
+              </span>
               <a
-                href={`https://wa.me/529981071359?text=${encodeURIComponent(lightbox.whatsappMsg)}`}
+                href={`https://wa.me/9981071359?text=${encodeURIComponent(
+                  `Hola, me interesa cotizar el servicio de *${selectedService.title}* en la Península.`
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-brand-dark font-sora font-bold text-xs shadow-md transition-transform hover:scale-105"
+                className="w-full sm:w-auto bg-brand-whatsapp hover:bg-brand-whatsapp-hover text-surface font-sora font-semibold text-sm py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm"
               >
-                <MessageCircle className="w-4 h-4 fill-current" />
-                <span>Cotizar por WhatsApp</span>
+                <MessageCircle className="w-4 h-4" />
+                Cotizar por WhatsApp
               </a>
-
-              {/* Close Button */}
-              <button
-                type="button"
-                onClick={closeLightbox}
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-brand-crimson text-white flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 border border-white/20"
-                aria-label="Cerrar galería a pantalla completa"
-                title="Cerrar (Esc)"
-              >
-                <X className="w-5 h-5" />
-              </button>
             </div>
           </div>
+        </div>
+      )}
 
-          {/* Modal Main Stage (Image & Floating Navigation) */}
-          <div className="relative flex-1 flex items-center justify-center px-4 sm:px-16 py-4 overflow-hidden">
-            {/* Previous Photo Button */}
-            {lightbox.photos.length > 1 && (
-              <button
-                type="button"
-                onClick={prevLightboxPhoto}
-                aria-label="Foto anterior"
-                className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/60 hover:bg-brand-cyan text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-110 shadow-2xl active:scale-95"
-                title="Foto anterior (←)"
-              >
-                <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
-              </button>
-            )}
-
-            {/* Displayed Image */}
-            <div className="relative max-w-5xl max-h-[70vh] flex items-center justify-center">
-              <img
-                src={lightbox.photos[lightbox.currentIndex]?.url}
-                alt={
-                  lightbox.photos[lightbox.currentIndex]?.caption ||
-                  lightbox.serviceTitle
-                }
-                decoding="async"
-                className="max-h-[68vh] sm:max-h-[72vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl border border-white/10 select-none animate-fadeIn"
-              />
+      {/* Visor a Imagen Completa (Pantalla Completa / Lightbox) */}
+      {selectedService && isFullscreen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Vista de imagen completa"
+          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex flex-col justify-between p-3 sm:p-6 animate-in fade-in duration-200 select-none"
+          onClick={() => setIsFullscreen(false)}
+        >
+          {/* Barra superior de imagen completa */}
+          <div
+            className="w-full flex items-center justify-between z-20 pb-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div>
+              <h4 className="font-sora font-semibold text-sm sm:text-lg text-white">
+                {selectedService.title}
+              </h4>
+              <span className="text-xs text-white/70 font-manrope">
+                Foto {activePhotoIndex + 1} de {selectedService.gallery.length}
+              </span>
             </div>
+            <button
+              type="button"
+              onClick={() => setIsFullscreen(false)}
+              aria-label="Cerrar imagen completa"
+              className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
 
-            {/* Next Photo Button */}
-            {lightbox.photos.length > 1 && (
-              <button
-                type="button"
-                onClick={nextLightboxPhoto}
-                aria-label="Foto siguiente"
-                className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/60 hover:bg-brand-cyan text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-110 shadow-2xl active:scale-95"
-                title="Foto siguiente (→)"
-              >
-                <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
-              </button>
+          {/* Área central con la imagen a tamaño máximo */}
+          <div
+            className="relative flex-1 w-full flex items-center justify-center min-h-0 py-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={getAssetUrl(
+                selectedService.gallery[activePhotoIndex]?.url || ''
+              )}
+              alt={`${selectedService.title} - Foto ${activePhotoIndex + 1}`}
+              className="max-w-full max-h-[82vh] object-contain rounded-xl shadow-2xl transition-all duration-300"
+            />
+
+            {/* Flechas de navegación en pantalla completa */}
+            {selectedService.gallery.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={handlePrevPhoto}
+                  aria-label="Foto anterior"
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-all border border-white/10"
+                >
+                  <ChevronLeft className="w-7 h-7" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNextPhoto}
+                  aria-label="Foto siguiente"
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-all border border-white/10"
+                >
+                  <ChevronRight className="w-7 h-7" />
+                </button>
+              </>
             )}
           </div>
 
-          {/* Modal Bottom Section: Thumbnail bar */}
-          <div className="w-full px-4 sm:px-8 py-3 bg-black/60 backdrop-blur-lg border-t border-white/10 z-20 flex flex-col items-center gap-3">
-            {/* Thumbnails Row */}
-            {lightbox.photos.length > 1 && (
-              <div className="flex items-center gap-2.5 overflow-x-auto max-w-full py-1 px-2 scrollbar-none">
-                {lightbox.photos.map((photo, thumbIdx) => (
-                  <button
-                    key={thumbIdx}
-                    type="button"
-                    onClick={() =>
-                      setLightbox((prev) => ({
-                        ...prev,
-                        currentIndex: thumbIdx,
-                      }))
-                    }
-                    className={`relative w-14 h-10 sm:w-16 sm:h-12 rounded-lg overflow-hidden shrink-0 transition-all duration-200 ${
-                      thumbIdx === lightbox.currentIndex
-                        ? 'ring-2 ring-brand-cyan ring-offset-2 ring-offset-black scale-105'
-                        : 'opacity-50 hover:opacity-100'
-                    }`}
-                    aria-label={`Ir a foto ${thumbIdx + 1}`}
-                  >
-                    <img
-                      src={photo.url}
-                      alt={`${lightbox.serviceTitle} - Foto ${thumbIdx + 1}`}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          {/* Tira inferior de miniaturas en pantalla completa */}
+          {selectedService.gallery.length > 1 && (
+            <div
+              className="w-full flex justify-center overflow-x-auto gap-2 pt-2 pb-1 z-20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {selectedService.gallery.map((photo, idx) => (
+                <button
+                  key={photo.url}
+                  type="button"
+                  onClick={() => setActivePhotoIndex(idx)}
+                  className={`relative flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                    activePhotoIndex === idx
+                      ? 'border-white ring-2 ring-white/40 scale-105 opacity-100'
+                      : 'border-transparent opacity-50 hover:opacity-90'
+                  }`}
+                >
+                  <img
+                    src={getAssetUrl(photo.url)}
+                    alt={`Miniatura ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </section>

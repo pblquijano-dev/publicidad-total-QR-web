@@ -5,10 +5,10 @@ import {
   Geography,
   Marker,
 } from 'react-simple-maps';
-import { MessageCircle, X, Sparkles } from 'lucide-react';
+import { MessageCircle, X } from 'lucide-react';
 import type { GeoJsonObject } from 'geojson';
-import { useTheme } from '../context/ThemeContext';
 import peninsulaGeo from '../data/peninsula.json';
+import { ScrollReveal } from './ScrollReveal';
 
 interface StateCoverageInfo {
   id: 'yucatan' | 'quintana-roo' | 'campeche';
@@ -69,9 +69,6 @@ const STATE_COVERAGE: Record<string, StateCoverageInfo> = {
 };
 
 export const Coverage: React.FC = () => {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
-
   const [hoveredState, setHoveredState] = useState<string | null>(null);
   const [selectedState, setSelectedState] = useState<string | null>(null);
 
@@ -87,180 +84,174 @@ export const Coverage: React.FC = () => {
   return (
     <section
       id="cobertura"
-      className="w-full py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-brand-dark transition-colors duration-300 relative overflow-hidden"
+      className="w-full pt-20 lg:pt-24 bg-[#99E0FF] transition-colors duration-300 relative overflow-hidden"
     >
-      {/* Background Ambient Glows */}
-      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-brand-primary/5 dark:bg-brand-primary/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 -right-40 w-96 h-96 bg-brand-cyan/5 dark:bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="w-full relative z-10">
         {/* Header de Sección */}
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <span className="bg-indigo-50 dark:bg-brand-primary/20 text-[#312782] dark:text-brand-primary-soft font-semibold text-xs px-3.5 py-1.5 rounded-full inline-block mb-3 border border-indigo-100 dark:border-brand-primary/40 font-sora">
-            • COBERTURA REGIONAL EN MAPA
-          </span>
-          <h2 className="font-sora text-[#312782] dark:text-white font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
-            Cobertura por Estado en la Península
-          </h2>
-          <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg mt-3 font-manrope">
-            Interactúa directamente con el mapa para consultar la información
-            operativa de Quintana Roo, Yucatán y Campeche.
-          </p>
-        </div>
+        <ScrollReveal animation="fade-up" duration={700}>
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="bg-[#092652]/10 text-[#092652] font-semibold text-xs px-3.5 py-1.5 rounded-full inline-block mb-3 border border-[#092652]/20 font-sora">
+              • COBERTURA REGIONAL EN MAPA
+            </span>
+            <h2 className="font-sora text-[#092652] font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
+              Cobertura Publicitaria en la Península de Yucatán
+            </h2>
+            <p className="text-gray-600 text-base sm:text-lg mt-3 font-manrope">
+              Interactúa directamente con el mapa para consultar la información
+              operativa de Quintana Roo, Yucatán y Campeche.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Contenedor del Mapa con react-simple-maps */}
-        <div className="relative w-full rounded-3xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-xl mb-12 bg-gradient-to-br from-[#ADD6FF] via-[#85C2FF] to-[#ADD6FF] dark:from-[#091122] dark:via-[#0c162d] dark:to-[#050a14] group/map select-none">
-          {/* Mapa SVG de react-simple-maps */}
-          <div className="w-full h-[450px] sm:h-[520px] lg:h-[580px] flex items-center justify-center">
-            <ComposableMap
-              projection="geoMercator"
-              projectionConfig={{
-                scale: 4700,
-                center: [-89.15, 19.8],
-              }}
-              width={800}
-              height={520}
-              className="w-full h-full max-h-[580px]"
-            >
-              {/* Geografías de la Península */}
-              <Geographies geography={peninsulaGeo as unknown as GeoJsonObject}>
-                {({ geographies }) =>
-                  geographies.map((geo) => {
-                    const stateName = (geo.properties?.name as string) || '';
-                    const stateInfo = STATE_COVERAGE[stateName];
-                    const isPeninsula = Boolean(stateInfo);
+        <ScrollReveal animation="zoom-in" duration={800}>
+          <div className="relative w-full overflow-hidden bg-[#99E0FF] group/map select-none">
+            {/* Mapa SVG de react-simple-maps */}
+            <div className="w-full h-[450px] sm:h-[520px] lg:h-[580px] flex items-center justify-center">
+              <ComposableMap
+                projection="geoMercator"
+                projectionConfig={{
+                  scale: 4700,
+                  center: [-89.15, 19.8],
+                }}
+                width={800}
+                height={520}
+                className="w-full h-full max-h-[580px]"
+              >
+                {/* Geografías de la Península */}
+                <Geographies
+                  geography={peninsulaGeo as unknown as GeoJsonObject}
+                >
+                  {({ geographies }) =>
+                    geographies.map((geo) => {
+                      const stateName = (geo.properties?.name as string) || '';
+                      const stateInfo = STATE_COVERAGE[stateName];
+                      const isPeninsula = Boolean(stateInfo);
 
-                    // Colores para estados vecinos fuera de la Península
-                    let fill = isDark ? '#1e293b' : '#F2F4F8';
-                    const stroke = isDark ? '#334155' : '#A4B6CB';
-                    let strokeWidth = 0.8;
-                    let cursor = 'default';
+                      // Colores para estados vecinos fuera de la Península
+                      let fill = '#F2F4F8';
+                      const stroke = '#A4B6CB';
+                      let strokeWidth = 0.8;
+                      let cursor = 'default';
 
-                    if (isPeninsula) {
-                      const isSelected = selectedState === stateName;
-                      const isHovered = hoveredState === stateName;
+                      if (isPeninsula) {
+                        const isSelected = selectedState === stateName;
+                        const isHovered = hoveredState === stateName;
 
-                      fill = isSelected
-                        ? stateInfo.activeColor
-                        : isHovered
-                          ? stateInfo.hoverColor
-                          : stateInfo.color;
+                        fill = isSelected
+                          ? stateInfo.activeColor
+                          : isHovered
+                            ? stateInfo.hoverColor
+                            : stateInfo.color;
 
-                      strokeWidth = isSelected ? 3 : 1.8;
-                      cursor = 'pointer';
-                    }
+                        strokeWidth = isSelected ? 3 : 1.8;
+                        cursor = 'pointer';
+                      }
 
-                    return (
-                      <Geography
-                        key={geo.rsmKey}
-                        geography={geo}
-                        fill={fill}
-                        stroke={stroke}
-                        strokeWidth={strokeWidth}
-                        className="outline-none transition-all duration-200"
-                        style={{
-                          cursor,
-                          fillOpacity: isPeninsula
-                            ? selectedState && selectedState !== stateName
-                              ? 0.55
-                              : 0.95
-                            : 0.45,
-                        }}
-                        onMouseEnter={() => {
-                          if (isPeninsula) setHoveredState(stateName);
-                        }}
-                        onMouseLeave={() => {
-                          if (isPeninsula) setHoveredState(null);
-                        }}
-                        onClick={() => {
-                          if (isPeninsula) handleStateClick(stateName);
-                        }}
-                      />
-                    );
-                  })
-                }
-              </Geographies>
+                      return (
+                        <Geography
+                          key={geo.rsmKey}
+                          geography={geo}
+                          fill={fill}
+                          stroke={stroke}
+                          strokeWidth={strokeWidth}
+                          className="outline-none transition-all duration-200"
+                          style={{
+                            cursor,
+                            fillOpacity: isPeninsula
+                              ? selectedState && selectedState !== stateName
+                                ? 0.55
+                                : 0.95
+                              : 0.45,
+                          }}
+                          onMouseEnter={() => {
+                            if (isPeninsula) setHoveredState(stateName);
+                          }}
+                          onMouseLeave={() => {
+                            if (isPeninsula) setHoveredState(null);
+                          }}
+                          onClick={() => {
+                            if (isPeninsula) handleStateClick(stateName);
+                          }}
+                        />
+                      );
+                    })
+                  }
+                </Geographies>
 
-              {/* Rótulos Centrales de Nombres de Estados */}
-              {Object.values(STATE_COVERAGE).map((state) => {
-                const isSelected = selectedState === state.name;
+                {/* Rótulos Centrales de Nombres de Estados */}
+                {Object.values(STATE_COVERAGE).map((state) => {
+                  const isSelected = selectedState === state.name;
 
-                return (
-                  <Marker
-                    key={state.id}
-                    coordinates={state.centroid}
-                    onClick={() => handleStateClick(state.name)}
-                    className="cursor-pointer group/label"
-                  >
-                    <text
-                      textAnchor="middle"
-                      className={`font-sora tracking-widest fill-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)] select-none uppercase transition-all duration-200 ${
-                        isSelected
-                          ? 'text-[15px] sm:text-[17px] font-extrabold fill-yellow-200'
-                          : 'text-[12px] sm:text-[14px] font-bold fill-white group-hover/label:scale-105'
-                      }`}
+                  return (
+                    <Marker
+                      key={state.id}
+                      coordinates={state.centroid}
+                      onClick={() => handleStateClick(state.name)}
+                      className="cursor-pointer group/label"
                     >
-                      {state.name}
-                    </text>
-                  </Marker>
-                );
-              })}
-            </ComposableMap>
-          </div>
+                      <text
+                        textAnchor="middle"
+                        className={`font-sora tracking-widest fill-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)] select-none uppercase transition-all duration-200 ${
+                          isSelected
+                            ? 'text-[15px] sm:text-[17px] font-extrabold fill-yellow-200'
+                            : 'text-[12px] sm:text-[14px] font-bold fill-white group-hover/label:scale-105'
+                        }`}
+                      >
+                        {state.name}
+                      </text>
+                    </Marker>
+                  );
+                })}
+              </ComposableMap>
+            </div>
 
-          {/* Tarjeta Flotante Interactiva de Detalle del Estado Seleccionado */}
-          {activeStateInfo && (
-            <div className="absolute bottom-4 right-4 sm:right-6 max-w-xs sm:max-w-sm w-[calc(100%-2rem)] bg-white/95 dark:bg-brand-dark/95 backdrop-blur-xl p-5 rounded-2xl shadow-2xl border border-gray-200/90 dark:border-white/10 z-30 animate-fadeIn font-manrope">
-              <div className="flex items-start justify-between gap-2 mb-2.5">
-                <span
-                  className="px-2.5 py-1 rounded-md text-[10px] font-bold font-sora uppercase tracking-wider text-white shadow-xs"
+            {/* Tarjeta Flotante Interactiva de Detalle del Estado Seleccionado */}
+            {activeStateInfo && (
+              <div className="absolute bottom-4 right-4 sm:right-6 max-w-xs sm:max-w-sm w-[calc(100%-2rem)] bg-white/95 backdrop-blur-xl p-5 rounded-2xl shadow-2xl border border-gray-200/90 z-30 animate-fadeIn font-manrope">
+                <div className="flex items-start justify-between gap-2 mb-2.5">
+                  <span
+                    className="px-2.5 py-1 rounded-md text-[10px] font-bold font-sora uppercase tracking-wider text-white shadow-xs"
+                    style={{ backgroundColor: activeStateInfo.color }}
+                  >
+                    {activeStateInfo.badge}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedState(null)}
+                    className="p-1 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-800 transition-colors cursor-pointer"
+                    aria-label="Cerrar detalle de estado"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <h3 className="font-sora text-xl font-bold text-[#092652]">
+                  {activeStateInfo.name}
+                </h3>
+                <p className="text-xs font-semibold text-gray-500 mb-2">
+                  {activeStateInfo.tag}
+                </p>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-5">
+                  {activeStateInfo.description}
+                </p>
+
+                <a
+                  href={`https://wa.me/529981071359?text=${encodeURIComponent(
+                    activeStateInfo.waText
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-white font-sora font-bold text-xs transition-transform hover:scale-[1.02] active:scale-95 shadow-md"
                   style={{ backgroundColor: activeStateInfo.color }}
                 >
-                  {activeStateInfo.badge}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setSelectedState(null)}
-                  className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors cursor-pointer"
-                  aria-label="Cerrar detalle de estado"
-                >
-                  <X className="w-4 h-4" />
-                </button>
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  <span>Cotizar en {activeStateInfo.name}</span>
+                </a>
               </div>
-
-              <h4 className="font-sora text-xl font-bold text-gray-900 dark:text-white">
-                {activeStateInfo.name}
-              </h4>
-              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">
-                {activeStateInfo.tag}
-              </p>
-              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
-                {activeStateInfo.description}
-              </p>
-
-              <a
-                href={`https://wa.me/529981071359?text=${encodeURIComponent(
-                  activeStateInfo.waText
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-white font-sora font-bold text-xs transition-transform hover:scale-[1.02] active:scale-95 shadow-md"
-                style={{ backgroundColor: activeStateInfo.color }}
-              >
-                <MessageCircle className="w-4 h-4 fill-current" />
-                <span>Cotizar en {activeStateInfo.name}</span>
-              </a>
-            </div>
-          )}
-
-          {/* Indicador de ayuda al usuario en la esquina inferior izquierda */}
-          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-20 pointer-events-none hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/40 backdrop-blur-md text-white/80 text-[11px] font-manrope">
-            <Sparkles className="w-3.5 h-3.5 text-brand-lime" />
-            <span>
-              Haz clic en un estado para ver mas información y cotizar
-            </span>
+            )}
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
