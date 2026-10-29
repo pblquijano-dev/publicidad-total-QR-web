@@ -1,10 +1,10 @@
 # robots.txt para Publicidad Total Q&R
-# Permite el rastreo de todo el contenido público del sitio web
+# https://publicidadtotalqr.com
 
 User-agent: *
 Allow: /
 
-# Disallow de archivos fuente o de configuración si aplicara
+# Deshabilitar rastreo de rutas internas o APIs privadas si aplican
 Disallow: /api/
 
 # Ubicación del archivo de mapa del sitio (Sitemap XML)
