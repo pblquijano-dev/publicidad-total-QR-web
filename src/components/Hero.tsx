@@ -6,22 +6,25 @@ import { getAssetUrl } from '../utils/assets';
 
 export const Hero: React.FC = () => {
   const heroImages = [
-    '/images/hero/IMG_20260424_204819.jpg',
-    '/images/hero/20260124_181456.jpg',
-    '/images/hero/FB_IMG_1768870530055.jpg',
-    '/images/hero/20250809_165806(0).jpg',
-    '/images/hero/FB_IMG_1769649611680.jpg',
-    '/images/hero/FB_IMG_1791150350625.jpg',
-    '/images/hero/d294a7dc-cbe6-4458-85ca-c01582a09947.jpg',
-    '/images/hero/IMG_20260522_183705.jpg',
-    '/images/hero/IMG_20260911_183523.jpg',
-    '/images/hero/20250913_100739.jpg',
-    '/images/hero/11e97626-d2bb-4ab3-b6fe-45e789835306.jpg',
-    '/images/hero/1a6a2da0-29b8-4838-a699-2d40a74433bc.jpg',
+    '/images/hero/IMG_20260424_204819.webp',
+    '/images/hero/20260124_181456.webp',
+    '/images/hero/FB_IMG_1768870530055.webp',
+    '/images/hero/20250809_165806(0).webp',
+    '/images/hero/FB_IMG_1769649611680.webp',
+    '/images/hero/FB_IMG_1791150350625.webp',
+    '/images/hero/d294a7dc-cbe6-4458-85ca-c01582a09947.webp',
+    '/images/hero/IMG_20260522_183705.webp',
+    '/images/hero/IMG_20260911_183523.webp',
+    '/images/hero/20250913_100739.webp',
+    '/images/hero/11e97626-d2bb-4ab3-b6fe-45e789835306.webp',
+    '/images/hero/1a6a2da0-29b8-4838-a699-2d40a74433bc.webp',
   ].map(getAssetUrl);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [prevImageIndex, setPrevImageIndex] = useState<number | null>(null);
+  const [loadedIndices, setLoadedIndices] = useState<Set<number>>(
+    () => new Set([0])
+  );
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -29,13 +32,38 @@ export const Hero: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => {
-        setPrevImageIndex(prev);
-        return (prev + 1) % heroImages.length;
+    // Preload next image shortly before transitioning
+    const preloadTimer = setInterval(() => {
+      setCurrentImageIndex((curr) => {
+        const next = (curr + 1) % heroImages.length;
+        setLoadedIndices((prev) => {
+          if (prev.has(next)) return prev;
+          const updated = new Set(prev);
+          updated.add(next);
+          return updated;
+        });
+        return curr;
       });
-    }, 4000);
-    return () => clearInterval(interval);
+    }, 3500);
+
+    const transitionInterval = setInterval(() => {
+      setCurrentImageIndex((prev) => {
+        const next = (prev + 1) % heroImages.length;
+        setPrevImageIndex(prev);
+        setLoadedIndices((indices) => {
+          if (indices.has(next)) return indices;
+          const updated = new Set(indices);
+          updated.add(next);
+          return updated;
+        });
+        return next;
+      });
+    }, 4500);
+
+    return () => {
+      clearInterval(preloadTimer);
+      clearInterval(transitionInterval);
+    };
   }, [heroImages.length]);
 
   return (
@@ -45,6 +73,11 @@ export const Hero: React.FC = () => {
         {/* Background Image Carousel with Smooth Cross-Fade */}
         <div className="absolute inset-0 z-0 overflow-hidden bg-[brand-primary]">
           {heroImages.map((src, index) => {
+            // Lazy load carousel slides: don't mount in DOM until requested
+            if (!loadedIndices.has(index)) {
+              return null;
+            }
+
             const isActive = index === currentImageIndex;
             const isExiting = index === prevImageIndex;
             const isCurrentOrPrev = isActive || isExiting;
@@ -55,8 +88,10 @@ export const Hero: React.FC = () => {
                 src={src}
                 alt={`Activación BTL y publicidad en vía pública ${index + 1}`}
                 loading={index === 0 ? 'eager' : 'lazy'}
-                decoding="async"
+                decoding={index === 0 ? 'sync' : 'async'}
                 fetchPriority={index === 0 ? 'high' : 'auto'}
+                width="1920"
+                height="1080"
                 style={{
                   opacity: isCurrentOrPrev ? 1 : 0,
                   zIndex: isActive ? 2 : isExiting ? 1 : 0,
@@ -65,7 +100,7 @@ export const Hero: React.FC = () => {
                   transition:
                     'opacity 1400ms cubic-bezier(0.4, 0, 0.2, 1), transform 9000ms cubic-bezier(0.2, 1, 0.3, 1)',
                 }}
-                className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.50] contrast-[1.05] saturate-[0.85]  pointer-events-none will-change-transform"
+                className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.50] contrast-[1.05] saturate-[0.85] pointer-events-none will-change-transform"
               />
             );
           })}

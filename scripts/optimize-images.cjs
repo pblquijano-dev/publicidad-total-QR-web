@@ -3,9 +3,8 @@ const path = require('path');
 const sharp = require('sharp');
 
 const TARGET_DIR = path.resolve(__dirname, '../public/images');
-const MAX_DIMENSION = 1920;
-const JPEG_QUALITY = 80;
-const WEBP_QUALITY = 80;
+const MAX_DIMENSION = 1600;
+const WEBP_QUALITY = 78;
 
 function getAllImageFiles(dir) {
   let results = [];
@@ -32,72 +31,50 @@ async function optimizeImage(filePath) {
   const origStats = fs.statSync(filePath);
   const origSize = origStats.size;
   const ext = path.extname(filePath).toLowerCase();
+  const dir = path.dirname(filePath);
+  const baseName = path.basename(filePath, ext);
+  const isLogo = baseName === 'logo';
+
+  const isHero = filePath.includes('/hero/') || filePath.includes('\\hero\\');
+  const maxDim = isHero ? 1920 : MAX_DIMENSION;
 
   let pipeline = sharp(filePath).rotate();
-  const meta = await pipeline.metadata();
+  pipeline = pipeline.resize(maxDim, maxDim, {
+    fit: 'inside',
+    withoutEnlargement: true,
+  });
 
-  if ((meta.width && meta.width > MAX_DIMENSION) || (meta.height && meta.height > MAX_DIMENSION)) {
-    pipeline = pipeline.resize(MAX_DIMENSION, MAX_DIMENSION, {
-      fit: 'inside',
-      withoutEnlargement: true,
-    });
-  }
+  const webpBuffer = await pipeline
+    .webp({
+      quality: WEBP_QUALITY,
+      effort: 5,
+    })
+    .toBuffer();
 
-  let optimizedBuffer;
-  if (ext === '.jpg' || ext === '.jpeg') {
-    optimizedBuffer = await pipeline
-      .jpeg({
-        quality: JPEG_QUALITY,
-        mozjpeg: true,
-        progressive: true,
-      })
-      .toBuffer();
-  } else if (ext === '.png') {
-    optimizedBuffer = await pipeline
-      .png({
-        compressionLevel: 9,
-        effort: 9,
-        palette: true,
-      })
-      .toBuffer();
-  } else if (ext === '.webp') {
-    optimizedBuffer = await pipeline
-      .webp({
-        quality: WEBP_QUALITY,
-        effort: 6,
-      })
-      .toBuffer();
-  }
+  const webpPath = path.join(dir, `${baseName}.webp`);
+  fs.writeFileSync(webpPath, webpBuffer);
 
-  if (optimizedBuffer && optimizedBuffer.length < origSize) {
-    fs.writeFileSync(filePath, optimizedBuffer);
-    return {
-      file: path.relative(TARGET_DIR, filePath),
-      origSize,
-      newSize: optimizedBuffer.length,
-      saved: origSize - optimizedBuffer.length,
-      optimized: true,
-    };
+  if (!isLogo && (ext === '.jpg' || ext === '.jpeg')) {
+    fs.unlinkSync(filePath);
   }
 
   return {
-    file: path.relative(TARGET_DIR, filePath),
+    file: path.relative(TARGET_DIR, webpPath),
     origSize,
-    newSize: origSize,
-    saved: 0,
-    optimized: false,
+    newSize: webpBuffer.length,
+    saved: origSize - webpBuffer.length,
+    optimized: true,
   };
 }
 
 async function main() {
   console.log(`Buscando imágenes en: ${TARGET_DIR} ...`);
   const files = getAllImageFiles(TARGET_DIR);
-  console.log(`Se encontraron ${files.length} imágenes.\nOptimizando...`);
+  console.log(`Se encontraron ${files.length} imágenes.\nOptimizando a WebP...`);
 
   let totalOrig = 0;
   let totalNew = 0;
   let countOptimized = 0;
-  const savings = [];
 
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
@@ -105,10 +82,7 @@ async function main() {
       const res = await optimizeImage(file);
       totalOrig += res.origSize;
       totalNew += res.newSize;
-      if (res.optimized) {
-        countOptimized++;
-        savings.push(res);
-      }
+      countOptimized++;
       process.stdout.write(
         `\rProgreso: ${i + 1}/${files.length} (${Math.round(((i + 1) / files.length) * 100)}%)`
       );
@@ -117,29 +91,17 @@ async function main() {
     }
   }
 
-  console.log('\n\n--- Resumen de Optimización ---');
+  console.log('\n\n--- Resumen de Optimización WebP ---');
   console.log(`Imágenes totales analizadas: ${files.length}`);
-  console.log(`Imágenes optimizadas: ${countOptimized}`);
-  console.log(`Tamaño original: ${formatBytes(totalOrig)}`);
-  console.log(`Tamaño final:    ${formatBytes(totalNew)}`);
+  console.log(`Imágenes optimizadas:       ${countOptimized}`);
+  console.log(`Tamaño original:            ${formatBytes(totalOrig)}`);
+  console.log(`Tamaño final:               ${formatBytes(totalNew)}`);
   console.log(
-    `Ahorro total:    ${formatBytes(totalOrig - totalNew)} (-${(
+    `Ahorro total:               ${formatBytes(totalOrig - totalNew)} (-${(
       (1 - totalNew / totalOrig) *
       100
     ).toFixed(1)}%)`
   );
-
-  savings.sort((a, b) => b.saved - a.saved);
-  console.log('\nTop 10 mayores reducciones:');
-  savings.slice(0, 10).forEach((s, idx) => {
-    console.log(
-      `${idx + 1}. ${s.file} -> ${(s.origSize / 1024 / 1024).toFixed(2)}MB a ${(
-        s.newSize /
-        1024 /
-        1024
-      ).toFixed(2)}MB (-${((s.saved / s.origSize) * 100).toFixed(0)}%)`
-    );
-  });
 }
 
 main().catch((err) => {

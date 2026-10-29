@@ -111,10 +111,12 @@ export const About: React.FC = () => {
                 <div className="absolute -bottom-12 -right-12 w-36 h-36 bg-brand-crimson/20 rounded-full blur-2xl pointer-events-none" />
 
                 <img
-                  src={getAssetUrl('/images/logo-dark.png')}
+                  src={getAssetUrl('/images/logo-dark.webp')}
                   alt="Publicidad Total Q&R - Identidad Institucional"
                   loading="lazy"
                   decoding="async"
+                  width="1000"
+                  height="1023"
                   className="relative z-10 w-full max-h-[300px] sm:max-h-[350px] object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
                 />
               </div>

@@ -47,7 +47,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Personal de imagen calificado con excelente presentación, facilidad de palabra y vestuario corporativo coordinado para congresos, lanzamientos, expos y eventos VIP en la Península.',
         coverImage:
-          '/images/servicios/activaciones de marca/edecanes/8c5b5d08-a098-47d8-b4ae-38439e7d4fb6.jpg',
+          '/images/servicios/activaciones de marca/edecanes/8c5b5d08-a098-47d8-b4ae-38439e7d4fb6.webp',
         gallery: EDECANES_GALLERY,
       },
       {
@@ -56,7 +56,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Conducción profesional con micrófono en mano, animación de dinámicas, concursos y ambientación comercial para atraer clientes a tu tienda o sucursal.',
         coverImage:
-          '/images/servicios/activaciones de marca/animadores/a307589d-583b-4669-a03a-991cbd175ccf.jpg',
+          '/images/servicios/activaciones de marca/animadores/a307589d-583b-4669-a03a-991cbd175ccf.webp',
         gallery: ANIMADORES_GALLERY,
       },
       {
@@ -65,7 +65,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Sistemas de sonido de alta fidelidad y potencia para sonorización en punto de venta, carpas publicitarias y eventos masivos en exteriores.',
         coverImage:
-          '/images/servicios/activaciones de marca/audio/6b2d5781-90f1-4181-8880-004eaf8122f4.jpg',
+          '/images/servicios/activaciones de marca/audio/6b2d5781-90f1-4181-8880-004eaf8122f4.webp',
         gallery: AUDIO_GALLERY,
       },
       {
@@ -74,7 +74,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Animadores caracterizados de alta energía para dinamizar el punto de venta, interactuar con el público familiar y generar contenido de alto impacto visual.',
         coverImage:
-          '/images/servicios/activaciones de marca/botargueros/59966bc4-85e2-4436-87a6-2aa9a3fee7b0.jpg',
+          '/images/servicios/activaciones de marca/botargueros/59966bc4-85e2-4436-87a6-2aa9a3fee7b0.webp',
         gallery: BOTARGUERO_GALLERY,
       },
       {
@@ -83,7 +83,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Artistas visuales en zancos con vistosos vestuarios temáticos de gran impacto para elevar la visibilidad de tu marca desde largas distancias en avenidas y desfiles.',
         coverImage:
-          '/images/servicios/activaciones de marca/zanqueros/458356884_1086215763507006_6909237291927740340_n.jpg',
+          '/images/servicios/activaciones de marca/zanqueros/458356884_1086215763507006_6909237291927740340_n.webp',
         gallery: ZANQUERO_GALLERY,
       },
       {
@@ -92,7 +92,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Espectáculo musical de percusión y ritmo en vivo para capturar la atención masiva en inauguraciones, eventos comerciales y desfiles festivos.',
         coverImage:
-          '/images/servicios/activaciones de marca/batucada/309037420_555330266595561_3298176635245688820_n.jpg',
+          '/images/servicios/activaciones de marca/batucada/309037420_555330266595561_3298176635245688820_n.webp',
         gallery: BATUCADA_GALLERY,
       },
       {
@@ -101,7 +101,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Personal dinámico en camellones y cruceros estratégicos con pancartas y flechas de alta visibilidad para desviar el tráfico hacia tu sucursal.',
         coverImage:
-          '/images/servicios/activaciones de marca/pancarteros/6250f005-39e9-4e96-b961-74d648de9ffa.jpg',
+          '/images/servicios/activaciones de marca/pancarteros/6250f005-39e9-4e96-b961-74d648de9ffa.webp',
         gallery: PANCARTERO_GALLERY,
       },
       {
@@ -110,7 +110,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Personal capacitado en punto de venta para demostración de producto, degustación, entrega de muestras y desplazamiento de inventario en tienda.',
         coverImage:
-          '/images/servicios/activaciones de marca/promodegustadoras/IMG_20260911_182849.jpg',
+          '/images/servicios/activaciones de marca/promodegustadoras/IMG_20260911_182849.webp',
         gallery: PROMODEGUSTADORAS_GALLERY,
       },
       {
@@ -119,7 +119,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Personal masculino de imagen comercial y protocolo para bienvenida, eventos deportivos, exposiciones corporativas y activaciones de marca.',
         coverImage:
-          '/images/servicios/activaciones de marca/gios/075d7e68-dad1-4a52-96b8-bbaec2a78631.jpg',
+          '/images/servicios/activaciones de marca/gios/075d7e68-dad1-4a52-96b8-bbaec2a78631.webp',
         gallery: GIOS_GALLERY,
       },
     ],
@@ -134,7 +134,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Cobertura fotográfica profesional en alta resolución para documentar activaciones, aperturas, congresos y campañas corporativas con entrega de material optimizado.',
         coverImage:
-          '/images/servicios/audiovisuales/foto/7b4e83da-0fb4-478c-b756-301c3ae28a07.jpg',
+          '/images/servicios/audiovisuales/foto/7b4e83da-0fb4-478c-b756-301c3ae28a07.webp',
         gallery: FOTOGRAFIA_GALLERY,
       },
       {
@@ -143,7 +143,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Producción audiovisual completa con tomas cinematográficas, reels dinámicos para redes sociales y videos resumen con edición y musicalización profesional.',
         coverImage:
-          '/images/servicios/audiovisuales/video/bc585346-8e14-4df5-a753-756403699a77.jpg',
+          '/images/servicios/audiovisuales/video/bc585346-8e14-4df5-a753-756403699a77.webp',
         gallery: VIDEO_GALLERY,
       },
       {
@@ -152,7 +152,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Renta e instalación de pantallas LED de gran formato y alta luminosidad para proyección de spots comerciales, branding dinámico y eventos en vivo.',
         coverImage:
-          '/images/servicios/audiovisuales/pantalla/5680a7d0-8337-4753-9464-56f59573a475.jpg',
+          '/images/servicios/audiovisuales/pantalla/5680a7d0-8337-4753-9464-56f59573a475.webp',
         gallery: PANTALLAS_GALLERY,
       },
     ],
@@ -167,7 +167,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Flotilla propia de unidades equipadas con bocinas de alto alcance y amplificadores profesionales recorriendo colonias, avenidas y supermanzanas estratégicas.',
         coverImage:
-          '/images/servicios/perifoneo/carros/2265f8b3-f143-49f4-8351-309cbd2b5f0e.jpg',
+          '/images/servicios/perifoneo/carros/2265f8b3-f143-49f4-8351-309cbd2b5f0e.webp',
         gallery: PERIFONEO_GALLERY,
       },
       {
@@ -176,7 +176,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Unidades equipadas con paneles publicitarios iluminados de gran impacto visual que recorren las principales vialidades urbanas en horarios de máxima afluencia.',
         coverImage:
-          '/images/servicios/perifoneo/vallas moviles/20260124_181502.jpg',
+          '/images/servicios/perifoneo/vallas moviles/20260124_181502.webp',
         gallery: VALLAS_MOVILES_GALLERY,
       },
     ],
@@ -191,7 +191,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Distribución selectiva bajo puerta y en buzones por supermanzanas y fraccionamientos objetivo, con supervisión en campo y reportes de entrega.',
         coverImage:
-          '/images/servicios/volanteo/casa a casa/b786e258-f02d-4858-92ca-7855aa78712c.jpg',
+          '/images/servicios/volanteo/casa a casa/b786e258-f02d-4858-92ca-7855aa78712c.webp',
         gallery: VOLANTEO_CASA_GALLERY,
       },
       {
@@ -200,7 +200,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Cuadrillas móviles de promotores equipados con mochilas banner y banderas publicitarias recorriendo andadores peatonales y centros comerciales.',
         coverImage:
-          '/images/servicios/volanteo/publiandantes/367475347_810289221099663_2025243568995935940_n.jpg',
+          '/images/servicios/volanteo/publiandantes/367475347_810289221099663_2025243568995935940_n.webp',
         gallery: PUBLIANDANTES_GALLERY,
       },
       {
@@ -209,7 +209,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Entrega personalizada y directa de material impreso a peatones y automovilistas en cruces, paraderos y semáforos de alto flujo con personal identificado.',
         coverImage:
-          '/images/servicios/volanteo/mano a mano/345638749_9532667550106807_3393180472345962782_n.jpg',
+          '/images/servicios/volanteo/mano a mano/345638749_9532667550106807_3393180472345962782_n.webp',
         gallery: VOLANTEO_MANO_GALLERY,
       },
     ],
@@ -224,7 +224,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Impresión en papel couché de primera calidad a todo color, con acabados brillante o mate para campañas masivas de difusión y promociones.',
         coverImage:
-          '/images/servicios/impresos/volantes/329131488_1363140147772815_3246469811862417756_n.jpg',
+          '/images/servicios/impresos/volantes/329131488_1363140147772815_3246469811862417756_n.webp',
         gallery: VOLANTES_IMPRESOS_GALLERY,
       },
       {
@@ -233,7 +233,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Impresión digital de lonas frontlit resistentes a la intemperie, con refuerzo perimetral y ojillos para fachadas, espectaculares y eventos.',
         coverImage:
-          '/images/servicios/impresos/lonas/1241907d-5355-45f5-9b39-56be43f2ed59.jpg',
+          '/images/servicios/impresos/lonas/1241907d-5355-45f5-9b39-56be43f2ed59.webp',
         gallery: LONAS_GALLERY,
       },
       {
@@ -242,7 +242,7 @@ export const CATEGORIES: Category[] = [
         description:
           'Vinil adhesivo de alta resistencia, microperforado para cristales y rotulación de flotillas vehiculares para transformar cualquier superficie en medio publicitario.',
         coverImage:
-          '/images/servicios/impresos/vinil/9b652f93-aa96-4420-8745-4b8679322e7f.jpg',
+          '/images/servicios/impresos/vinil/9b652f93-aa96-4420-8745-4b8679322e7f.webp',
         gallery: VINIL_GALLERY,
       },
     ],

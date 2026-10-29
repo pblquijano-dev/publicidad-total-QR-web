@@ -43,6 +43,8 @@ export const Navbar: React.FC = () => {
                   : '/images/h-logo-header-dark.webp'
               )}
               alt="Publicidad Total Q&R - Agencia BTL y Activaciones de Marca"
+              width="463"
+              height="124"
               className={` ${isScrolled ? 'h-11 sm:h-14' : 'h-11 sm:h-14'} w-auto object-contain group-hover:scale-105 transition-transform duration-300`}
             />
           </a>

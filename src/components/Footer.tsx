@@ -85,6 +85,8 @@ export const Footer: React.FC = () => {
                     alt="Publicidad Total Q&R - Agencia de Publicidad BTL, Perifoneo y Activaciones"
                     loading="lazy"
                     decoding="async"
+                    width="192"
+                    height="192"
                     onError={() => setLogoError(true)}
                     className="w-full h-full object-contain filter brightness-105"
                   />
