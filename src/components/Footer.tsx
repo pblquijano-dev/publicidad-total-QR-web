@@ -41,7 +41,7 @@ const FIELD_SERVICES: FooterServiceLink[] = [
   { slug: 'fotografia-de-eventos', name: 'Fotografía de Eventos' },
   { slug: 'volantes-publicitarios', name: 'Volantes Publicitarios' },
   { slug: 'lonas-gran-formato', name: 'Lonas Gran Formato' },
-  /*   { slug: 'vinil-publicitario', name: 'Vinil Publicitario' }, */
+  { slug: 'vinil-publicitario', name: 'Vinil Publicitario' },
 ];
 
 export const Footer: React.FC = () => {

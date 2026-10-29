@@ -308,6 +308,12 @@ export const PANCARTERO_GALLERY: GalleryPhoto[] = [
   {
     url: '/images/servicios/activaciones de marca/pancarteros/369704166_821228080005777_704491612468148993_n.jpg',
   },
+  {
+    url: '/images/servicios/activaciones de marca/pancarteros/39e80c61-f67e-438b-801a-460f05c73bf1.jpg',
+  },
+  {
+    url: '/images/servicios/activaciones de marca/pancarteros/709038ae-9e73-484e-a5a2-767e35868631.jpg',
+  },
 ];
 
 export const PROMODEGUSTADORAS_GALLERY: GalleryPhoto[] = [
@@ -426,6 +432,15 @@ export const VOLANTEO_CASA_GALLERY: GalleryPhoto[] = [
   {
     url: '/images/servicios/volanteo/casa a casa/c0f1ffcb-bfdc-4f56-b739-db95f94da475.jpg',
   },
+  {
+    url: '/images/servicios/volanteo/casa a casa/14d63ed7-af84-4322-8c14-85b13d4ced65.jpg',
+  },
+  {
+    url: '/images/servicios/volanteo/casa a casa/788ff102-a0b7-4689-bf46-2141f81242ee.jpg',
+  },
+  {
+    url: '/images/servicios/volanteo/casa a casa/477547c2-8261-4963-8137-bf83f261ee17.jpg',
+  },
 ];
 
 export const PUBLIANDANTES_GALLERY: GalleryPhoto[] = [
@@ -438,11 +453,35 @@ export const PUBLIANDANTES_GALLERY: GalleryPhoto[] = [
   {
     url: '/images/servicios/volanteo/publiandantes/c4208248-3d3e-40d0-bdb0-84f9860de0bd.jpg',
   },
+  {
+    url: '/images/servicios/volanteo/publiandantes/4a5ac30a-93cb-4f8e-b110-9a695d68efc8.jpg',
+  },
+  {
+    url: '/images/servicios/volanteo/publiandantes/aa2b84f5-0e78-42c1-ae11-870153bb6569.jpg',
+  },
+  {
+    url: '/images/servicios/volanteo/publiandantes/fa67caa7-55c0-4258-9df7-4fff21605113.jpg',
+  },
 ];
 
 export const VOLANTEO_MANO_GALLERY: GalleryPhoto[] = [
   {
     url: '/images/servicios/volanteo/mano a mano/345638749_9532667550106807_3393180472345962782_n.jpg',
+  },
+  {
+    url: '/images/servicios/volanteo/mano a mano/6b715e4a-7084-48c8-aaae-35ffd38bc68e.jpg',
+  },
+  {
+    url: '/images/servicios/volanteo/mano a mano/14ad2f47-923a-4f22-8dfb-c5ad4bd122ec.jpg',
+  },
+  {
+    url: '/images/servicios/volanteo/mano a mano/bb1f8965-c2b4-4ec2-995c-9bac4c7fb24b.jpg',
+  },
+  {
+    url: '/images/servicios/volanteo/mano a mano/cd91d92e-9051-4c67-b85b-310055525ad7.jpg',
+  },
+  {
+    url: '/images/servicios/volanteo/mano a mano/ef3a117b-18e2-4375-a858-fcebd3a33bf2.jpg',
   },
 ];
 
@@ -454,13 +493,31 @@ export const VOLANTES_IMPRESOS_GALLERY: GalleryPhoto[] = [
 
 export const LONAS_GALLERY: GalleryPhoto[] = [
   {
+    url: '/images/servicios/impresos/lonas/1241907d-5355-45f5-9b39-56be43f2ed59.jpg',
+  },
+  {
     url: '/images/servicios/impresos/lonas/aa0d868d-64a3-406d-93f7-f6ba6b77236e.jpg',
+  },
+  {
+    url: '/images/servicios/impresos/lonas/a03afe59-e0be-432e-a146-37b943a8f211.jpg',
+  },
+  {
+    url: '/images/servicios/impresos/lonas/a85f8413-d146-474f-9211-a8613241c110.jpg',
+  },
+  {
+    url: '/images/servicios/impresos/lonas/IMG_20261015_170131.jpg',
   },
 ];
 
 export const VINIL_GALLERY: GalleryPhoto[] = [
   {
-    url: '/images/servicios/impresos/lonas/aa0d868d-64a3-406d-93f7-f6ba6b77236e.jpg',
+    url: '/images/servicios/impresos/vinil/9b652f93-aa96-4420-8745-4b8679322e7f.jpg',
+  },
+  {
+    url: '/images/servicios/impresos/vinil/962e3931-3f3f-4727-9433-8cfd9b3f8e5f.jpg',
+  },
+  {
+    url: '/images/servicios/impresos/vinil/4682c404-94dd-4ef3-a020-3b97b7abddba.jpg',
   },
 ];
 

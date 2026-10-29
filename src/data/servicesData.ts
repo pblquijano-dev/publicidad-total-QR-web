@@ -19,7 +19,7 @@ import {
   VOLANTEO_MANO_GALLERY,
   VOLANTES_IMPRESOS_GALLERY,
   LONAS_GALLERY,
-  /* VINIL_GALLERY, */
+  VINIL_GALLERY,
 } from './servicesPhotos';
 
 export interface ServiceItem {
@@ -233,18 +233,18 @@ export const CATEGORIES: Category[] = [
         description:
           'Impresión digital de lonas frontlit resistentes a la intemperie, con refuerzo perimetral y ojillos para fachadas, espectaculares y eventos.',
         coverImage:
-          '/images/servicios/impresos/lonas/aa0d868d-64a3-406d-93f7-f6ba6b77236e.jpg',
+          '/images/servicios/impresos/lonas/1241907d-5355-45f5-9b39-56be43f2ed59.jpg',
         gallery: LONAS_GALLERY,
       },
-      /*       {
-              slug: 'vinil-publicitario',
-              title: 'Vinil Publicitario',
-              description:
-                'Vinil adhesivo de alta resistencia, microperforado para cristales y rotulación de flotillas vehiculares para transformar cualquier superficie en medio publicitario.',
-              coverImage:
-                '/images/servicios/impresos/lonas/aa0d868d-64a3-406d-93f7-f6ba6b77236e.jpg',
-              gallery: VINIL_GALLERY,
-            }, */
+      {
+        slug: 'vinil-publicitario',
+        title: 'Vinil Publicitario',
+        description:
+          'Vinil adhesivo de alta resistencia, microperforado para cristales y rotulación de flotillas vehiculares para transformar cualquier superficie en medio publicitario.',
+        coverImage:
+          '/images/servicios/impresos/vinil/9b652f93-aa96-4420-8745-4b8679322e7f.jpg',
+        gallery: VINIL_GALLERY,
+      },
     ],
   },
 ];
