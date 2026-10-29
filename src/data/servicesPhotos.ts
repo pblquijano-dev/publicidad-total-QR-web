@@ -306,9 +306,6 @@ export const PANCARTERO_GALLERY: GalleryPhoto[] = [
     url: '/images/servicios/activaciones de marca/pancarteros/6250f005-39e9-4e96-b961-74d648de9ffa.jpg',
   },
   {
-    url: '/images/servicios/activaciones de marca/pancarteros/369704166_821228080005777_704491612468148993_n.jpg',
-  },
-  {
     url: '/images/servicios/activaciones de marca/pancarteros/39e80c61-f67e-438b-801a-460f05c73bf1.jpg',
   },
   {
@@ -461,6 +458,9 @@ export const PUBLIANDANTES_GALLERY: GalleryPhoto[] = [
   },
   {
     url: '/images/servicios/volanteo/publiandantes/fa67caa7-55c0-4258-9df7-4fff21605113.jpg',
+  },
+  {
+    url: '/images/servicios/volanteo/publiandantes/369704166_821228080005777_704491612468148993_n.jpg',
   },
 ];
 
