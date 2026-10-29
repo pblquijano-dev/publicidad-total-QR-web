@@ -191,15 +191,8 @@ export const Contact: React.FC = () => {
 
     try {
       const plazasFormatted = formatPlazasSummary(selectedStates);
-      const accessKey =
-        import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim() ||
-        '4f19daf0-f52f-4487-9319-8454e32f2218';
 
       const payload = {
-        access_key: accessKey,
-        subject: `Nueva Cotización Q&R: ${formData.nombreEmpresa} (${plazasFormatted})`,
-        from_name: formData.nombreEmpresa || 'Publicidad Total Q&R Web',
-        to: 'ventaspublicidad1@hotmail.com',
         nombre_empresa: formData.nombreEmpresa,
         telefono_whatsapp: formData.telefonoWhatsApp,
         plaza_despliegue: plazasFormatted,
@@ -211,7 +204,7 @@ export const Contact: React.FC = () => {
         }),
       };
 
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/send-mail.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -237,7 +230,7 @@ export const Contact: React.FC = () => {
         setStatus('error');
         setErrorMessage(
           result.message ||
-            'Ocurrió un error al enviar el formulario con Web3Forms. Por favor revisa la clave de acceso.'
+            'Ocurrió un error al enviar la cotización. Por favor contáctanos por WhatsApp.'
         );
       }
     } catch {

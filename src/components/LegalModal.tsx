@@ -88,7 +88,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
             <div className="min-w-0">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-sora font-bold tracking-wider uppercase bg-gray-100 text-gray-600 border border-gray-200 mb-0.5">
                 <Calendar className="w-3 h-3 text-brand-cyan" />
-                Vigencia 2026 · Península de Yucatán
+                Vigencia {new Date().getFullYear()} · Península de Yucatán
               </span>
               <h2
                 id="legal-modal-title"

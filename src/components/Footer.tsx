@@ -294,8 +294,8 @@ export const Footer: React.FC = () => {
         <ScrollReveal animation="fade" delay={150} duration={600}>
           <div className="pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-manrope text-blue-200/80">
             <p className="text-center sm:text-left">
-              © 2026 Publicidad Total Q&R. Todos los derechos reservados.
-              Powered by WYNOT.
+              © {new Date().getFullYear()} Publicidad Total Q&R. Todos los
+              derechos reservados. Powered by WYNOT.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-blue-200/80">
